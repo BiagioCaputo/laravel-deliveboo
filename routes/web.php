@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\HomeController as AdminHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,9 @@ Route::get('/', function () {
 });
 
 Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('/', [AdminHomeController::class, 'index'])->name('home');
+    Route::get('/', [RestaurantController::class, 'index'])->name('home');
+    Route::get('/restaurant/create', [RestaurantController::class, 'create'])->name('restaurant.create'); // Aggiunta della rotta per la creazione del ristorante;
+
 });
 
 Route::middleware('auth')->group(function () {
