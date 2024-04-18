@@ -11,6 +11,8 @@ class Restaurant extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['activity_name', 'address', 'image', 'slug', 'vat', 'email', 'type_id'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -36,5 +38,11 @@ class Restaurant extends Model
     public function getFormattedDate($column, $format = 'd-m-Y')
     {
         return Carbon::create($this->$column)->format($format);
+    }
+
+    //funzione per centralizzare il percorso dell'immagine per arrivare allo storage
+    public function printImage()
+    {
+        return asset('storage/' . $this->image);
     }
 }
