@@ -20,9 +20,11 @@ Route::get('/', function () {
 });
 
 Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('/', [RestaurantController::class, 'index'])->name('home');
-    Route::get('/restaurant/create', [RestaurantController::class, 'create'])->name('restaurant.create'); // Aggiunta della rotta per la creazione del ristorante;
 
+    //ROTTE RISTORANTE
+    Route::get('/', [RestaurantController::class, 'index'])->name('home'); //Rotta in sui sarà indirizzato l'utente al login
+    Route::get('/restaurant/create', [RestaurantController::class, 'create'])->name('restaurant.create');
+    Route::get('/restaurant/edit', [RestaurantController::class, 'edit'])->name('restaurant.edit');
 });
 
 Route::middleware('auth')->group(function () {

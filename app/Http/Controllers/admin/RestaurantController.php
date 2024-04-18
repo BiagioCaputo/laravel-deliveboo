@@ -29,4 +29,17 @@ class RestaurantController extends Controller
     {
         return view('admin.restaurant.create');
     }
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit()
+    {
+        $user = Auth::user();
+        $restaurant = $user->restaurant;
+
+        return view('admin.restaurant.edit', compact('restaurant'));
+    }
 }
