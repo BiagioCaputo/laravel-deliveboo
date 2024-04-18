@@ -20,6 +20,7 @@ class RestaurantSeeder extends Seeder
                 'vat' => '00000000010',
                 'email' => 'sorbillo@clienti.it',
                 'image' => 'non saprei',
+                'user_id' => 1
             ],
             [
                 'activity_name' => 'Fratelli Labufala',
@@ -27,6 +28,7 @@ class RestaurantSeeder extends Seeder
                 'vat' => '00000000011',
                 'email' => 'fratellilabufala@clienti.it',
                 'image' => 'non saprei',
+                'user_id' => 2
             ],
             [
                 'activity_name' => 'Old Wild West',
@@ -34,6 +36,7 @@ class RestaurantSeeder extends Seeder
                 'vat' => '00000000012',
                 'email' => 'oldwildwest@clienti.it',
                 'image' => 'non saprei',
+                'user_id' => 3
             ],
             [
                 'activity_name' => 'I Love poke',
@@ -41,6 +44,7 @@ class RestaurantSeeder extends Seeder
                 'vat' => '00000000013',
                 'email' => 'ilovepoke@clienti.it',
                 'image' => 'non saprei',
+                'user_id' => 4
             ],
 
         ];

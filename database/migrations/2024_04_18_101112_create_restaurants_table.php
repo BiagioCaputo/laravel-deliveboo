@@ -18,6 +18,10 @@ return new class extends Migration
             $table->char('vat', 11)->unique();
             $table->string('email', 100)->unique();
             $table->string('image')->nullable();
+
+            $table->foreignId('user_id')->cascadeOnUpdate()->cascadeOnDelete()->constrained();
+
+
             $table->timestamps();
             $table->softDeletes();
         });
