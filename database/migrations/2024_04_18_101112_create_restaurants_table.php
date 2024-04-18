@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->string('image')->nullable();
 
-            $table->foreignId('user_id')->cascadeOnUpdate()->cascadeOnDelete()->constrained();
+            $table->foreignId('user_id')->cascadeOnUpdate()->cascadeOnDelete()->constrained(); //se un utente viene eliminato o aggiornato, anche i riferimenti nei ristoranti vengano gestiti in modo appropriato.
 
 
             $table->timestamps();
