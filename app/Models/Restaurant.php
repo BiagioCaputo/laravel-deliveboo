@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+
 
 class Restaurant extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['activity_name', 'address', 'image', 'slug', 'vat', 'email', 'type_id'];
 
     public function user()
     {
@@ -28,5 +31,18 @@ class Restaurant extends Model
     public function dishes()
     {
         return $this->hasMany(Dish::class);
+    }
+
+
+    //funzione per cambiare il format delle date
+    public function getFormattedDate($column, $format = 'd-m-Y')
+    {
+        return Carbon::create($this->$column)->format($format);
+    }
+
+    //funzione per centralizzare il percorso dell'immagine per arrivare allo storage
+    public function printImage()
+    {
+        return asset('storage/' . $this->image);
     }
 }

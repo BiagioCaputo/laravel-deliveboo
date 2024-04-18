@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Restaurant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class RestaurantSeeder extends Seeder
 {
@@ -61,6 +62,8 @@ class RestaurantSeeder extends Seeder
 
             // Assegno massivamente i valori alla nuova istanza di restaurant
             $new_restaurant->fill($restaurant);
+
+            $new_restaurant->slug = Str::slug($restaurant['activity_name']);
 
             // Salvo le modifiche
             $new_restaurant->save();
