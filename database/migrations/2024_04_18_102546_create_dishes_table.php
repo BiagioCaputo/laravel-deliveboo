@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
-            //$table->resturant_id
-            //$table->course_id
             $table->string('name', 50);
             $table->string('image', 255)->nullable();
             $table->text('ingredients');
