@@ -63,13 +63,21 @@ class RestaurantController extends Controller
             ]
         );
 
+        // Ottieni l'ID dell'utente autenticato
+        $userId = Auth::id();
+
+        // Ottieni tutti i dati dal modulo
         $data = $request->all();
 
         $restaurant = new Restaurant();
 
         $restaurant->fill($data);
 
-        $restaurant->slug = Str::slug($restaurant->title);
+        // Assegna l'ID dell'utente al campo user_id
+        $restaurant->user_id = $userId;
+
+        // Genera lo slug per l'activity_name
+        $restaurant->slug = Str::slug($restaurant->activity_name);
 
         //controllo se arriva un file
         if (Arr::exists($data, 'image')) {

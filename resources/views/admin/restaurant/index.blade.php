@@ -17,7 +17,7 @@
     <div class="container py-5">
         <div class="clearfix">
             @if ($restaurant->image)
-                <img src="{{ $restaurant->image }}" alt="{{$restaurant->activity_name}}" class="me-2 float-start">
+                <img src="{{ $restaurant->printImage() }}" alt="{{$restaurant->activity_name}}" class="me-2 float-start">
             @endif
             <ul class="list-unstyled">
                 <li>{{$restaurant->address}}</li>
