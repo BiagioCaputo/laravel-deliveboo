@@ -85,7 +85,7 @@ class RestaurantController extends Controller
             //salvo nella variabile extension l'estensione dell'immagine inserita dall'utente
             $extension = $data['image']->extension();
 
-            //salvo nella variabile url e in restaurant images l'immagine rinominata con lo slug del progetto
+            //salvo nella variabile url e in restaurant images l'immagine rinominata con lo slug del Ristorante
             $img_url = Storage::putFileAs('restaurant_images', $data['image'], "$restaurant->slug.$extension");
 
             $restaurant->image = $img_url;
@@ -115,7 +115,7 @@ class RestaurantController extends Controller
 
         $types = Type::select('label', 'id')->get();
 
-        //Ricavo le tipologie utilizzate dal progetto prima di modificarlo cosi da utilizzarle nell'old nel form
+        //Ricavo le tipologie utilizzate dal Ristorante prima di modificarlo cosi da utilizzarle nell'old nel form
         $previous_types = $restaurant->types->pluck('id')->toArray();
 
         return view('admin.restaurant.edit', compact('restaurant', 'types', 'previous_types'));
@@ -123,28 +123,53 @@ class RestaurantController extends Controller
 
 
     public function update(Request $request, Restaurant $restaurant)
-    {
-        // dd($restaurant);
+    { {
+            $request->validate(
+                [
+                    'activity_name' => ['required', 'string', Rule::unique('restaurants')->ignore($restaurant->id)],
+                    'address' => 'required|string',
+                    'email' => 'required|string',
+                    'vat' => 'required|string',
+                    'image' => 'nullable|image',
+                ],
+                [
+                    'activity_name.required' => 'Il ristorante deve avere un titolo',
+                    'address.required' => 'Il ristorante deve avere un indirizzo',
+                    'email' => 'Il ristorante deve avere una email',
+                    'vat' => 'Il ristorante deve avere una Partita IVA',
+                    'image.image' => 'Il file inserito non è un immagine',
+                ]
+            );
 
-        $data = $request->validated();
+            $data = $request->all();
 
-        $slug = Restaurant::generateSlug($request->name);
-        $data['slug'] = $slug;
+            $data['slug'] = Str::slug($data['activity_name']);
 
-        if ($request->hasFile('image')) {
-            if ($restaurant->image) {
-                Storage::delete($restaurant->image);
+            //controllo se arriva un file
+            if (Arr::exists($data, 'image')) {
+
+                // controllo se ho un altra immagine già esistente nella cartella e la cancello
+                if ($restaurant->image) Storage::delete($restaurant->image);
+
+                //salvo nella variabile extension l'estensione dell'immagine inserita dall'utente
+                $extension = $data['image']->extension();
+
+                //salvo nella variabile url e in restaurant images l'immagine rinominata con lo slug del Ristorante
+                $img_url = Storage::putFileAs('restaurant_images', $data['image'], "{$data['slug']}.$extension");
+
+                $restaurant->image = $img_url;
             }
-            $path = Storage::put('images', $request->image);
-            $data['image'] = $path;
-        }
-        $restaurant->update($data);
 
-        if ($request->has('types')) {
-            $restaurant->types()->sync($request->types);
-        } else {
-            $restaurant->types()->attach($request->types);
+            $restaurant->update($data);
+
+            //se ho inviato uno o dei valori sincronizzo 
+            if (Arr::exists($data, 'types')) $restaurant->types()->sync($data['types']);
+
+            //Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
+            elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
+
+
+            return to_route('admin.home', $restaurant->id)->with('type', 'success')->with('message', 'Ristorante modificato con successo');
         }
-        return redirect()->route('admin.restaurants.index')->with('message', "$restaurant->name aggiornato con successo");
     }
 }

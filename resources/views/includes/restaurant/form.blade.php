@@ -1,5 +1,5 @@
 @if($restaurant->exists)
-<form action="{{route('admin.restaurant.update', $restaurant->id)}}" enctype="multipart/form-data" method="POST">
+<form action="{{route('admin.restaurant.update', $restaurant)}}" enctype="multipart/form-data" method="POST">
     @method('PUT')
 @else
 <form action="{{route('admin.restaurant.store')}}" enctype="multipart/form-data" method="POST">
