@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,9 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/restaurant/edit', [RestaurantController::class, 'edit'])->name('restaurant.edit');
     Route::post('/restaurant/store', [RestaurantController::class, 'store'])->name('restaurant.store');
     Route::put('/restaurant/{restaurant}', [RestaurantController::class, 'update'])->name('restaurant.update');
+
+    // ROTTE PIATTI
+    Route::resource('dishes', DishController::class);
 });
 
 Route::middleware('auth')->group(function () {
