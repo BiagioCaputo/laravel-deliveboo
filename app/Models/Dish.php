@@ -23,4 +23,16 @@ class Dish extends Model
     {
         return $this->belongsToMany(Order::class);
     }
+
+    // Funzione per il percorso dell'immagine
+    public function getImage()
+    {
+        return asset('storage' . $this->image);
+    }
+
+    // Funzione per renderizzare il prezzo con la valuto
+    public function getPrice()
+    {
+        return ($this->price . '€');
+    }
 }
