@@ -18,8 +18,7 @@ return new class extends Migration
             $table->text('ingredients');
             $table->decimal('price', 5, 2);
             $table->text('description')->nullable();
-            $table->boolean('available');
-
+            $table->boolean('available')->default(false);
             $table->timestamps();
         });
     }
