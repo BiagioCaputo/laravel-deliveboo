@@ -49,7 +49,7 @@
         <div class="col-6">
             <div class="mb-4">
                 <label for="vat" class="form-label">Vat 11 car.</label>
-                <input type="text" class="form-control @error('vat') is-invalid @elseif(old('vat', '')) is-valid  @enderror" id="vat" name="vat" placeholder="Nome Ristorante" value="{{old('vat', $restaurant->vat)}}">
+                <input type="text" class="form-control @error('vat') is-invalid @elseif(old('vat', '')) is-valid  @enderror" id="vat" name="vat" placeholder="P.IVA Ristorante" value="{{old('vat', $restaurant->vat)}}">
                 @error('vat')
                 <div class="invalid-feedback">
                     {{$message}}
@@ -62,7 +62,7 @@
         <div class="col-6">
             <div class="mb-4">
                 <label for="email" class="form-label">Email Ristorante</label>
-                <input type="text" class="form-control @error('email') is-invalid @elseif(old('email', '')) is-valid  @enderror" id="email" name="email" placeholder="Nome Ristorante" value="{{old('email', $restaurant->email)}}">
+                <input type="text" class="form-control @error('email') is-invalid @elseif(old('email', '')) is-valid  @enderror" id="email" name="email" placeholder="Email del Ristorante" value="{{old('email', $restaurant->email)}}">
                 @error('email')
                 <div class="invalid-feedback">
                     {{$message}}
@@ -75,7 +75,7 @@
         <div class="col-6">
             <div class="mb-4">
                 <label for="address" class="form-label">Indirizzo</label>
-                <input type="text" class="form-control @error('address') is-invalid @elseif(old('address', '')) is-valid  @enderror" id="address" name="address" placeholder="Nome Ristorante" value="{{old('address', $restaurant->address)}}">
+                <input type="text" class="form-control @error('address') is-invalid @elseif(old('address', '')) is-valid  @enderror" id="address" name="address" placeholder="Indirizzo del Ristorante" value="{{old('address', $restaurant->address)}}">
                 @error('address')
                 <div class="invalid-feedback">
                     {{$message}}

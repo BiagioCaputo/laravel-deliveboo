@@ -162,11 +162,17 @@ class RestaurantController extends Controller
 
             $restaurant->update($data);
 
-            //se ho inviato uno o dei valori sincronizzo 
-            if (Arr::exists($data, 'types')) $restaurant->types()->sync($data['types']);
+            // //se ho inviato uno o dei valori sincronizzo 
+            // if (Arr::exists($data, 'types')) $restaurant->types()->sync($data['types']);
 
-            //Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
-            elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
+            // //Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
+            // elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
+
+            if (isset($data['types'])) {
+                $restaurant->types()->sync($data['types']);
+            } else {
+                $restaurant->types()->detach();
+            }
 
 
             return to_route('admin.home', $restaurant->id)->with('type', 'success')->with('message', 'Ristorante modificato con successo');
