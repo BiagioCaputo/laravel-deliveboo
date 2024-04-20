@@ -29,16 +29,6 @@ class DishController extends Controller
         return view('admin.dishes.index', compact('dishes'));
     }
 
-
-    public function show(Dish $dish)
-    {
-        return view('admin.dishes.show', compact('dish'));
-    }
-
-
-
-
-
     public function create()
     {
         // Istanzio un nuovo piatto
@@ -49,12 +39,17 @@ class DishController extends Controller
         return view('admin.dishes.create', compact('dish', 'courses'));
     }
 
+    public function show(Dish $dish)
+    {
+        return view('admin.dishes.show', compact('dish'));
+    }
+
     public function store(Request $request, Dish $dish)
     {
         // Valido i dati nella request
         $request->validate(
             [
-                'name' => 'required|string',
+                'name' => 'required|string|unique:dishes',
                 'image' => 'nullable|image',
                 'ingredients' => 'required|string',
                 'price' => 'required|decimal:2',
@@ -83,6 +78,9 @@ class DishController extends Controller
             $path = Storage::put('dish_images', $request->image);
             $data['image'] = $path;
         }
+
+        // Gestisco la disponibilità verificando se esiste una chiave nell'array che mi arriva
+        $dish->available = array_key_exists('available', $data);
 
         // Compilo i campi
         $dish->fill($data);
@@ -117,6 +115,7 @@ class DishController extends Controller
                 'description' => 'nullable|string',
             ],
             [
+                'name.unique' => 'Il nome del piatto è già esistente',
                 'name.required' => 'Il ristorante deve avere un titolo',
                 'image.image' => 'Il file inserito non è un immagine',
                 'ingredients.required' => 'Il piatto deve avere degli ingredienti',
@@ -138,8 +137,29 @@ class DishController extends Controller
             $data['image'] = $path;
         }
 
+        // Gestisco la disponibilità verificando se esiste una chiave nell'array che mi arriva
+        $dish->available = array_key_exists('available', $data);
+
         // Compilo i campi
         $dish->update($data);
+
+        // Genera lo slug per l'activity_name
+        $dish_slug = Str::slug($dish->name);
+
+        //controllo se arriva un file
+        if (Arr::exists($data, 'image')) {
+
+            // controllo se ho un altra immagine già esistente nella cartella e la cancello
+            if ($dish->image) Storage::delete($dish->image);
+
+            //salvo nella variabile extension l'estensione dell'immagine inserita dall'utente
+            $extension = $data['image']->extension();
+
+            //salvo nella variabile url e in dish images l'immagine rinominata con lo slug del piatto
+            $img_url = Storage::putFile('dish_images', $data['image'], "$dish_slug.$extension");
+
+            $dish->image = $img_url;
+        }
 
         return to_route('admin.dishes.index', $dish)
             ->with('message', 'Piatto modificato con successo!')
@@ -180,6 +200,7 @@ class DishController extends Controller
         if ($dish->image) {
             Storage::delete($dish->image);
         }
+
         $dish->forceDelete();
 
         return to_route('admin.dishes.trash')
@@ -200,10 +221,10 @@ class DishController extends Controller
         if (count($trashed_dish)) {
             // Per ogni termine nel cestino...
             foreach ($trashed_dish as $dish) {
-
                 if ($dish->image) {
                     Storage::delete($dish->image);
                 }
+
                 // Elimino definitivamente
                 $dish->forceDelete();
             }
