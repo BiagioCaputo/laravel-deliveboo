@@ -167,6 +167,9 @@ class DishController extends Controller
 
     public function drop(Dish $dish)
     {
+        if ($dish->image) {
+            Storage::delete($dish->image);
+        }
         $dish->forceDelete();
 
         return to_route('admin.dishes.trash')
@@ -187,6 +190,10 @@ class DishController extends Controller
         if (count($trashed_dish)) {
             // Per ogni termine nel cestino...
             foreach ($trashed_dish as $dish) {
+
+                if ($dish->image) {
+                    Storage::delete($dish->image);
+                }
                 // Elimino definitivamente
                 $dish->forceDelete();
             }
