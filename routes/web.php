@@ -29,8 +29,18 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/restaurant/store', [RestaurantController::class, 'store'])->name('restaurant.store');
     Route::put('/restaurant/{restaurant}', [RestaurantController::class, 'update'])->name('restaurant.update');
 
+    // ROTTE PER RIPRISTINO ED ELIMINAZIONE MASSIVE
+    Route::delete('/dishes/massive-drop', [DishController::class, 'massiveDrop'])->name('dishes.massive-drop');
+    Route::patch('/dishes/massive-restore', [DishController::class, 'massiveRestore'])->name('dishes.massive-restore');
+
+    // ROTTE SOFT DELETE
+    Route::get('/dishes/trash', [DishController::class, 'trash'])->name('dishes.trash');
+    Route::patch('/dishes/{dish}/restore', [DishController::class, 'restore'])->name('dishes.restore')->withTrashed();
+    Route::delete('/dishes/{dish}/drop', [DishController::class, 'drop'])->name('dishes.drop')->withTrashed();
+
+
     // ROTTE PIATTI
-    Route::resource('dishes', DishController::class);
+    Route::resource('dishes', DishController::class)->withTrashed(['show', 'edit', 'update']);
 });
 
 Route::middleware('auth')->group(function () {
