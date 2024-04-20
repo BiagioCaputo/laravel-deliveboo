@@ -14,19 +14,34 @@ use Illuminate\Support\Str;
 
 class DishController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
         // Recupera l'id del ristorante associato ai piatti
         $restaurant_id = Auth::user()->restaurant->id;
 
+        //termine cercato nella search bar
+        $search = $request->query('search');
+
+        //filtro selezionato per la portata
+        $course_filter = $request->query('course_filter');
+
         // Recupera solo i piatti con lo stesso ID del ristorante
-        $dishes = Dish::whereRestaurantId($restaurant_id)
+        $query = Dish::whereRestaurantId($restaurant_id)
             ->orderBy('name')
             ->orderByDesc('created_at')
-            ->paginate(5);
+            ->where('name', 'LIKE', "%$search%");
 
-        return view('admin.dishes.index', compact('dishes'));
+        // Se c'è un filtro per la portata, applicalo
+        if ($course_filter) {
+            $query->where('course_id', $course_filter);
+        }
+
+        $dishes = $query->paginate(5)->withQueryString();
+
+        $courses = Course::select('label', 'id')->get();
+
+        return view('admin.dishes.index', compact('dishes', 'courses', 'course_filter', 'search'));
     }
 
 
