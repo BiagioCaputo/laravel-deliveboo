@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md shadow-sm">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="logo_deliveboo">
@@ -23,7 +23,7 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto d-flex align-items-center">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -57,6 +57,12 @@
                     </li>
                 @endguest
             </ul>
+
+            <!-- Bootstrap theme switch -->
+            <div class="form-check form-switch ms-5">
+                <input class="form-check-input" type="checkbox" role="button" id="darkModeSwitch">
+                <label class="form-check-label" for="darkModeSwitch" id="darkModeLabel"></label>
+            </div>
         </div>
     </div>
 </nav>
