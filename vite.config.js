@@ -12,7 +12,8 @@ export default defineConfig({
                 'resources/scss/app.scss',
                 'resources/js/app.js',
                 'resources/js/image_preview.js',
-                'resources/js/delete_confirmation.js'
+                'resources/js/delete_confirmation.js',
+                'resources/js/theme_toggle.js',
             ],
             refresh: true,
         }),

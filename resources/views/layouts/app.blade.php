@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="light">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="">
 
 <head>
     <meta charset="utf-8">
@@ -52,3 +52,6 @@
 </body>
 
 </html>
+
+{{-- Script per switchare il theme --}}
+@vite('resources/js/theme_toggle.js')
