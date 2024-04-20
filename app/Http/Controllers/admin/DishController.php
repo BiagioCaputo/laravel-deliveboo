@@ -15,8 +15,8 @@ class DishController extends Controller
 {
     public function index()
     {
-        // Recuper tutti i piatti e li mando giù
-        $dishes = Dish::all();
+        // Recupero tutti i piatti e li mando giù
+        $dishes = Dish::orderBy('name')->orderByDesc('created_at')->get();
         return view('admin.dishes.index', compact('dishes'));
     }
 
@@ -78,7 +78,8 @@ class DishController extends Controller
         // Salvo le modifiche nel DB
         $dish->save();
 
-        return to_route('admin.dishes.index', $dish);
+        return to_route('admin.dishes.index', $dish)->with('message', 'Piatto creato con successo')
+            ->with('type', 'success');;
     }
 
     public function edit(Dish $dish)
@@ -137,6 +138,89 @@ class DishController extends Controller
             $dish->image = $img_url;
         }
 
-        return to_route('admin.dishes.index', $dish);
+        return to_route('admin.dishes.index', $dish)
+            ->with('message', 'Piatto modificato con successo!')
+            ->with('type', 'warning');
+    }
+
+    public function destroy(Dish $dish)
+    {
+        $dish->delete();
+
+        return to_route('admin.dishes.index')->with('type', 'warning')
+            ->with('message', "Piatto spostato nel cestino!");
+    }
+
+    // SOFT DELETE
+
+    public function trash()
+    {
+        $dishes = Dish::onlyTrashed()->get();
+
+        return view('admin.dishes.trash', compact('dishes'));
+    }
+
+    public function restore(Dish $dish)
+    {
+        $dish->restore();
+
+        return to_route('admin.dishes.trash')
+            ->with('type', 'success')
+            ->with('message', "Piatto ripristinato con successo!");
+    }
+
+    // STRONG DELETE
+
+    public function drop(Dish $dish)
+    {
+        $dish->forceDelete();
+
+        return to_route('admin.dishes.trash')
+            ->with('type', 'danger')
+            ->with('message', "Piatto eliminato definitivamente!");
+    }
+
+    // MASSIVE DROP AND MASSIVE RESTORE
+
+    public function massiveDrop()
+    {
+        // Recupero tutti i termini nel cestino
+        $trashed_dish = Dish::onlyTrashed()->get();
+
+        // Se c'è qualcosa nel cestino
+        if (count($trashed_dish)) {
+            // Per ogni termine nel cestino...
+            foreach ($trashed_dish as $dish) {
+                // Elimino definitivamente
+                $dish->forceDelete();
+            }
+
+            $message = 'Cestino svuotato con successo!';
+        }
+
+        return to_route('admin.dishes.trash')->with('type', 'danger')
+            ->with('message', $message);
+    }
+
+    public function massiveRestore()
+    {
+        // Recupero tutti i termini nel cestino
+        $trashed_dish = Dish::onlyTrashed()->get();
+
+        // Preparo una variabile per inserire un messaggio
+        $message = 'Il cestino è vuoto!';
+
+        // Se c'è qualcosa nel cestino
+        if (count($trashed_dish)) {
+            // Per ogni termine nel cestino...
+            foreach ($trashed_dish as $dish) {
+
+                // Ripristino
+                $dish->restore();
+            }
+            $message = 'Piatti ripristinati con successo!';
+        }
+
+        return to_route('admin.dishes.trash')->with('message', $message)->with('type', 'secondary');
     }
 }
