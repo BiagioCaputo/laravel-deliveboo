@@ -116,8 +116,18 @@
         </div>
     </div>
 
+    {{-- Disponibilità --}}
+    <div class="col-12">
+        <div class="form-check form-switch my-3">
+            <label class="form-check-label" for="available">Disponibile
+                <input class="form-check-input" type="checkbox" role="switch" id="available" name="available"
+                    value="1" @if (old('available', $dish->available)) checked @endif>
+            </label>
+        </div>
+    </div>
+
     {{--   Buttons   --}}
-    <div class="d-flex justify-content-end my-5">
+    <div class="d-flex justify-content-end my-2">
         <button class="btn btn-success"><i class="fa-solid fa-floppy-disk me-2"></i>Salva</button>
     </div>
 </div>
