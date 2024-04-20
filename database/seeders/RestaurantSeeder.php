@@ -20,7 +20,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Via Roma, 50',
                 'vat' => '00000000010',
                 'email' => 'sorbillo@clienti.it',
-                'description' => 'Pizzeria italiana',
+                'description' => 'Preparate secondo la migliore tradizione, per godersi una bella serata tra amici, concludere la giornata di vacanza, prepararsi ad una notte di festa e divertimento. Dalle più classiche alle più saporite, dalle più semplici alle più ricche e sfiziose, come la Bismarck, la Patapizza, la Golosa e la stagionata. Dalla Pizza quattro stagioni alla Pizza per ogni stagione, ognuna con un assortimento particolare di ingredienti per dare un tocco unico.',
                 'image' => 'non saprei',
                 'user_id' => 1
             ],
