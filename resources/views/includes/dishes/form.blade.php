@@ -1,8 +1,8 @@
 @if ($dish->exists)
-<form action="{{ route('admin.dishes.update', $dish->id) }}" enctype="multipart/form-data" method="POST">
-    @method('PUT')
-@else
-<form action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('admin.dishes.update', $dish->id) }}" enctype="multipart/form-data" method="POST">
+        @method('PUT')
+    @else
+        <form action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" method="POST">
 @endif
 @csrf
 <div class="row">
@@ -120,7 +120,7 @@
     <div class="col-12">
         <div class="form-check form-switch my-3">
             <label class="form-check-label" for="available">Disponibile
-                <input class="form-check-input" type="checkbox" role="switch" id="available" name="available"
+                <input class="form-check-input" type="checkbox" role="button" id="available" name="available"
                     value="1" @if (old('available', $dish->available)) checked @endif>
             </label>
         </div>
