@@ -50,7 +50,7 @@
             </div>
             <div>
                 <a href="{{ route('admin.dishes.index', $restaurant) }}" class="btn btn-success"><i
-                        class="fas fa-pencil me-2"></i>Menù</a>
+                        class="fa-solid fa-utensils me-2"></i>Menù</a>
             </div>        
         </div>
     </footer>

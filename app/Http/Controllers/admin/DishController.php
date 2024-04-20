@@ -29,6 +29,16 @@ class DishController extends Controller
         return view('admin.dishes.index', compact('dishes'));
     }
 
+
+    public function show(Dish $dish)
+    {
+        return view('admin.dishes.show', compact('dish'));
+    }
+
+
+
+
+
     public function create()
     {
         // Istanzio un nuovo piatto
