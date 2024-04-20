@@ -11,12 +11,10 @@
         <h1 class="text-center my-3">Inserisci il tuo piatto</h1>
     </header>
 
-    <main>
-        {{-- Form per la modifica di un progetto --}}
-        <div class="container py-2">
-            @include('includes.dishes.form')
-        </div>
-    </main>
+    {{-- Form per la modifica di un progetto --}}
+    <div class="container py-2">
+        @include('includes.dishes.form')
+    </div>
 
 @endsection
 
