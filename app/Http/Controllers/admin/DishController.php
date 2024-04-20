@@ -63,6 +63,9 @@ class DishController extends Controller
         // Recupero i dati dalla request
         $data = $request->all();
 
+        // Imposta l'ID del ristorante associato all'utente loggato
+        $data['restaurant_id'] = Auth::user()->restaurant->id;
+
         // Istanzio un nuovo piatto
         $dish = new Dish;
 
