@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
@@ -15,8 +16,16 @@ class DishController extends Controller
 {
     public function index()
     {
-        // Recupero tutti i piatti e li mando giù
-        $dishes = Dish::orderBy('name')->orderByDesc('created_at')->get();
+
+        // Recupera il ristorante associato all'utente loggato
+        $restaurant = Auth::user()->restaurant;
+
+        // Recupera solo i piatti con lo stesso ID del ristorante
+        $dishes = $restaurant->dishes()
+            ->orderBy('name')
+            ->orderByDesc('created_at')
+            ->get();
+
         return view('admin.dishes.index', compact('dishes'));
     }
 
