@@ -17,6 +17,7 @@
             @if ($restaurant->image)
                 <img src="{{ $restaurant->printImage() }}" alt="{{ $restaurant->activity_name }}" class="me-2 float-start">
             @endif
+            <p>{{ $restaurant->description }}</p>
             <ul class="list-unstyled">
                 <li>{{ $restaurant->address }}</li>
                 <li>{{ $restaurant->vat }}</li>

@@ -20,6 +20,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Via Roma, 50',
                 'vat' => '00000000010',
                 'email' => 'sorbillo@clienti.it',
+                'description' => 'Pizzeria italiana',
                 'image' => 'non saprei',
                 'user_id' => 1
             ],
@@ -28,6 +29,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Via Torino, 27',
                 'vat' => '00000000011',
                 'email' => 'fratellilabufala@clienti.it',
+                'description' => 'Trattoria italiana',
                 'image' => 'non saprei',
                 'user_id' => 2
             ],
@@ -36,6 +38,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Via Milano, 30',
                 'vat' => '00000000012',
                 'email' => 'oldwildwest@clienti.it',
+                'description' => 'Famosa catena fast food',
                 'image' => 'non saprei',
                 'user_id' => 3
             ],
@@ -44,6 +47,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Via Milano, 30',
                 'vat' => '00000000013',
                 'email' => 'ilovepoke@clienti.it',
+                'description' => 'Poke o poke',
                 'image' => 'non saprei',
                 'user_id' => 4
             ],
