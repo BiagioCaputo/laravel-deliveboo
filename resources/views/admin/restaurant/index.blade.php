@@ -42,11 +42,15 @@
     </div>
 
     <footer>
-        <div class="container py-5 d-flex justify-content-end align-items-center">
+        <div class="container py-5 d-flex justify-content-between align-items-center">
             <div>
                 <a href="{{ route('admin.restaurant.edit', $restaurant) }}" class="btn btn-warning"><i
                         class="fas fa-pencil me-2"></i>Modifica</a>
             </div>
+            <div>
+                <a href="{{ route('admin.dishes.index', $restaurant) }}" class="btn btn-success"><i
+                        class="fas fa-pencil me-2"></i>Menù</a>
+            </div>        
         </div>
     </footer>
 

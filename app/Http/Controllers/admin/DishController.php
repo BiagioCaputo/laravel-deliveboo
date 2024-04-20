@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
@@ -15,8 +16,16 @@ class DishController extends Controller
 {
     public function index()
     {
-        // Recupero tutti i piatti e li mando giù
-        $dishes = Dish::orderBy('name')->orderByDesc('created_at')->get();
+
+        // Recupera l'id del ristorante associato ai piatti
+        $restaurant_id = Auth::user()->restaurant->id;
+
+        // Recupera solo i piatti con lo stesso ID del ristorante
+        $dishes = Dish::whereRestaurantId($restaurant_id)
+            ->orderBy('name')
+            ->orderByDesc('created_at')
+            ->get();
+
         return view('admin.dishes.index', compact('dishes'));
     }
 
@@ -53,6 +62,9 @@ class DishController extends Controller
 
         // Recupero i dati dalla request
         $data = $request->all();
+
+        // Imposta l'ID del ristorante associato all'utente loggato
+        $data['restaurant_id'] = Auth::user()->restaurant->id;
 
         // Istanzio un nuovo piatto
         $dish = new Dish;
@@ -155,7 +167,8 @@ class DishController extends Controller
 
     public function trash()
     {
-        $dishes = Dish::onlyTrashed()->get();
+        $restaurant_id = Auth::user()->restaurant->id;
+        $dishes = Dish::onlyTrashed()->whereRestaurantId($restaurant_id)->get();
 
         return view('admin.dishes.trash', compact('dishes'));
     }
@@ -184,8 +197,10 @@ class DishController extends Controller
 
     public function massiveDrop()
     {
+        $restaurant_id = Auth::user()->restaurant->id;
+
         // Recupero tutti i termini nel cestino
-        $trashed_dish = Dish::onlyTrashed()->get();
+        $trashed_dish = Dish::onlyTrashed()->whereRestaurantId($restaurant_id)->get();
 
         // Se c'è qualcosa nel cestino
         if (count($trashed_dish)) {
@@ -204,8 +219,10 @@ class DishController extends Controller
 
     public function massiveRestore()
     {
+        $restaurant_id = Auth::user()->restaurant->id;
+
         // Recupero tutti i termini nel cestino
-        $trashed_dish = Dish::onlyTrashed()->get();
+        $trashed_dish = Dish::onlyTrashed()->whereRestaurantId($restaurant_id)->get();
 
         // Preparo una variabile per inserire un messaggio
         $message = 'Il cestino è vuoto!';
