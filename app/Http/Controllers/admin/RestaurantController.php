@@ -69,6 +69,12 @@ class RestaurantController extends Controller
         // Ottieni tutti i dati dal modulo
         $data = $request->all();
 
+        //controllo se arriva un immagine e la salvo in restaurant_images
+        if ($request->hasFile('image')) {
+            $path = Storage::put('restaurant_images', $request->image);
+            $data['image'] = $path;
+        }
+
         $restaurant = new Restaurant();
 
         $restaurant->fill($data);
@@ -78,18 +84,6 @@ class RestaurantController extends Controller
 
         // Genera lo slug per l'activity_name
         $restaurant->slug = Str::slug($restaurant->activity_name);
-
-        //controllo se arriva un file
-        if (Arr::exists($data, 'image')) {
-
-            //salvo nella variabile extension l'estensione dell'immagine inserita dall'utente
-            $extension = $data['image']->extension();
-
-            //salvo nella variabile url e in restaurant images l'immagine rinominata con lo slug del Ristorante
-            $img_url = Storage::putFileAs('restaurant_images', $data['image'], "$restaurant->slug.$extension");
-
-            $restaurant->image = $img_url;
-        }
 
 
         $restaurant->save();
@@ -145,34 +139,25 @@ class RestaurantController extends Controller
 
             $data['slug'] = Str::slug($data['activity_name']);
 
-            //controllo se arriva un file
-            if (Arr::exists($data, 'image')) {
-
-                // controllo se ho un altra immagine già esistente nella cartella e la cancello
-                if ($restaurant->image) Storage::delete($restaurant->image);
-
-                //salvo nella variabile extension l'estensione dell'immagine inserita dall'utente
-                $extension = $data['image']->extension();
-
-                //salvo nella variabile url e in restaurant images l'immagine rinominata con lo slug del Ristorante
-                $img_url = Storage::putFileAs('restaurant_images', $data['image'], "{$data['slug']}.$extension");
-
-                $restaurant->image = $img_url;
+            //controllo se mi arriva un immagine
+            if ($request->hasFile('image')) {
+                //cancello la precedente immagine
+                if ($restaurant->image) {
+                    Storage::delete($restaurant->image);
+                }
+                //salvo la nuova immagine
+                $path = Storage::put('restaurant_images', $request->image);
+                $data['image'] = $path;
             }
 
             $restaurant->update($data);
 
-            // //se ho inviato uno o dei valori sincronizzo 
-            // if (Arr::exists($data, 'types')) $restaurant->types()->sync($data['types']);
+            // se ho inviato uno o dei valori sincronizzo 
+            if (Arr::exists($data, 'types')) $restaurant->types()->sync($data['types']);
 
-            // //Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
-            // elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
+            // Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
+            elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
 
-            if (isset($data['types'])) {
-                $restaurant->types()->sync($data['types']);
-            } else {
-                $restaurant->types()->detach();
-            }
 
 
             return to_route('admin.home', $restaurant->id)->with('type', 'success')->with('message', 'Ristorante modificato con successo');
