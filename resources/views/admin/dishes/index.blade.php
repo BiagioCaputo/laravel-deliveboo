@@ -15,12 +15,34 @@
         <div class="d-flex justify-content-between align-items-center">
 
             {{-- Creazione nuovo piatto --}}
-            <a href="{{ route('admin.dishes.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus me-2"></i>Nuovo
-                piatto</a>
+            <a href="{{ route('admin.dishes.create') }}" class="btn btn-primary">
+                <i class="fa-solid fa-plus me-2"></i>Nuovo piatto
+            </a>
+            
+            {{-- Filtri Ricerca --}}
+            <div>
+                <form action="{{route('admin.dishes.index')}}" method="GET">
+                    <div class="d-flex align-items-center gap-2">
+                        {{-- Filtro Portata --}}
+                        <select class="form-select" name="course_filter">
+                            <option value="">Tutte le portate</option>
+                            @foreach($courses as $course)
+                            <option value={{ $course->id }} @if($course_filter == $course->id) selected @endif>{{ $course->label }}</option>
+                            @endforeach
+                        </select>
 
-            {{-- Cestino --}}
-            <a href="{{ route('admin.dishes.trash') }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i>
-                Cestino</a>
+                        {{-- Search bar --}}
+                        <input type="search" class="form-control" placeholder="Cerca Piatto" name="search" value="{{ $search }}" autofocus>
+
+                        {{-- Button form --}}
+                        <button class="btn btn-outline-secondary">Filtra</button>
+
+                    </div>
+
+                </form>
+            </div>
+
+            
 
         </div>
 
@@ -34,7 +56,14 @@
                     <th scope="col">Descrizione</th>
                     <th scope="col">Disponibilità</th>
                     <th scope="col">Portata</th>
-                    <th scope="col" class="text-center">Comandi</th>
+                    <th scope="col" class="text-center">
+                        {{-- Cestino --}}
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ route('admin.dishes.trash') }}" class="btn btn-danger">
+                                <i class="fa-solid fa-trash me-2"></i>Cestino
+                            </a>
+                        </div>
+                    </th>
                 </tr>
             </thead>
             <tbody>
