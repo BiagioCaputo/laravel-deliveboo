@@ -24,7 +24,7 @@ class DishController extends Controller
         $dishes = Dish::whereRestaurantId($restaurant_id)
             ->orderBy('name')
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate(5);
 
         return view('admin.dishes.index', compact('dishes'));
     }

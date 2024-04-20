@@ -78,6 +78,9 @@
                 @endforelse
             </tbody>
         </table>
+        @if ($dishes->hasPages())
+        {{ $dishes->links()}}
+        @endif  
     </div>
 
 @endsection
