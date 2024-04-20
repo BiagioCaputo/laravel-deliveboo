@@ -2,8 +2,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="logo_deliveboo">
-                <img src="https://www.biancolapisdesign.it/Blog/wp-content/uploads/2018/09/Logo-deliveroo-.jpg"
-                    style="width:60px">
+                <i class="fa-solid fa-utensils fa-xl"></i>
             </div>
             {{-- config('app.name', 'Laravel') --}}
         </a>
@@ -16,10 +15,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
+
                 <li class="nav-item d-flex">
-                    <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
-                    <a class="nav-link" href="{{ route('admin.dishes.index') }}">I miei piatti</a>
+                    <a class="nav-link @if(Request::is('/')) active @endif" href="{{ url('/') }}">{{ __('Home') }}</a>                
                 </li>
+
+                @auth
+                {{-- Verifica se l'utente ha un ristorante associato --}}
+                @if(Auth::user()->restaurant)
+
+                <li class="nav-item">
+                    <a class="nav-link @if((Request::is('admin/restaurant*')) || (Request::is('admin'))) active @endif" href="{{ route('admin.home') }}">Ristorante</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link @if(Request::is('admin/dishes*')) active @endif" href="{{ route('admin.dishes.index') }}">Piatti</a>
+                </li>
+                
+                @endif
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
