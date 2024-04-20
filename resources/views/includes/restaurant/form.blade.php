@@ -140,7 +140,11 @@
         <hr>
 
         {{--   Buttons   --}}
-        <div class="d-flex justify-content-end my-5">
+        <div class="d-flex justify-content-between my-4">
+            <!-- Verifica se l'utente ha un ristorante associato -->
+            @if (Auth::user()->restaurant)
+            <a href="{{ route('admin.home') }}" class="btn btn-secondary"><i class="fa-solid fa-left-long me-2"></i>Torna indietro</a>
+            @endif
             <button class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Conferma</button>
         </div>
     </div>
