@@ -17,11 +17,11 @@ class DishController extends Controller
     public function index()
     {
 
-        // Recupera il ristorante associato all'utente loggato
-        $restaurant = Auth::user()->restaurant;
+        // Recupera l'id del ristorante associato ai piatti
+        $restaurant_id = Auth::user()->restaurant->id;
 
         // Recupera solo i piatti con lo stesso ID del ristorante
-        $dishes = $restaurant->dishes()
+        $dishes = Dish::whereRestaurantId($restaurant_id)
             ->orderBy('name')
             ->orderByDesc('created_at')
             ->get();
@@ -167,7 +167,8 @@ class DishController extends Controller
 
     public function trash()
     {
-        $dishes = Dish::onlyTrashed()->get();
+        $restaurant_id = Auth::user()->restaurant->id;
+        $dishes = Dish::onlyTrashed()->whereRestaurantId($restaurant_id)->get();
 
         return view('admin.dishes.trash', compact('dishes'));
     }
@@ -196,8 +197,10 @@ class DishController extends Controller
 
     public function massiveDrop()
     {
+        $restaurant_id = Auth::user()->restaurant->id;
+
         // Recupero tutti i termini nel cestino
-        $trashed_dish = Dish::onlyTrashed()->get();
+        $trashed_dish = Dish::onlyTrashed()->whereRestaurantId($restaurant_id)->get();
 
         // Se c'è qualcosa nel cestino
         if (count($trashed_dish)) {
@@ -216,8 +219,10 @@ class DishController extends Controller
 
     public function massiveRestore()
     {
+        $restaurant_id = Auth::user()->restaurant->id;
+
         // Recupero tutti i termini nel cestino
-        $trashed_dish = Dish::onlyTrashed()->get();
+        $trashed_dish = Dish::onlyTrashed()->whereRestaurantId($restaurant_id)->get();
 
         // Preparo una variabile per inserire un messaggio
         $message = 'Il cestino è vuoto!';
