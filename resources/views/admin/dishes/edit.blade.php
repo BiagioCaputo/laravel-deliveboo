@@ -22,5 +22,5 @@
 {{-- Scripts --}}
 @section('scripts')
     {{-- @vite('resources/js/slug_field.js') --}}
-    {{-- @vite('resources/js/image_preview.js') --}}
+    @vite('resources/js/image_preview.js') 
 @endsection

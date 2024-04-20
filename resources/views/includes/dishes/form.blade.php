@@ -1,8 +1,8 @@
 @if ($dish->exists)
-    <form action="{{ route('admin.dishes.update', $dish->id) }}" enctype="multipart/form-data" method="POST">
-        @method('PUT')
-    @else
-        <form action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" method="POST">
+<form action="{{ route('admin.dishes.update', $dish->id) }}" enctype="multipart/form-data" method="POST">
+    @method('PUT')
+@else
+<form action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" method="POST">
 @endif
 @csrf
 <div class="row">
@@ -46,7 +46,7 @@
     </div>
     <div class="col-1">
         <div class="mb-3">
-            <img src="{{ old('image', $dish->image) ? $dish->image : 'https://marcolanci.it/boolean/assets/placeholder.png' }}"
+            <img src="{{ old('image', $dish->image) ? asset('storage/' . $dish->image) : 'https://marcolanci.it/boolean/assets/placeholder.png' }}"
                 class="img-fluid" alt="img-post" id="preview">
         </div>
     </div>
