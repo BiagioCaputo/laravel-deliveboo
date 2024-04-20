@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('available')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
