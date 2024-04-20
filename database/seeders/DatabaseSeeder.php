@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RestaurantSeeder::class);
 
+        $this->call(DishSeeder::class);
+
 
         \App\Models\User::factory()->create([
             'name' => 'Team4',

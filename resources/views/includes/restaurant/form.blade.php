@@ -29,8 +29,8 @@
         </div> --}}
 
 
-        {{--     Nel caso aggiungessimo la description al Ristorante     --}}
-        {{-- <div class="col-12">
+        {{--  Description  --}}
+        <div class="col-12">
             <div class="mb-5">
                 <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control @error('description') is-invalid @elseif(old('description', '')) is-valid @enderror" id="description" name="description" rows="8">
@@ -42,7 +42,7 @@
                 </div>
                 @enderror
             </div>
-        </div> --}}
+        </div>
 
 
         {{--   Vat   --}}
