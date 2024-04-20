@@ -117,20 +117,25 @@
 
 
         {{--   Tipologie  --}}
-        <div class="col-10">
-            @foreach ($types as $type)
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" name="types[]" 
-                    type="checkbox" id="tech-{{$type->id}}" value="{{$type->id}}"
-                    @if(in_array($type->id, old('types', $previous_types ?? []))) checked @endif>
-                    <label class="form-check-label" for="tech-{{$type->id}}">{{$type->label}}</label>
+        <div class="col-12 my-2" x-data="{ isOpen: false }">
+            <a @click="isOpen = !isOpen" class="btn btn-primary my-3">Mostra tipologie</a>
+            <div x-show="isOpen">
+                <div class="col-10">
+                    @foreach ($types as $type)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="types[]" 
+                            type="checkbox" id="tech-{{$type->id}}" value="{{$type->id}}"
+                            @if(in_array($type->id, old('types', $previous_types ?? []))) checked @endif>
+                            <label class="form-check-label" for="tech-{{$type->id}}">{{$type->label}}</label>
+                        </div>
+                    @endforeach
+                    @error('types')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
-            @endforeach
-            @error('types')
-                <div class="invalid-feedback">
-                     {{ $message }}
-                </div>
-            @enderror
+            </div>
         </div>
         <hr>
 

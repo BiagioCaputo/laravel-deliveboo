@@ -72,7 +72,7 @@
             <label for="price" class="form-label">Prezzo</label>
             <input type="number" step="0.1"
                 class="form-control @error('price') is-invalid @elseif(old('price', '')) is-valid  @enderror"
-                id="price" name="price" placeholder="Prezzo" value="{{ old('price', $dish->price) }}">
+                id="price" name="price" placeholder="Es: 4,50" value="{{ old('price', $dish->price) }}">
             @error('price')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -84,7 +84,7 @@
     {{-- Descrizione Piatto --}}
     <div class="col-10">
         <div class="mb-3">
-            <label for="description" class="form-label">Ingredienti</label>
+            <label for="description" class="form-label">Descrizione</label>
             <textarea type="text" rows="5"
                 class="form-control @error('description') is-invalid @elseif(old('description', '')) is-valid  @enderror"
                 id="description" name="description" placeholder="Descrizione">{{ old('description', $dish->description) }}</textarea>
