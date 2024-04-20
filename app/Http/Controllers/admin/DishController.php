@@ -29,6 +29,16 @@ class DishController extends Controller
         return view('admin.dishes.index', compact('dishes'));
     }
 
+
+    public function show(Dish $dish)
+    {
+        return view('admin.dishes.show', compact('dish'));
+    }
+
+
+
+
+
     public function create()
     {
         // Istanzio un nuovo piatto
@@ -167,6 +177,9 @@ class DishController extends Controller
 
     public function drop(Dish $dish)
     {
+        if ($dish->image) {
+            Storage::delete($dish->image);
+        }
         $dish->forceDelete();
 
         return to_route('admin.dishes.trash')
@@ -187,6 +200,10 @@ class DishController extends Controller
         if (count($trashed_dish)) {
             // Per ogni termine nel cestino...
             foreach ($trashed_dish as $dish) {
+
+                if ($dish->image) {
+                    Storage::delete($dish->image);
+                }
                 // Elimino definitivamente
                 $dish->forceDelete();
             }

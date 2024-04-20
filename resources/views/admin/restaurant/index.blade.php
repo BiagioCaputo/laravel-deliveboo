@@ -29,12 +29,17 @@
                         {{ $restaurant->getFormattedDate('created_at') }}</span>
                     <span><strong>Modificato il:</strong> {{ $restaurant->getFormattedDate('updated_at') }}</span>
                 </div>
-                <div class="d-flex gap-2">
-                    @forelse($restaurant->types as $type)
-                        <span>{{ $type->label }}</span>
-                    @empty
-                        -
-                    @endforelse
+                <div class="col-12" x-data="{ isOpen: false }">
+                    <a @click="isOpen = !isOpen" class="btn btn-primary my-3">Mostra tipologie</a>
+                    <div x-show="isOpen">
+                        <div class="d-flex gap-2">
+                            @forelse($restaurant->types as $type)
+                                <span>{{ $type->label }}</span>
+                            @empty
+                                -
+                            @endforelse
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -50,7 +55,7 @@
             </div>
             <div>
                 <a href="{{ route('admin.dishes.index', $restaurant) }}" class="btn btn-success"><i
-                        class="fas fa-pencil me-2"></i>Menù</a>
+                        class="fa-solid fa-utensils me-2"></i>Menù</a>
             </div>        
         </div>
     </footer>

@@ -34,7 +34,7 @@
                     <th scope="col">Descrizione</th>
                     <th scope="col">Disponibilità</th>
                     <th scope="col">Portata</th>
-                    <th scope="col">Modifica</th>
+                    <th scope="col" class="text-center">Comandi</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +53,9 @@
                             @endif
                         </td>
                         <td>
-                            <div class="d-flex justify-content-end gap-1">
+                            <div class="d-flex justify-content-end gap-2">
+                                <a href="{{ route('admin.dishes.show', $dish) }}" class="btn btn-primary"><i
+                                    class="fas fa-eye "></i></a>
                                 <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-warning"><i
                                         class="fas fa-pencil "></i></a>
                                 <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST"
