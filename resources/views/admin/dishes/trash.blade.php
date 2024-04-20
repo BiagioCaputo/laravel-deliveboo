@@ -23,7 +23,8 @@
                 <a href="{{ route('admin.dishes.index') }}" class="btn btn-primary btn-sm"><i
                         class="fa-solid fa-arrow-left"></i>
                     Lista Piatti</a>
-
+                
+                @if(!$dishes->isEmpty())
                 {{-- Ripristino massivo --}}
                 <form method="POST" action="{{ route('admin.dishes.massive-restore') }}" class="btn btn-success btn-sm"
                     onclick="this.submit()">
@@ -43,6 +44,7 @@
                         Svuota
                         cestino</button>
                 </form>
+                @endif
             </div>
         </div>
 

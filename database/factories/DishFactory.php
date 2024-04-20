@@ -27,8 +27,9 @@ class DishFactory extends Factory
 
         return [
             //
-            // 'course_id' => fake()->numberBetween(0, 9),
             'name' => $name,
+            'restaurant_id' => fake()->numberBetween(2, 4),
+            'course_id' => fake()->numberBetween(1, 6),
             'image' => $img_url,
             'ingredients' => fake()->sentence(10),
             'price' => fake()->randomFloat(3, 0, 99),

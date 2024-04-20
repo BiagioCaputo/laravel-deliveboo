@@ -9,7 +9,7 @@ const backButton = document.getElementById('modal-back-button');
 let activeForm = null;
 
 // Variabile per verificare se il cestino è vuoto
-const isEmpty = deleteForms.length === 1;
+const isEmpty = deleteForms.length === 0;
 
 // Mi metto in ascolto su ogni tasto cestino...
 deleteForms.forEach(form => {
