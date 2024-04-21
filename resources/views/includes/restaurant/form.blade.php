@@ -116,9 +116,9 @@
         </div>
 
 
-        {{--   Tipologie  --}}
+        {{--   Tipologie già esistenti --}}
         <div class="col-12 my-2" x-data="{ isOpen: false }">
-            <a @click="isOpen = !isOpen" class="btn btn-primary my-3">Mostra tipologie</a>
+            <a @click="isOpen = !isOpen" class="btn btn-primary my-3">Tipologie attuali</a>
             <div x-show="isOpen">
                 <div class="col-10">
                     @foreach ($types as $type)
@@ -136,6 +136,21 @@
                     @enderror
                 </div>
             </div>
+        </div>
+
+        {{--   Tipologie da aggiungere --}}
+        <div x-data="{ newTypesCounter: 0 }">
+            <a @click="newTypesCounter++" class="btn btn-primary my-2">Crea una nuova Tipologia</a>
+            <template x-for="i in newTypesCounter"> <!-- In Alpine la direttiva x-for va indicata in un template -->
+                <div class="col-12 row my-3">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label x-bind:for="'new_types[' + i + '][label]'">Nuova Tipologia</label>
+                            <input type="text" x-bind:name="'new_types[' + i + '][label]'" class="form-control"> <!-- Unisce le 2 parti di stringa fissa iniziale e finale con la variabile i dinamica-->
+                        </div>
+                    </div>
+                </div>
+            </template>
         </div>
         <hr>
 
