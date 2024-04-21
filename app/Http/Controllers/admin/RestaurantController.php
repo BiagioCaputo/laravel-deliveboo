@@ -96,12 +96,15 @@ class RestaurantController extends Controller
             $restaurant->types()->attach($data['types']);
         }
 
-        // Gestisci le nuove tipologie solo se sono state fornite
+        // Salva le nuove tipologie se l'utente le ha inserite
         if (Arr::exists($request, 'new_types')) {
             foreach ($request['new_types'] as $newTypeData) {
                 if (!empty($newTypeData['label'])) {
+                    //creo una nuova tipologia e salvo subito il label fornito dall'utente
                     $type = new Type(['label' => $newTypeData['label']]);
+                    //salvo la nuova tipologia
                     $type->save();
+                    //la unisco al ristorante
                     $restaurant->types()->attach($type->id);
                 }
             }
@@ -172,6 +175,20 @@ class RestaurantController extends Controller
 
             // Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
             elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
+
+            // Salva le nuove tipologie se l'utente le ha inserite
+            if (Arr::exists($request, 'new_types')) {
+                foreach ($request['new_types'] as $newTypeData) {
+                    if (!empty($newTypeData['label'])) {
+                        //creo una nuova tipologia e salvo subito il label fornito dall'utente
+                        $type = new Type(['label' => $newTypeData['label']]);
+                        //salvo la nuova tipologia
+                        $type->save();
+                        //la unisco al ristorante
+                        $restaurant->types()->attach($type->id);
+                    }
+                }
+            }
 
 
 

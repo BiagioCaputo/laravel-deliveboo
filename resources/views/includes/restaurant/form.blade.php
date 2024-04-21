@@ -23,14 +23,6 @@
         </div>
     </div>
 
-    {{--   Slug   --}}
-    {{-- <div class="col-6">
-            <div class="mb-4">
-                <label for="slug" class="form-label">Slug??</label> --}}
-    {{-- <input type="text" class="form-control" id="slug" value="{{ Str::slug(old('activity_name', $restaurant->activity_name)) }}" disabled> --}}
-    {{-- </div>
-        </div> --}}
-
 
     {{--  Description  --}}
     <div class="col-12">
