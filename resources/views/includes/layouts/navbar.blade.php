@@ -1,8 +1,9 @@
-<nav class="navbar navbar-expand-md shadow-sm">
+<nav class="bg-color navbar navbar-expand-md shadow-sm">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <div class="logo_deliveboo">
-                <i class="fa-solid fa-utensils fa-xl"></i>
+            <div class="logo_deliveboo d-flex align-items-center justify-content-between">
+                <p class="m-0">DeliveBoo</p>
+                <img src="img/glovo_logo.png" alt="o"  class="align-self-start">
             </div>
             {{-- config('app.name', 'Laravel') --}}
         </a>
