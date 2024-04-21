@@ -10,6 +10,8 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['label'];
+
     public function restaurants()
     {
         return $this->belongsToMany(Restaurant::class);

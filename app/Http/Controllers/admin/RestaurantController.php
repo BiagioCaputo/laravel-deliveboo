@@ -53,6 +53,10 @@ class RestaurantController extends Controller
                 'email' => 'required|string',
                 'vat' => 'required|string',
                 'image' => 'nullable|image',
+                'types' => 'nullable|array', // Validazione per le tipologie esistenti
+                'types.*' => 'exists:types,id', // Assicurati che i tipi esistenti siano presenti nel database
+                'new_types.*.label' => 'nullable|string', // Validazione per le nuove tipologie
+
             ],
             [
                 'activity_name.required' => 'Il ristorante deve avere un titolo',
@@ -90,6 +94,17 @@ class RestaurantController extends Controller
 
         if (Arr::exists($data, 'types')) {
             $restaurant->types()->attach($data['types']);
+        }
+
+        // Gestisci le nuove tipologie solo se sono state fornite
+        if (Arr::exists($request, 'new_types')) {
+            foreach ($request['new_types'] as $newTypeData) {
+                if (!empty($newTypeData['label'])) {
+                    $type = new Type(['label' => $newTypeData['label']]);
+                    $type->save();
+                    $restaurant->types()->attach($type->id);
+                }
+            }
         }
 
 
