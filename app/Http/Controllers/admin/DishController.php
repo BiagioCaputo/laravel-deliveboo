@@ -16,7 +16,6 @@ class DishController extends Controller
 {
     public function index(Request $request)
     {
-
         // Recupera l'id del ristorante associato ai piatti
         $restaurant_id = Auth::user()->restaurant->id;
 
@@ -41,7 +40,7 @@ class DishController extends Controller
 
         $courses = Course::select('label', 'id')->get();
 
-        return view('admin.dishes.index', compact('dishes', 'courses', 'course_filter', 'search'));
+        return view('admin.dishes.index', compact('dishes', 'courses', 'course_filter', 'search', 'restaurant_id'));
     }
 
     public function create()

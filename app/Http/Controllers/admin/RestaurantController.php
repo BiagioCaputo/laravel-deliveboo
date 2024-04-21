@@ -53,6 +53,10 @@ class RestaurantController extends Controller
                 'email' => 'required|string',
                 'vat' => 'required|string',
                 'image' => 'nullable|image',
+                'types' => 'nullable|array', // Validazione per le tipologie esistenti
+                'types.*' => 'exists:types,id', // Assicurati che i tipi esistenti siano presenti nel database
+                'new_types.*.label' => 'nullable|string', // Validazione per le nuove tipologie
+
             ],
             [
                 'activity_name.required' => 'Il ristorante deve avere un titolo',
@@ -90,6 +94,20 @@ class RestaurantController extends Controller
 
         if (Arr::exists($data, 'types')) {
             $restaurant->types()->attach($data['types']);
+        }
+
+        // Salva le nuove tipologie se l'utente le ha inserite
+        if (Arr::exists($request, 'new_types')) {
+            foreach ($request['new_types'] as $newTypeData) {
+                if (!empty($newTypeData['label'])) {
+                    //creo una nuova tipologia e salvo subito il label fornito dall'utente
+                    $type = new Type(['label' => $newTypeData['label']]);
+                    //salvo la nuova tipologia
+                    $type->save();
+                    //la unisco al ristorante
+                    $restaurant->types()->attach($type->id);
+                }
+            }
         }
 
 
@@ -157,6 +175,20 @@ class RestaurantController extends Controller
 
             // Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
             elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
+
+            // Salva le nuove tipologie se l'utente le ha inserite
+            if (Arr::exists($request, 'new_types')) {
+                foreach ($request['new_types'] as $newTypeData) {
+                    if (!empty($newTypeData['label'])) {
+                        //creo una nuova tipologia e salvo subito il label fornito dall'utente
+                        $type = new Type(['label' => $newTypeData['label']]);
+                        //salvo la nuova tipologia
+                        $type->save();
+                        //la unisco al ristorante
+                        $restaurant->types()->attach($type->id);
+                    }
+                }
+            }
 
 
 

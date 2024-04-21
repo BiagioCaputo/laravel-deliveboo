@@ -2,17 +2,17 @@
 @extends('layouts.app')
 
 {{-- Titolo --}}
-@section('title', 'New_Restaurant')
+@section('title', 'Crea ristorante')
 
 {{-- Contenuto principale pagina --}}
 @section('content')
 
     <header>
-        <h1 class="text-center my-5">Inserisci i dati del tuo Ristorante</h1>
+        <h1 class="text-center my-2">Inserisci i dati del tuo Ristorante</h1>
     </header>
 
     {{-- Form per la modifica di un progetto --}}
-    <div class="container py-5">
+    <div class="container">
         @include('includes.restaurant.form')
     </div>
 
