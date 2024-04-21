@@ -18,31 +18,37 @@
             <a href="{{ route('admin.dishes.create') }}" class="btn btn-primary">
                 <i class="fa-solid fa-plus me-2"></i>Nuovo piatto
             </a>
-            
+
             {{-- Filtri Ricerca --}}
             <div>
-                <form action="{{route('admin.dishes.index')}}" method="GET">
+                <form action="{{ route('admin.dishes.index') }}" method="GET">
                     <div class="d-flex align-items-center gap-2">
                         {{-- Filtro Portata --}}
                         <select class="form-select" name="course_filter">
                             <option value="">Tutte le portate</option>
-                            @foreach($courses as $course)
-                            <option value={{ $course->id }} @if($course_filter == $course->id) selected @endif>{{ $course->label }}</option>
+                            @foreach ($courses as $course)
+                                <option value={{ $course->id }} @if ($course_filter == $course->id) selected @endif>
+                                    {{ $course->label }}</option>
                             @endforeach
                         </select>
 
                         {{-- Search bar --}}
-                        <input type="search" class="form-control" placeholder="Cerca Piatto" name="search" value="{{ $search }}" autofocus>
+                        <input type="search" class="form-control" placeholder="Cerca Piatto" name="search"
+                            value="{{ $search }}" autofocus>
 
                         {{-- Button form --}}
                         <button class="btn btn-outline-secondary">Filtra</button>
+
+                        {{-- Reset filter --}}
+                        <a class="btn btn-outline-secondary"
+                            href="{{ route('admin.dishes.index', $restaurant_id) }}">Reset</a>
 
                     </div>
 
                 </form>
             </div>
 
-            
+
 
         </div>
 
@@ -70,7 +76,7 @@
                 @forelse ($dishes as $dish)
                     <tr>
                         <th scope="row">{{ $dish->name }}</th>
-                        <td><img class="img-fluid" src="{{ $dish->getImage() }}" alt="{{ $dish->name }}"></td>
+                        <td><img class="img-fluid rounded" src="{{ $dish->getImage() }}" alt="{{ $dish->name }}"></td>
                         <td>{{ $dish->getPrice() }}</td>
                         <td>{{ $dish->description }}</td>
                         <td>{{ $dish->available ? 'Sì' : 'No' }}</td>
@@ -84,7 +90,7 @@
                         <td>
                             <div class="d-flex justify-content-end gap-2">
                                 <a href="{{ route('admin.dishes.show', $dish) }}" class="btn btn-primary"><i
-                                    class="fas fa-eye "></i></a>
+                                        class="fas fa-eye "></i></a>
                                 <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-warning"><i
                                         class="fas fa-pencil "></i></a>
                                 <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST"
@@ -100,16 +106,16 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">
-                            <h3>Piatti non caricati</h3>
+                        <td colspan="7">
+                            <h3 class="text-center my-2">Non ci sono piatti</h3>
                         </td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
         @if ($dishes->hasPages())
-        {{ $dishes->links()}}
-        @endif  
+            {{ $dishes->links() }}
+        @endif
     </div>
 
 @endsection
