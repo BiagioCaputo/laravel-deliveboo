@@ -63,7 +63,7 @@ class DishController extends Controller
         // Valido i dati nella request
         $request->validate(
             [
-                'name' => 'required|string|unique:dishes',
+                'name' => 'required|string',
                 'image' => 'nullable|image',
                 'ingredients' => 'required|string',
                 'price' => 'required|decimal:2',
@@ -122,14 +122,13 @@ class DishController extends Controller
         // Valido i dati nella request
         $request->validate(
             [
-                'name' => ['required', 'string', Rule::unique('dishes')->ignore($dish->id)],
+                'name' => 'required|string',
                 'image' => 'nullable|image',
                 'ingredients' => 'required|string',
                 'price' => 'required|decimal:2',
                 'description' => 'nullable|string',
             ],
             [
-                'name.unique' => 'Il nome del piatto è già esistente',
                 'name.required' => 'Il ristorante deve avere un titolo',
                 'image.image' => 'Il file inserito non è un immagine',
                 'ingredients.required' => 'Il piatto deve avere degli ingredienti',
@@ -156,24 +155,6 @@ class DishController extends Controller
 
         // Compilo i campi
         $dish->update($data);
-
-        // Genera lo slug per l'activity_name
-        $dish_slug = Str::slug($dish->name);
-
-        //controllo se arriva un file
-        if (Arr::exists($data, 'image')) {
-
-            // controllo se ho un altra immagine già esistente nella cartella e la cancello
-            if ($dish->image) Storage::delete($dish->image);
-
-            //salvo nella variabile extension l'estensione dell'immagine inserita dall'utente
-            $extension = $data['image']->extension();
-
-            //salvo nella variabile url e in dish images l'immagine rinominata con lo slug del piatto
-            $img_url = Storage::putFile('dish_images', $data['image'], "$dish_slug.$extension");
-
-            $dish->image = $img_url;
-        }
 
         return to_route('admin.dishes.index', $dish)
             ->with('message', 'Piatto modificato con successo!')
