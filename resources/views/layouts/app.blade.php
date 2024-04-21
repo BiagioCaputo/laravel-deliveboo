@@ -10,6 +10,10 @@
 
     <title>{{ config('app.name', 'DeliveBoo') }}</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/glovo_logo.png">
+
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -40,10 +44,10 @@
             {{-- Modale --}}
             @include('includes.dishes.modal')
 
-            {{-- Main content --}}
-            @yield('content')
-
         </main>
+        
+        {{-- Main content --}}
+        @include('includes.layouts.content')
 
     </div>
 
