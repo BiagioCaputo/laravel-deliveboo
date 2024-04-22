@@ -15,6 +15,7 @@
         <div class="clearfix">
             @if ($restaurant->image)
                 <img src="{{ $restaurant->printImage() }}" alt="{{ $restaurant->activity_name }}" class="me-2 img-fluid">
+                <img src="{{ $restaurant->printLogo() }}" alt="{{ $restaurant->activity_name }}" class="me-2 img-fluid">
             @endif
             <p>{{ $restaurant->description }}</p>
             <ul class="list-unstyled">

@@ -23,6 +23,40 @@
         </div>
     </div>
 
+    {{--   Logo   --}}
+    <div class="col-5">
+        <div class="mb-5">
+            <label for="logo" class="form-label">Logo ristorante</label>
+
+
+            <div @class(['input-group', 'd-none' => !$restaurant->logo]) id="previous-logo-field">
+                <button class="btn btn-outline-secondary" type="button" id="change-logo-button">Cambia immag.</button>
+                <input type="text" class="form-control" value="{{ old('logo', $restaurant->logo) }}" disabled>
+            </div>
+
+
+
+            <input type="file"
+                class="form-control @if ($restaurant->logo) d-none @endif @error('logo') is-invalid @elseif(old('logo', '')) is-valid @enderror"
+                id="logo" name="logo" placeholder="http:// o https://">
+
+
+
+            @error('logo')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="mb-5">
+            <img src="{{ old('logo', $restaurant->logo) ? $restaurant->printLogo() : 'https://marcolanci.it/boolean/assets/placeholder.png' }}"
+                class="img-fluid" alt="logo-post" id="preview-logo">
+        </div>
+    </div>
+
+
 
     {{--  Description  --}}
     <div class="col-12">
