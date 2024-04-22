@@ -36,7 +36,7 @@
         {{-- Navbar --}}
         @include('includes.layouts.navbar')
 
-        <main class="container">
+        <main>
 
             {{-- Alert --}}
             @include('includes.dishes.alert')
@@ -44,13 +44,8 @@
             {{-- Modale --}}
             @include('includes.dishes.modal')
 
+            @yield('content')
         </main>
-
-        {{-- Main content --}}
-        @include('includes.layouts.content')
-
-        <!-- footer -->
-        @include('includes.layouts.footer')
 
 
     </div>
