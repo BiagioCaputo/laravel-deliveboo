@@ -13,9 +13,9 @@
     <div class="container d-flex justify-content-center align-items-center">
         <img src="img/glovo_logo.png" alt="logo glovo">
         <div>
-            <h1 class="pb-4">Le tue funzionalità <br> in un unico posto </br> </h1>
-            <p class="pb-4">Scopri tutte le funzionalità che DeliveBoo offre ai propri partner!</p>
-            <a class="btn btn-primary me-1" href="{{ url('/register') }}">Registrati Ora</a>
+            <h1>Le tue funzionalità <br> in un'unica App </br> </h1>
+            <p>Scopri tutte le funzionalità che DeliveBoo offre ai propri partner!</p>
+            <a class="btn btn-primary me-1" href="{{ url('/register') }}">Registrati</a>
             <a class="btn btn-primary" href="{{ url('/login') }}">Accedi</a>
         </div>
     </div>
