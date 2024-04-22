@@ -1,0 +1,93 @@
+// Navbar
+.navbar {
+    background-color: #ffaa00c1;
+    min-height: 100px;
+    font-weight: bold;
+    box-shadow: none;
+
+    .logo_deliveboo {
+        color: #01a083;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 700;
+        font-size: 2rem;
+        text-decoration: none;
+
+        img {
+            max-width: 30px;
+        }
+
+    }
+
+}
+
+.section-3 {
+    background-color: #ffaa00c1;
+    background-size: cover;
+    font-weight: bolder;
+    height: 700px;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: bolder;
+    }
+    img {
+        max-width: 400px;
+    }
+    .btn {
+        padding: 10px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+    }
+}
+
+
+
+footer{
+    img {
+        width: 100%;
+    }
+    
+    .bg-footer {
+        height: fit-content;
+        background-color: #1D1D1D;
+    
+        .logo-text {
+            font-family: "Quicksand", sans-serif;
+            color: white;
+            font-weight: 700;
+            font-size: 2rem;
+    
+            .logo-img {
+                height: 30px;
+                width: auto;
+                position: relative;
+                bottom: 15px;
+                right: 22px;
+            }
+        }
+    }
+    
+    
+    .link-title {
+        font-weight: 700;
+    }
+    
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    
+        li {
+            font-size: 15px;
+    
+        }
+    
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    }
+    
+
+}
+
