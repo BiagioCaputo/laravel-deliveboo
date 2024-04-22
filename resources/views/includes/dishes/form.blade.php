@@ -119,7 +119,7 @@
     {{-- Disponibilità --}}
     <div class="col-12">
         <div class="form-check form-switch my-3">
-            <label class="form-check-label" for="available">Disponibile
+            <label class="form-check-label" for="available">Visibile
                 <input class="form-check-input" type="checkbox" role="button" id="available" name="available"
                     value="1" @if (old('available', $dish->available)) checked @endif>
             </label>

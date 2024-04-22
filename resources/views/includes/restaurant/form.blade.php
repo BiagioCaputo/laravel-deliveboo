@@ -77,7 +77,7 @@
     {{--   Vat   --}}
     <div class="col-6">
         <div class="mb-4">
-            <label for="vat" class="form-label">Vat 11 car.</label>
+            <label for="vat" class="form-label">Partita IVA.</label>
             <input type="text"
                 class="form-control @error('vat') is-invalid @elseif(old('vat', '')) is-valid  @enderror"
                 id="vat" name="vat" placeholder="P.IVA Ristorante" value="{{ old('vat', $restaurant->vat) }}">
@@ -114,6 +114,70 @@
                 id="address" name="address" placeholder="Indirizzo del Ristorante"
                 value="{{ old('address', $restaurant->address) }}">
             @error('address')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
+    {{--   Telefono  --}}
+    <div class="col-6">
+        <div class="mb-4">
+            <label for="phone" class="form-label">Numero telefono</label>
+            <input type="text"
+                class="form-control @error('phone') is-invalid @elseif(old('phone', '')) is-valid  @enderror"
+                id="phone" name="phone" placeholder="Numero di telefono"
+                value="{{ old('phone', $restaurant->phone) }}">
+            @error('phone')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
+    {{--   Orario di apertura  --}}
+    <div class="col-6">
+        <div class="mb-4">
+            <label for="opening_hour" class="form-label">Orario apertura</label>
+            <input type="time"
+                class="form-control @error('opening_hour') is-invalid @elseif(old('opening_hour', '')) is-valid  @enderror"
+                id="opening_hour" name="opening_hour" min="00:00" max="24:00"
+                value="{{ old('opening_hour', $restaurant->opening_hour) }}">
+            @error('opening_hour')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
+    {{--   Orario di chiusura  --}}
+    <div class="col-6">
+        <div class="mb-4">
+            <label for="closing_hour" class="form-label">Orario chiusura</label>
+            <input type="time"
+                class="form-control @error('closing_hour') is-invalid @elseif(old('closing_hour', '')) is-valid  @enderror"
+                id="closing_hour" name="closing_hour" min="00:00" max="24:00"
+                value="{{ old('closing_hour', $restaurant->closing_hour) }}">
+            @error('closing_hour')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
+    {{--   Giorni di apertura   --}}
+    <div class="col-6">
+        <div class="mb-4">
+            <label for="opening_days" class="form-label">Giorni di apertura</label>
+            <input type="text"
+                class="form-control @error('opening_days') is-invalid @elseif(old('opening_days', '')) is-valid  @enderror"
+                id="opening_days" name="opening_days" placeholder="Giorni apertura"
+                value="{{ old('opening_days', $restaurant->opening_days) }}">
+            @error('opening_days')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
@@ -192,7 +256,7 @@
             </div>
         </template>
     </div>
-    <hr>
+    <hr class="my-4">
 
     {{--   Buttons   --}}
     <div class="d-flex justify-content-between my-4">

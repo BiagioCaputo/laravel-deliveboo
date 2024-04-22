@@ -11,7 +11,7 @@ class Restaurant extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['activity_name', 'address', 'image', 'slug', 'vat', 'email', 'type_id', 'description', 'logo', 'opening_hour', 'closing_hour', 'opening_days'];
+    protected $fillable = ['activity_name', 'address', 'image', 'slug', 'vat', 'email', 'type_id', 'description', 'logo', 'opening_hour', 'closing_hour', 'opening_days', 'phone'];
 
     public function user()
     {
@@ -38,6 +38,13 @@ class Restaurant extends Model
     public function getFormattedDate($column, $format = 'd-m-Y')
     {
         return Carbon::create($this->$column)->format($format);
+    }
+
+    //funzione per cambiare il format dell'ora
+    public function getFormattedTime($column, $format = 'H:i')
+    {
+        $time = $this->$column;
+        return Carbon::createFromFormat('H:i:s', $time)->format($format);
     }
 
     //funzione per centralizzare il percorso dell'immagine per arrivare allo storage

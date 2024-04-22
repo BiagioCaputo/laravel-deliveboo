@@ -24,10 +24,10 @@
                 <p><strong>Descrizione: </strong>{{ $restaurant->description }}</p>
                 <ul class="list-unstyled">
                     <li><strong>Indirizzo: </strong>{{ $restaurant->address }}</li>
-                    <li><strong>Vat: </strong>{{ $restaurant->vat }}</li>
+                    <li><strong>Partita IVA: </strong>{{ $restaurant->vat }}</li>
                     <li><strong>E-mail: </strong>{{ $restaurant->email }}</li>
-                    <li><strong>Orario apertura: </strong>{{ $restaurant->opening_hour }}</li>
-                    <li><strong>Orario chiusura: </strong>{{ $restaurant->closing_hour }}</li>
+                    <li><strong>Orario apertura: </strong>{{ $restaurant->getFormattedTime('opening_hour') }}</li>
+                    <li><strong>Orario chiusura: </strong>{{ $restaurant->getFormattedTime('closing_hour') }}</li>
                     <li><strong>Gioni di apertura: </strong>{{ $restaurant->opening_days }}</li>
                     <li><strong>Numero telefonico: </strong>{{ $restaurant->phone }}</li>
                 </ul>
