@@ -1,10 +1,10 @@
 <nav class="bg-color navbar navbar-expand-md">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <div class="logo_deliveboo d-flex align-items-center justify-content-between">
+            <a class="logo_deliveboo d-flex align-items-center justify-content-between" @if(Request::is('/')) active @endif" href="{{ url('/') }}">
                 <p class="m-0">DeliveBoo</p>
                 <img src="img/glovo_logo.png" alt="o"  class="align-self-start">
-            </div>
+            </a>
             {{-- config('app.name', 'Laravel') --}}
         </a>
 
@@ -16,10 +16,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-
-                <li class="nav-item d-flex">
-                    <a class="nav-link @if(Request::is('/')) active @endif" href="{{ url('/') }}">{{ __('Home') }}</a>                
-                </li>
 
                 @auth
                 {{-- Verifica se l'utente ha un ristorante associato --}}

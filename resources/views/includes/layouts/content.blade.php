@@ -3,16 +3,17 @@
     <div class="h1 py-2">Il cibo che desideri</div>
     <div class="h1">A distanza di un click</div>
 </div> -->
-<section class="section-3 d-flex justify-content-between align-items-center">
+<section class="section-3 d-flex justify-content-center align-items-center">
     <div class="container d-flex justify-content-center align-items-center">
         <img src="img/glovo_logo.png" alt="">
         <div class="">
             <h1 class="pb-4">Le tue funzionalità <br> in un unico posto</h1>
             <p class="pb-4">Scopri tutte le funzionalità che DeliveBoo</p>
-            <button class="">Registrati Ora</button>
+            <button class="" href="{{ route('register') }}">Registrati Ora</button>
             <button class="ms-2">Accedi</button>
         </div>
     </div>
+    <img src="" alt="">
 </section>
 
 <div class="section-2 d-flex justify-content-center align-items-center">
