@@ -14,7 +14,7 @@
         <div class="clearfix">
             <div class="card card-deliveboo my-5"> {{-- TODO margine messo per far vedere --}}
 
-                <div id="logo-box">
+                <div id="food-box">
                     @if ($restaurant->image)
                         <img src="{{ $dish->getImage() }}" alt="{{ $restaurant->activity_name }}">
                     @endif
@@ -22,9 +22,9 @@
                 <h1>{{ $dish->name }}</h1>
                 <p><strong>Descrizione: </strong>{{ $restaurant->description }}</p>
                 <ul class="list-unstyled">
-                    <li><strong>Price: </strong>{{ $dish->getPrice() }}</li>
-                    <li><strong>ingredients: </strong>{{ $dish->ingredients }}</li>
-                    <li><strong>available: </strong>{{ $dish->available ? 'Sì' : 'No' }}</li>
+                    <li><strong>Prezzo: </strong>{{ $dish->getPrice() }}</li>
+                    <li><strong>Ingredienti: </strong>{{ $dish->ingredients }}</li>
+                    <li><strong>Visibile: </strong>{{ $dish->available ? 'Sì' : 'No' }}</li>
                 </ul>
                 <div class="d-flex align-items-center justify-content-between mb-5">
                     <div>
