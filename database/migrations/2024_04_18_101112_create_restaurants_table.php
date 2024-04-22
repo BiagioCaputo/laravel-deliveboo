@@ -20,7 +20,14 @@ return new class extends Migration
             $table->string('address', 100);
             $table->char('vat', 11)->unique();
             $table->string('email', 100)->unique();
+            $table->string('phone', 20)->nullable();
+
             $table->string('image')->nullable();
+            $table->string('logo')->nullable();
+
+            $table->time('opening_hour')->nullable();
+            $table->time('closing_hour')->nullable();
+            $table->string('opening_days')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
