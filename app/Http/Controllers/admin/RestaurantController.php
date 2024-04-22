@@ -50,8 +50,8 @@ class RestaurantController extends Controller
             [
                 'activity_name' => 'required|string|unique:restaurants',
                 'address' => 'required|string',
-                'email' => 'required|string',
-                'vat' => 'required|string',
+                'email' => 'required|email|string',
+                'vat' => 'required|string|min:11|max:11',
                 'image' => 'nullable|image',
                 'types' => 'nullable|array', // Validazione per le tipologie esistenti
                 'types.*' => 'exists:types,id', // Assicurati che i tipi esistenti siano presenti nel database
@@ -61,8 +61,11 @@ class RestaurantController extends Controller
             [
                 'activity_name.required' => 'Il ristorante deve avere un titolo',
                 'address.required' => 'Il ristorante deve avere un indirizzo',
-                'email' => 'Il ristorante deve avere una email',
-                'vat' => 'Il ristorante deve avere una Partita IVA',
+                'email.required' => 'Il ristorante deve avere una email',
+                'email.email' => 'La mail inserita non è valida',
+                'vat.required' => 'Il ristorante deve avere una Partita IVA',
+                'vat.min' => 'La partita iva deve avere :min caratteri',
+                'vat.max' => 'La partita iva deve avere :max caratteri',
                 'image.image' => 'Il file inserito non è un immagine',
             ]
         );
@@ -136,19 +139,23 @@ class RestaurantController extends Controller
 
     public function update(Request $request, Restaurant $restaurant)
     { {
+            // dd($request);
             $request->validate(
                 [
                     'activity_name' => ['required', 'string', Rule::unique('restaurants')->ignore($restaurant->id)],
                     'address' => 'required|string',
-                    'email' => 'required|string',
-                    'vat' => 'required|string',
+                    'email' => 'required|email|string',
+                    'vat' => 'required|string|min:11|max:11',
                     'image' => 'nullable|image',
                 ],
                 [
                     'activity_name.required' => 'Il ristorante deve avere un titolo',
                     'address.required' => 'Il ristorante deve avere un indirizzo',
-                    'email' => 'Il ristorante deve avere una email',
-                    'vat' => 'Il ristorante deve avere una Partita IVA',
+                    'email.required' => 'Il ristorante deve avere una email',
+                    'email.email' => 'La mail inserita non è valida',
+                    'vat.required' => 'Il ristorante deve avere una Partita IVA',
+                    'vat.min' => 'La partita iva deve avere :min caratteri',
+                    'vat.max' => 'La partita iva deve avere :max caratteri',
                     'image.image' => 'Il file inserito non è un immagine',
                 ]
             );
@@ -170,12 +177,6 @@ class RestaurantController extends Controller
 
             $restaurant->update($data);
 
-            // se ho inviato uno o dei valori sincronizzo 
-            if (Arr::exists($data, 'types')) $restaurant->types()->sync($data['types']);
-
-            // Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
-            elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
-
             // Salva le nuove tipologie se l'utente le ha inserite
             if (Arr::exists($request, 'new_types')) {
                 foreach ($request['new_types'] as $newTypeData) {
@@ -190,6 +191,11 @@ class RestaurantController extends Controller
                 }
             }
 
+            // se ho inviato uno o dei valori sincronizzo
+            if (Arr::exists($data, 'types')) $restaurant->types()->sync($data['types']);
+
+            // Se non ho inviato valori ma il restaurant ne aveva in precedenza, vuol dire che devo eliminare valore perchè li ho tolti tutti
+            elseif (!Arr::exists($data, 'types') && $restaurant->has('types')) $restaurant->types()->detach();
 
 
             return to_route('admin.home', $restaurant->id)->with('type', 'success')->with('message', 'Ristorante modificato con successo');
