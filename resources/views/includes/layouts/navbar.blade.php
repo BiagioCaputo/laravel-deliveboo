@@ -1,11 +1,10 @@
 <nav class="bg-color navbar navbar-expand-md">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <a class="logo_deliveboo d-flex align-items-center justify-content-between" @if(Request::is('/')) active @endif" href="{{ url('/') }}">
+            <div class="logo_deliveboo d-flex align-items-center justify-content-between">
                 <h1 class="m-0">DeliveBoo</h1>
                 <img src="img/glovo_logo.png">
-            </a>
-            {{-- config('app.name', 'Laravel') --}}
+            </div>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
