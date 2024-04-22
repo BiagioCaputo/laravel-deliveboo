@@ -12,7 +12,7 @@
 
     <div class="container">
         <div class="clearfix">
-            <div class="card my-5"> {{-- TODO margine messo per far vedere --}}
+            <div class="card card-deliveboo my-5"> {{-- TODO margine messo per far vedere --}}
 
                 <div id="logo-box">
                     @if ($restaurant->image)
