@@ -1,8 +1,20 @@
 
-<div class="container-fluid section-1 d-flex flex-column justify-content-center align-items-center flex-wrap pb-5">
+<!-- <div class="container-fluid section-1 d-flex flex-column justify-content-center align-items-center flex-wrap pb-5">
     <div class="h1 py-2">Il cibo che desideri</div>
     <div class="h1">A distanza di un click</div>
-</div>
+</div> -->
+<section class="section-3 d-flex justify-content-between align-items-center">
+    <div class="container d-flex justify-content-center align-items-center">
+        <img src="img/glovo_logo.png" alt="">
+        <div class="">
+            <h1 class="pb-4">Le tue funzionalità <br> in un unico posto</h1>
+            <p class="pb-4">Scopri tutte le funzionalità che DeliveBoo</p>
+            <button class="">Registrati Ora</button>
+            <button class="ms-2">Accedi</button>
+        </div>
+    </div>
+</section>
+
 <div class="section-2 d-flex justify-content-center align-items-center">
     <div class="container d-flex justify-content-around p-5">
         <div class="content-card d-flex flex-column align-items-center justify-content-start">
@@ -22,9 +34,8 @@
         </div>
     </div>
 </div>
-<div class="section-3">
 
-</div>
-<div class="section-4">
-    
+<div class="section-4 d-flex flex-column align-items-center justify-content-center">
+    <img src="img/cities.svg" alt="" class="pt-5">
+    <h3 class="">Categorie preferite in Italia</h3>
 </div>

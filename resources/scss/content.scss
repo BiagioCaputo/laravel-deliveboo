@@ -30,13 +30,53 @@
 }
 
 .section-3 {
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.792);
-    background-image: url('img/pexels-audy-of-course-306413796-19055030.jpg');
+    height: 700px;
+    background-color: #ffaa00c1;
     background-size: cover;
+    font-weight: bolder;
+    width: 100%;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: bolder;
+
+
+    }
+
+
+
+    img {
+        max-width: 400px;
+    }
+
+    button {
+        background-color: #01a083;
+        border: 0;
+        padding: 15px 30px;
+        border-radius: 50px;
+        color: white;
+        font-weight: bold;
+        transition: all 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #026855;
+        cursor: pointer;
+
+
+    }
 }
 
 .section-4 {
     height: 100vh;
+
+    img {
+        max-height: 100px;
+    }
+
+    h3 {
+        font-weight: bolder;
+        font-size: 2rem;
+    }
 
 }

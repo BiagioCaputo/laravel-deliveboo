@@ -1,4 +1,4 @@
-<nav class="bg-color navbar navbar-expand-md shadow-sm">
+<nav class="bg-color navbar navbar-expand-md">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="logo_deliveboo d-flex align-items-center justify-content-between">
