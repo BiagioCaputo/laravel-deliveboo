@@ -1,0 +1,80 @@
+.section-1 {
+    background-image: url("img/pexels-horizon-content-2100060-3762069.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+
+    .h1 {
+        color: white;
+        font-weight: bolder;
+        font-size: 5rem;
+    }
+}
+
+.section-2 {
+    height: 100vh;
+    gap: 50px;
+
+    img {
+        max-width: 60%;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .content-card {
+        width: calc(100% / 3);
+    }
+}
+
+.section-3 {
+    height: 700px;
+    background-color: #ffaa00c1;
+    background-size: cover;
+    font-weight: bolder;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: bolder;
+
+
+    }
+
+
+
+    img {
+        max-width: 400px;
+    }
+
+    button {
+        background-color: #01a083;
+        border: 0;
+        padding: 15px 30px;
+        border-radius: 50px;
+        color: white;
+        font-weight: bold;
+        transition: all 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #026855;
+        cursor: pointer;
+
+
+    }
+}
+
+.section-4 {
+    height: 100vh;
+
+    img {
+        max-height: 100px;
+    }
+
+    h3 {
+        font-weight: bolder;
+        font-size: 2rem;
+    }
+
+}

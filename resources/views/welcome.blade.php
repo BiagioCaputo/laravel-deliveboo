@@ -1,5 +1,9 @@
 @extends('layouts.app')
+
 @section('content')
 
-<h1 class="text-center my-5">Benvenuto su deliveboo!</h1>
+@include('includes.layouts.content')
+
+@include('includes.layouts.footer')
+
 @endsection
