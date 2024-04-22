@@ -151,7 +151,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label x-bind:for="'new_types[' + i + '][label]'">Nuova Tipologia</label>
-                        <input type="text" x-bind:name="'new_types[' + i + '][label]'" class="form-control"> <!-- Unisce le 2 parti di stringa fissa iniziale e finale con la variabile i dinamica-->
+                        <input type="text" x-bind:name="'new_types[' + i + '][label]'" class="form-control">
+                        <!-- Unisce le 2 parti di stringa fissa iniziale e finale con la variabile i dinamica-->
                     </div>
                 </div>
             </div>

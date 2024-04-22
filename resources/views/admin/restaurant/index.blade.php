@@ -14,7 +14,7 @@
     <div class="container">
         <div class="clearfix">
             @if ($restaurant->image)
-                <img src="{{ $restaurant->printImage() }}" alt="{{ $restaurant->activity_name }}" class="me-2 float-start">
+                <img src="{{ $restaurant->printImage() }}" alt="{{ $restaurant->activity_name }}" class="me-2 img-fluid">
             @endif
             <p>{{ $restaurant->description }}</p>
             <ul class="list-unstyled">
@@ -24,8 +24,8 @@
             </ul>
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <div class="me-2"><strong>Creato il:</strong>{{ $restaurant->getFormattedDate('created_at') }}</div>
-                    <div><strong>Modificato il:</strong> {{ $restaurant->getFormattedDate('updated_at') }}</div>
+                    <div class="me-2"><strong>Creato il: </strong>{{ $restaurant->getFormattedDate('created_at') }}</div>
+                    <div><strong>Modificato il: </strong>{{ $restaurant->getFormattedDate('updated_at') }}</div>
                 </div>
                 <div x-data="{ isOpen: false }">
                     <a @click="isOpen = !isOpen" class="btn btn-primary my-3">Mostra tipologie</a>
