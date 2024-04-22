@@ -6,32 +6,35 @@
     box-shadow: none;
 
     .logo_deliveboo {
-        color: #01a083;
-        font-family: "Quicksand", sans-serif;
-        font-weight: 700;
-        font-size: 2rem;
         text-decoration: none;
 
+        h1 {
+            font-family: "Quicksand", sans-serif;
+            color: #01a083;
+            font-size: 2.3rem;
+            font-weight: 700;
+        }
+
         img {
-            width: 30px;
+            width: 40px;
             height: auto;
             position: relative;
-            right: 10px;
+            bottom: 10px;
+            right: 15px;
         }
 
     }
 
 }
 
-.section-3 {
+.jumbotron {
     background-color: #ffaa00c1;
     background-size: cover;
-    font-weight: bolder;
     height: 500px;
 
     h1 {
-        font-size: 3rem;
-        font-weight: bolder;
+        font-size: 3.5rem;
+        font-weight: 700;
     }
 
     img {
@@ -45,53 +48,6 @@
     }
 }
 
-
-
-footer {
-    img {
-        width: 100%;
-    }
-
-    .bg-footer {
-        height: fit-content;
-        background-color: #1D1D1D;
-
-        .logo-text {
-            font-family: "Quicksand", sans-serif;
-            color: white;
-            font-weight: 700;
-            font-size: 2rem;
-
-            .logo-img {
-                height: 30px;
-                width: auto;
-                position: relative;
-                bottom: 15px;
-                right: 22px;
-            }
-        }
-    }
-
-
-    .link-title {
-        font-weight: 700;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-
-        li {
-            font-size: 15px;
-
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-        }
-    }
-
-
+.wave {
+    width: 100%;
 }
