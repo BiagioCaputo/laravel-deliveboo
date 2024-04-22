@@ -3,7 +3,7 @@
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="logo_deliveboo d-flex align-items-center justify-content-between">
                 <h1 class="m-0">DeliveBoo</h1>
-                <img src="img/glovo_logo.png">
+                <img src="{{asset('img/glovo_logo.png')}}">
             </div>
         </a>
 
