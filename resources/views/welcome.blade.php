@@ -20,6 +20,8 @@
         </div>
     </div>
 </div>
+<img src="img/jumbotron-wavedesktop.svg" alt="Wave">
+<!-- <img src="../../public/img/jumbotron-wave-desktop.svg" alt="Wave"> -->
 
 
 {{-- Sezione partner --}}

@@ -13,7 +13,10 @@
         text-decoration: none;
 
         img {
-            max-width: 30px;
+            width: 30px;
+            height: auto;
+            position: relative;
+            right: 10px;
         }
 
     }
@@ -24,15 +27,17 @@
     background-color: #ffaa00c1;
     background-size: cover;
     font-weight: bolder;
-    height: 700px;
+    height: 500px;
 
     h1 {
         font-size: 3rem;
         font-weight: bolder;
     }
+
     img {
         max-width: 400px;
     }
+
     .btn {
         padding: 10px 30px;
         border-radius: 50px;
@@ -42,21 +47,21 @@
 
 
 
-footer{
+footer {
     img {
         width: 100%;
     }
-    
+
     .bg-footer {
         height: fit-content;
         background-color: #1D1D1D;
-    
+
         .logo-text {
             font-family: "Quicksand", sans-serif;
             color: white;
             font-weight: 700;
             font-size: 2rem;
-    
+
             .logo-img {
                 height: 30px;
                 width: auto;
@@ -66,28 +71,27 @@ footer{
             }
         }
     }
-    
-    
+
+
     .link-title {
         font-weight: 700;
     }
-    
+
     ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
-    
+
         li {
             font-size: 15px;
-    
+
         }
-    
+
         a {
             color: white;
             text-decoration: none;
         }
     }
-    
+
 
 }
-
