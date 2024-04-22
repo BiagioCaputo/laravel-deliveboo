@@ -14,6 +14,7 @@ export default defineConfig({
                 'resources/js/image_preview.js',
                 'resources/js/delete_confirmation.js',
                 'resources/js/theme_toggle.js',
+                'resources/js/make_new_restaurant_type.js',
             ],
             refresh: true,
         }),
