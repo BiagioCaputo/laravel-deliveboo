@@ -38,11 +38,14 @@
 
         <main>
 
-            {{-- Alert --}}
-            @include('includes.dishes.alert')
+            <div class="container">
+                {{-- Alert --}}
+                @include('includes.dishes.alert')
 
-            {{-- Modale --}}
-            @include('includes.dishes.modal')
+                {{-- Modale --}}
+                @include('includes.dishes.modal')
+            </div>
+
 
             @yield('content')
         </main>
