@@ -6,17 +6,21 @@
     box-shadow: none;
 
     .logo_deliveboo {
-        color: #01a083;
-        font-family: "Quicksand", sans-serif;
-        font-weight: 700;
-        font-size: 2rem;
         text-decoration: none;
 
+        h1 {
+            font-family: "Quicksand", sans-serif;
+            color: #01a083;
+            font-size: 2.3rem;
+            font-weight: 700;
+        }
+
         img {
-            width: 30px;
+            width: 40px;
             height: auto;
             position: relative;
-            right: 10px;
+            bottom: 10px;
+            right: 15px;
         }
 
     }
