@@ -54,7 +54,7 @@
                                     class="fas fa-pencil me-2"></i>Modifica</a>
                         </div>
                         <div>
-                            <a href="{{ route('admin.dishes.index', $restaurant) }}" class="btn btn-menu"><i
+                            <a href="{{ route('admin.dishes.index', $restaurant) }}" class="btn btn-primary"><i
                                     class="fa-solid fa-utensils me-2"></i>Menù</a>
                         </div>
                     </div>

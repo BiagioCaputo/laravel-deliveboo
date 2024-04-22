@@ -33,12 +33,13 @@
         @include('includes.layouts.navbar')
 
         <main>
+            <div class="container">
+                {{-- Alert --}}
+                @include('includes.dishes.alert')
 
-            {{-- Alert --}}
-            @include('includes.dishes.alert')
-
-            {{-- Modale --}}
-            @include('includes.dishes.modal')
+                {{-- Modale --}}
+                @include('includes.dishes.modal')
+            </div>
 
             {{-- Main content --}}
             @yield('content')
