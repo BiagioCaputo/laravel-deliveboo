@@ -9,7 +9,7 @@
 @section('content')
 
 {{-- Sezione introduttiva --}}
-<div class="section-3 d-flex justify-content-center align-items-center">
+<div class="jumbotron d-flex justify-content-center align-items-center">
     <div class="container d-flex justify-content-center align-items-center">
         <img src="img/glovo_logo.png" alt="logo glovo">
         <div>
@@ -20,8 +20,7 @@
         </div>
     </div>
 </div>
-<img src="img/jumbotron-wavedesktop.svg" alt="Wave">
-<!-- <img src="../../public/img/jumbotron-wave-desktop.svg" alt="Wave"> -->
+<img src="img/jumbotron-wave-desktop.svg" alt="Wave" class="wave">
 
 
 @endsection
