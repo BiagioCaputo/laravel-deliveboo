@@ -41,6 +41,11 @@ main {
         background-color: aquamarine;
         border-color: aquamarine;
     }
+
+    &:active {
+        background-color: #00A082;
+        border-color: #00A082;
+    }
 }
 
 
