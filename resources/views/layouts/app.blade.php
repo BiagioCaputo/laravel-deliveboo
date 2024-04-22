@@ -32,7 +32,7 @@
         {{-- Navbar --}}
         @include('includes.layouts.navbar')
 
-        <main class="container">
+        <main>
 
             {{-- Alert --}}
             @include('includes.dishes.alert')

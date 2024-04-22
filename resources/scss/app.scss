@@ -1,1 +1,6 @@
-@import '~bootstrap/scss/bootstrap'
+@use '~bootstrap/scss/bootstrap';
+/* 
+@use 'resources/scss/navbar.scss';
+@use 'resources/scss/content.scss';
+@use 'resources/scss/footer.scss'; */
+@use 'RestaurantHome.scss';
