@@ -8,7 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'DeliveBoo') }}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/glovo_logo.png">
+
 
 
     <!-- Fonts -->
@@ -32,7 +36,7 @@
         {{-- Navbar --}}
         @include('includes.layouts.navbar')
 
-        <main class="container">
+        <main>
 
             {{-- Alert --}}
             @include('includes.dishes.alert')
@@ -40,10 +44,9 @@
             {{-- Modale --}}
             @include('includes.dishes.modal')
 
-            {{-- Main content --}}
             @yield('content')
-
         </main>
+
 
     </div>
 
