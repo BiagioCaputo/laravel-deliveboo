@@ -53,7 +53,7 @@
         </div>
 
         {{-- Lista dei piatti --}}
-        <div class="card table-dish my-4">
+        <div class="card card-deliveboo table-dish my-4">
 
             <table class="table table-striped ">
                 <thead>
