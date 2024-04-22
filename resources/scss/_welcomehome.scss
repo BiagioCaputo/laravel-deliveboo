@@ -1,0 +1,53 @@
+// Navbar
+.navbar {
+    background-color: #ffaa00c1;
+    min-height: 100px;
+    font-weight: bold;
+    box-shadow: none;
+
+    .logo_deliveboo {
+        text-decoration: none;
+
+        h1 {
+            font-family: "Quicksand", sans-serif;
+            color: #01a083;
+            font-size: 2.3rem;
+            font-weight: 700;
+        }
+
+        img {
+            width: 40px;
+            height: auto;
+            position: relative;
+            bottom: 10px;
+            right: 15px;
+        }
+
+    }
+
+}
+
+.jumbotron {
+    background-color: #ffaa00c1;
+    background-size: cover;
+    height: 500px;
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+    }
+
+    img {
+        max-width: 400px;
+    }
+
+    .btn {
+        padding: 10px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+    }
+}
+
+.wave {
+    width: 100%;
+}

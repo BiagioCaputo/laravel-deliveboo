@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Dish;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +56,8 @@ class DishController extends Controller
 
     public function show(Dish $dish)
     {
-        return view('admin.dishes.show', compact('dish'));
+        $restaurant = Restaurant::findOrFail($dish->restaurant_id);
+        return view('admin.dishes.show', compact('dish', 'restaurant'));
     }
 
     public function store(Request $request, Dish $dish)

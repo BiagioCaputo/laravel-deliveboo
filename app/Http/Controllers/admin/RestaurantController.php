@@ -76,6 +76,13 @@ class RestaurantController extends Controller
         // Ottieni tutti i dati dal modulo
         $data = $request->all();
 
+
+        //controllo se arriva un logo e lo salvo in restaurant_images
+        if ($request->hasFile('logo')) {
+            $path = Storage::put('restaurant_images', $request->logo);
+            $data['logo'] = $path;
+        }
+
         //controllo se arriva un immagine e la salvo in restaurant_images
         if ($request->hasFile('image')) {
             $path = Storage::put('restaurant_images', $request->image);
@@ -163,6 +170,17 @@ class RestaurantController extends Controller
             $data = $request->all();
 
             $data['slug'] = Str::slug($data['activity_name']);
+
+            //controllo se mi arriva un logo
+            if ($request->hasFile('logo')) {
+                //cancello il precedente logo
+                if ($restaurant->logo) {
+                    Storage::delete($restaurant->logo);
+                }
+                //salvo il nuovo logo
+                $path = Storage::put('restaurant_images', $request->logo);
+                $data['logo'] = $path;
+            }
 
             //controllo se mi arriva un immagine
             if ($request->hasFile('image')) {

@@ -8,7 +8,7 @@
 @section('content')
 
     <header>
-        <h1 class="text-center my-3">Inserisci il tuo piatto</h1>
+        <h1 class="text-center my-5">Inserisci il tuo piatto</h1>
     </header>
 
     {{-- Form per la modifica di un progetto --}}

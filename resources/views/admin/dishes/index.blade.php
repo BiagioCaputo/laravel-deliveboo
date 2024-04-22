@@ -53,66 +53,71 @@
         </div>
 
         {{-- Lista dei piatti --}}
-        <table class="table table-striped my-4">
-            <thead>
-                <tr>
-                    <th scope="col">Piatto</th>
-                    <th scope="col">Immagine</th>
-                    <th scope="col">Prezzo</th>
-                    <th scope="col">Descrizione</th>
-                    <th scope="col">Disponibilità</th>
-                    <th scope="col">Portata</th>
-                    <th scope="col" class="text-center">
-                        {{-- Cestino --}}
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ route('admin.dishes.trash') }}" class="btn btn-danger">
-                                <i class="fa-solid fa-trash me-2"></i>Cestino
-                            </a>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($dishes as $dish)
-                    <tr>
-                        <th scope="row">{{ $dish->name }}</th>
-                        <td><img class="img-fluid rounded" src="{{ $dish->getImage() }}" alt="{{ $dish->name }}"></td>
-                        <td>{{ $dish->getPrice() }}</td>
-                        <td>{{ $dish->description }}</td>
-                        <td>{{ $dish->available ? 'Sì' : 'No' }}</td>
-                        <td>
-                            @if ($dish->course)
-                                <span class="badge rounded-pill text-bg-info">{{ $dish->course->label }}</span>
-                            @else
-                                <span class="badge rounded-pill text-bg-dark">Non disponibile</span>
-                            @endif
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-end gap-2">
-                                <a href="{{ route('admin.dishes.show', $dish) }}" class="btn btn-primary"><i
-                                        class="fas fa-eye "></i></a>
-                                <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-warning"><i
-                                        class="fas fa-pencil "></i></a>
-                                <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST"
-                                    class="delete-form" data-bs-toggle="modal" data-bs-target="#modal"
-                                    data-dish="{{ $dish->name }}">
-                                    @csrf
-                                    @method('DELETE')
+        <div class="card card-deliveboo table-dish my-4">
 
-                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-can"></i></button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
+            <table class="table table-striped ">
+                <thead>
                     <tr>
-                        <td colspan="7">
-                            <h3 class="text-center my-2">Non ci sono piatti</h3>
-                        </td>
+                        <th scope="col">Piatto</th>
+                        <th scope="col">Immagine</th>
+                        <th scope="col">Prezzo</th>
+                        <th scope="col">Descrizione</th>
+                        <th scope="col">Disponibilità</th>
+                        <th scope="col">Portata</th>
+                        <th scope="col">
+                            {{-- Cestino --}}
+                            <div class="d-flex justify-content-end">
+                                <a href="{{ route('admin.dishes.trash') }}" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash me-2"></i>Cestino
+                                </a>
+                            </div>
+                        </th>
                     </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse ($dishes as $dish)
+                        <tr>
+                            <th scope="row">{{ $dish->name }}</th>
+                            <td><img class="img-table" src="{{ $dish->getImage() }}" alt="{{ $dish->name }}">
+                            </td>
+                            <td>{{ $dish->getPrice() }}</td>
+                            <td>{{ $dish->description }}</td>
+                            <td class="text-center">{{ $dish->available ? 'Sì' : 'No' }}</td>
+                            <td>
+                                @if ($dish->course)
+                                    <span class="text-capitalize">{{ $dish->course->label }}</span>
+                                @else
+                                    <span>Non disponibile</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a href="{{ route('admin.dishes.show', $dish) }}" class="btn btn-primary"><i
+                                            class="fas fa-eye "></i></a>
+                                    <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-warning"><i
+                                            class="fas fa-pencil "></i></a>
+                                    <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST"
+                                        class="delete-form" data-bs-toggle="modal" data-bs-target="#modal"
+                                        data-dish="{{ $dish->name }}">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger"><i
+                                                class="fas fa-trash-can"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7">
+                                <h3 class="text-center my-2">Non ci sono piatti</h3>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
         @if ($dishes->hasPages())
             {{ $dishes->links() }}
         @endif

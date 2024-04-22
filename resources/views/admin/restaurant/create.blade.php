@@ -8,7 +8,7 @@
 @section('content')
 
     <header>
-        <h1 class="text-center my-2">Inserisci i dati del tuo Ristorante</h1>
+        <h1 class="text-center my-5">Inserisci i dati del tuo Ristorante</h1>
     </header>
 
     {{-- Form per la modifica di un progetto --}}
@@ -21,6 +21,6 @@
 
 {{-- Scripts --}}
 @section('scripts')
-    {{-- @vite('resources/js/slug_field.js') --}}
+    @vite('resources/js/logo_preview.js')
     @vite('resources/js/image_preview.js')
 @endsection

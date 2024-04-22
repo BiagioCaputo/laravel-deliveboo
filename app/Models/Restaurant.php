@@ -11,7 +11,7 @@ class Restaurant extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['activity_name', 'address', 'image', 'slug', 'vat', 'email', 'type_id', 'description'];
+    protected $fillable = ['activity_name', 'address', 'image', 'slug', 'vat', 'email', 'type_id', 'description', 'logo', 'opening_hour', 'closing_hour', 'opening_days', 'phone'];
 
     public function user()
     {
@@ -40,9 +40,22 @@ class Restaurant extends Model
         return Carbon::create($this->$column)->format($format);
     }
 
+    //funzione per cambiare il format dell'ora
+    public function getFormattedTime($column, $format = 'H:i')
+    {
+        $time = $this->$column;
+        return Carbon::createFromFormat('H:i:s', $time)->format($format);
+    }
+
     //funzione per centralizzare il percorso dell'immagine per arrivare allo storage
     public function printImage()
     {
         return asset('storage/' . $this->image);
+    }
+
+    //funzione per centralizzare il percorso del logo per arrivare allo storage
+    public function printLogo()
+    {
+        return asset('storage/' . $this->logo);
     }
 }

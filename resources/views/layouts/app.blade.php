@@ -8,12 +8,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'DeliveBoo') }}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+
 
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!--Font Logo | Quicksand-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
     <!-- Cdn -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -32,18 +41,20 @@
         {{-- Navbar --}}
         @include('includes.layouts.navbar')
 
-        <main class="container">
+        <main>
 
-            {{-- Alert --}}
-            @include('includes.dishes.alert')
+            <div class="container">
+                {{-- Alert --}}
+                @include('includes.dishes.alert')
 
-            {{-- Modale --}}
-            @include('includes.dishes.modal')
+                {{-- Modale --}}
+                @include('includes.dishes.modal')
+            </div>
 
-            {{-- Main content --}}
+
             @yield('content')
-
         </main>
+
 
     </div>
 

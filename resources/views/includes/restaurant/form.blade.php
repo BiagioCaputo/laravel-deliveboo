@@ -23,6 +23,40 @@
         </div>
     </div>
 
+    {{--   Logo   --}}
+    <div class="col-5">
+        <div class="mb-5">
+            <label for="logo" class="form-label">Logo ristorante</label>
+
+
+            <div @class(['input-group', 'd-none' => !$restaurant->logo]) id="previous-logo-field">
+                <button class="btn btn-outline-secondary" type="button" id="change-logo-button">Cambia immag.</button>
+                <input type="text" class="form-control" value="{{ old('logo', $restaurant->logo) }}" disabled>
+            </div>
+
+
+
+            <input type="file"
+                class="form-control @if ($restaurant->logo) d-none @endif @error('logo') is-invalid @elseif(old('logo', '')) is-valid @enderror"
+                id="logo" name="logo" placeholder="http:// o https://">
+
+
+
+            @error('logo')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="mb-5">
+            <img src="{{ old('logo', $restaurant->logo) ? $restaurant->printLogo() : 'https://marcolanci.it/boolean/assets/placeholder.png' }}"
+                class="img-fluid" alt="logo-post" id="preview-logo">
+        </div>
+    </div>
+
+
 
     {{--  Description  --}}
     <div class="col-12">
@@ -43,7 +77,7 @@
     {{--   Vat   --}}
     <div class="col-6">
         <div class="mb-4">
-            <label for="vat" class="form-label">Vat 11 car.</label>
+            <label for="vat" class="form-label">Partita IVA.</label>
             <input type="text"
                 class="form-control @error('vat') is-invalid @elseif(old('vat', '')) is-valid  @enderror"
                 id="vat" name="vat" placeholder="P.IVA Ristorante" value="{{ old('vat', $restaurant->vat) }}">
@@ -87,6 +121,70 @@
         </div>
     </div>
 
+    {{--   Telefono  --}}
+    <div class="col-6">
+        <div class="mb-4">
+            <label for="phone" class="form-label">Numero telefono</label>
+            <input type="text"
+                class="form-control @error('phone') is-invalid @elseif(old('phone', '')) is-valid  @enderror"
+                id="phone" name="phone" placeholder="Numero di telefono"
+                value="{{ old('phone', $restaurant->phone) }}">
+            @error('phone')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
+    {{--   Orario di apertura  --}}
+    <div class="col-6">
+        <div class="mb-4">
+            <label for="opening_hour" class="form-label">Orario apertura</label>
+            <input type="time"
+                class="form-control @error('opening_hour') is-invalid @elseif(old('opening_hour', '')) is-valid  @enderror"
+                id="opening_hour" name="opening_hour" min="00:00" max="24:00"
+                value="{{ old('opening_hour', $restaurant->opening_hour) }}">
+            @error('opening_hour')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
+    {{--   Orario di chiusura  --}}
+    <div class="col-6">
+        <div class="mb-4">
+            <label for="closing_hour" class="form-label">Orario chiusura</label>
+            <input type="time"
+                class="form-control @error('closing_hour') is-invalid @elseif(old('closing_hour', '')) is-valid  @enderror"
+                id="closing_hour" name="closing_hour" min="00:00" max="24:00"
+                value="{{ old('closing_hour', $restaurant->closing_hour) }}">
+            @error('closing_hour')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
+    {{--   Giorni di apertura   --}}
+    <div class="col-6">
+        <div class="mb-4">
+            <label for="opening_days" class="form-label">Giorni di apertura</label>
+            <input type="text"
+                class="form-control @error('opening_days') is-invalid @elseif(old('opening_days', '')) is-valid  @enderror"
+                id="opening_days" name="opening_days" placeholder="Giorni apertura"
+                value="{{ old('opening_days', $restaurant->opening_days) }}">
+            @error('opening_days')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
 
     {{--   Immagine   --}}
     <div class="col-8">
@@ -95,7 +193,8 @@
 
 
             <div @class(['input-group', 'd-none' => !$restaurant->image]) id="previous-image-field">
-                <button class="btn btn-outline-secondary" type="button" id="change-image-button">Cambia immag.</button>
+                <button class="btn btn-outline-secondary" type="button" id="change-image-button">Cambia
+                    immag.</button>
                 <input type="text" class="form-control" value="{{ old('image', $restaurant->image) }}" disabled>
             </div>
 
@@ -129,8 +228,9 @@
             <div class="col-10" id="checkboxes">
                 @foreach ($types as $type)
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="types[]" type="checkbox" id="tech-{{ $type->id }}"
-                            value="{{ $type->id }}" @if (in_array($type->id, old('types', $previous_types ?? []))) checked @endif>
+                        <input class="form-check-input" name="types[]" type="checkbox"
+                            id="tech-{{ $type->id }}" value="{{ $type->id }}"
+                            @if (in_array($type->id, old('types', $previous_types ?? []))) checked @endif>
                         <label class="form-check-label" for="tech-{{ $type->id }}">{{ $type->label }}</label>
                     </div>
                 @endforeach
@@ -164,7 +264,7 @@
                 Salva</button>
         </div>
     </div>
-    <hr>
+    <hr class="my-4">
 
     {{--   Buttons   --}}
     <div class="d-flex justify-content-between my-4">
