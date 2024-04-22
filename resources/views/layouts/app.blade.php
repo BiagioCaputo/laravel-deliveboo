@@ -45,9 +45,13 @@
             @include('includes.dishes.modal')
 
         </main>
-        
+
         {{-- Main content --}}
         @include('includes.layouts.content')
+
+        <!-- footer -->
+        @include('includes.layouts.footer')
+
 
     </div>
 

@@ -13,8 +13,30 @@
 
 .section-2 {
     height: 100vh;
+    gap: 50px;
+    background-color: rgba(127, 255, 212, 0.295);
+
+    img {
+        max-width: 60%;
+    }
+
+    p {
+        text-align: center;
+    }
 
     .content-card {
         width: calc(100% / 3);
     }
+}
+
+.section-3 {
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.792);
+    background-image: url('img/pexels-audy-of-course-306413796-19055030.jpg');
+    background-size: cover;
+}
+
+.section-4 {
+    height: 100vh;
+
 }
