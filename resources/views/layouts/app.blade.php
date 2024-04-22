@@ -55,3 +55,6 @@
 
 {{-- Script per switchare il theme --}}
 @vite('resources/js/theme_toggle.js')
+
+{{-- Script per gestire le tipologie di ristorante --}}
+@vite('resources/js/make_new_restaurant_type.js')
