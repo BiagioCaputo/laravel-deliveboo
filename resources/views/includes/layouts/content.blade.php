@@ -8,7 +8,7 @@
         <img src="img/glovo_logo.png" alt="">
         <div class="">
             <h1 class="pb-4">Le tue funzionalità <br> in un unico posto</h1>
-            <p class="pb-4">Scopri tutte le funzionalità che DeliveBoo</p>
+            <p class="pb-4">Scopri tutte le funzionalità che DeliveBoo offre ai propri partner!</p>
             <button class="" href="{{ route('register') }}">Registrati Ora</button>
             <button class="ms-2">Accedi</button>
         </div>
