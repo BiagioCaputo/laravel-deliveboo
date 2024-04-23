@@ -72,7 +72,7 @@
             <label for="price" class="form-label">Prezzo</label>
             <input type="number" step="0.1"
                 class="form-control @error('price') is-invalid @elseif(old('price', '')) is-valid  @enderror"
-                id="price" name="price" placeholder="Es: 4,50" value="{{ old('price', $dish->price) }}">
+                id="price" name="price" placeholder="Es: 4.50" value="{{ old('price', $dish->price) }}">
             @error('price')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -127,8 +127,16 @@
     </div>
 
     {{--   Buttons   --}}
-    <div class="d-flex justify-content-end my-2">
-        <button class="btn btn-success"><i class="fa-solid fa-floppy-disk me-2"></i>Salva</button>
+    <div class="d-flex justify-content-between my-2">
+        <a href="{{ route('admin.dishes.index') }}" class="btn btn-secondary"><i
+                class="fa-solid fa-left-long me-2"></i>Torna
+            indietro</a>
+        @if (Route::is('admin.dishes.create'))
+            <button class="btn btn-success">Conferma</button>
+        @else
+            <button class="btn btn-success"><i class="fa-solid fa-floppy-disk me-2"></i>Salva</button>
+        @endif
+
     </div>
 </div>
 </form>
