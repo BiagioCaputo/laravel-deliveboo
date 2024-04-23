@@ -13,7 +13,7 @@
 
                         {{-- Nome dell'utente--}}
                         <div class="mb-4 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristoratore') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Ristoratore*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -28,7 +28,7 @@
 
                         {{-- Email--}}
                         <div class="mb-4 row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo Email') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo Email*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -43,7 +43,7 @@
 
                         {{-- Password--}}
                         <div class="mb-4 row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -66,7 +66,7 @@
 
                         {{-- Nome dell'attività--}}
                         <div class="mb-4 row">
-                            <label for="activity_name" class="col-md-4 col-form-label text-md-right">{{ __('Nome dell\'attività') }}</label>
+                            <label for="activity_name" class="col-md-4 col-form-label text-md-right">{{ __('Nome dell\'attività*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="activity_name" type="text" class="form-control @error('activity_name') is-invalid @enderror" name="activity_name" value="{{ old('activity_name') }}" required autocomplete="activity_name">
@@ -82,7 +82,7 @@
 
                         {{-- Indirizzo dell'attività--}}
                         <div class="mb-4 row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo dell\'attività') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo dell\'attività*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
@@ -173,7 +173,7 @@
                         {{--  Tipologie Ristorante --}}
                         <div class="mb-4 row">
                             <label for="restaurant_types" class="col-md-4 col-form-label text-md-right">
-                                {{ __('Tipi di Ristorante') }} <br>
+                                {{ __('Tipologia/e Ristorante*') }} <br>
                             </label>
                         
                             <div class="col-md-6">
