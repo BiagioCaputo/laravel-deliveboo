@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
+use App\Models\Type;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,7 +22,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $types = Type::select('label', 'id')->get();
+
+        return view('auth.register', compact('types'));
     }
 
     /**
@@ -38,6 +41,8 @@ class RegisteredUserController extends Controller
             'activity_name' => ['required', 'string'],
             'address' => ['required', 'string'],
             'vat' => ['required', 'string', 'unique:restaurants'],
+            'restaurant_types' => ['required', 'array'],
+            'restaurant_types.*' => ['exists:types,id']
         ]);
 
         $user = User::create([
@@ -53,10 +58,15 @@ class RegisteredUserController extends Controller
             'activity_name' => $request->activity_name,
             'address' => $request->address,
             'vat' => $request->vat,
+            'phone' => $request->phone,
+            'description' => $request->description,
             'user_id' => $user->id // Collegamento con l'ID dell'utente appena creato
         ]);
 
         $restaurant->save();
+
+        // Aggiungi i tipi di ristorante selezionati
+        $restaurant->types()->attach($request->restaurant_types);
 
         Auth::login($user);
 

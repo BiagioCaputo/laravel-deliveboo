@@ -79,6 +79,7 @@
                             </div>
                         </div>
 
+
                         {{-- Indirizzo dell'attività--}}
                         <div class="mb-4 row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo dell\'attività') }}</label>
@@ -94,7 +95,7 @@
                             </div>
                         </div>
 
-                        {{-- P. IVA--}}
+                        {{-- P. IVA --}}
                         <div class="mb-4 row">
                             <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('Partita Iva*') }}</label>
 
@@ -109,33 +110,55 @@
                             </div>
                         </div>
 
-                        {{-- Tipologie--}}
-                        {{-- <div class="mb-4 row">
-                            <label for="restaurant_types" class="col-md-4 col-form-label text-md-right">
-                                {{ __('Tipologia Ristorante*') }} <br>
-                            </label>
+                        {{-- Phone --}}
+                        <div class="mb-4 row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
 
                             <div class="col-md-6">
-                                <div id="checkbox_container">
-                                    @foreach ($restaurant_types as $type)
-                                        <div class="custom-control custom-checkbox" id="{{$type['id']}}">
-                                            <input name="restaurant_type[]" value="{{$type['id']}}" type="checkbox" 
-                                                class="checkbox custom-control-input @error('restaurant_type') is-invalid @enderror" 
-                                                id="type-{{$type['id']}}">
-                                            <label class="custom-control-label" for="type-{{$type['id']}}">
-                                                {{$type['name']}}
-                                            </label>
-                                        </div>
-                                    @endforeach                                    
-                                </div>
+                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
 
-                                @error('restaurant_type')
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
+
+                        {{-- Descrizione --}}
+                        <div class="mb-4 row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descrizione') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="description"  class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" autocomplete="description" autofocus></textarea>
+
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{--  Tipologie Ristorante --}}
+                        <div class="mb-4 row">
+                            <label for="restaurant_types" class="col-md-4 col-form-label text-md-right">
+                                {{ __('Tipi di Ristorante') }} <br>
+                            </label>
+                        
+                            <div class="col-md-6">
+                                @foreach ($types as $type)
+                                    <div class="custom-control custom-checkbox" id="{{$type->id}}">
+                                        <input name="restaurant_types[]" value="{{$type->id}}" type="checkbox" 
+                                            class="checkbox custom-control-input" 
+                                            id="type-{{$type->id}}">
+                                        <label class="custom-control-label" for="type-{{$type->id}}">
+                                            {{$type->label}}
+                                        </label>
+                                    </div>
+                                @endforeach                                    
+                            </div>
+                        </div>
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
