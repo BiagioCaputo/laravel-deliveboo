@@ -1,17 +1,17 @@
 <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Delete Account') }}
+            {{ __('Elimina Account') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+            {{ __('Una volta eliminato l\'account, ogni dato salvato al suo interno sarà perso, il processo inoltre è irreversibile ') }}
         </p>
     </header>
 
     <!-- Modal trigger button -->
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-account">
-        {{__('Delete Account')}}
+        {{__('Elimina Account')}}
     </button>
 
     <!-- Modal Body -->
@@ -25,14 +25,14 @@
                 </div>
                 <div class="modal-body">
                     <h2 class="text-lg font-medium text-gray-900">
-                        {{ __('Are you sure you want to delete your account?') }}
+                        {{ __('Sei veramente sicuro di cancellare l\'account?') }}
                     </h2>
                     <p class="mt-1 text-sm text-gray-600">
-                        {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                        {{ __('Una volta cancellato, tutte le sue risorse saranno perse permanentemente. Immetti la tua password per eliminare definitvamente il tuo account.') }}
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
 
                     <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
                         @csrf
@@ -52,7 +52,7 @@
 
 
                             <button type="submit" class="btn btn-danger">
-                                {{ __('Delete Account') }}
+                                {{ __('Conferma Eliminazione') }}
                             </button>
                             <!--  -->
                         </div>
