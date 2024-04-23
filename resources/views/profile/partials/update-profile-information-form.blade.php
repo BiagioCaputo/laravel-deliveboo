@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-secondary">
-            {{ __('Profile Information') }}
+            {{ __('Informazioni Account') }}
         </h2>
 
         <p class="mt-1 text-muted">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Aggiorna da qui il tuo nome oppure il tuo indirizzo email") }}
         </p>
     </header>
 
@@ -59,8 +59,8 @@
             @endif
         </div>
 
-        <div class="d-flex align-items-center gap-4">
-            <button class="btn btn-primary" type="submit">{{ __('Save') }}</button>
+        <div class="d-flex align-items-center gap-4 mt-4">
+            <button class="btn btn-primary" type="submit">{{ __('Salva') }}</button>
 
             @if (session('status') === 'profile-updated')
             <script>
