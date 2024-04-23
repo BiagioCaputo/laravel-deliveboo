@@ -8,32 +8,32 @@
 
 @section('content')
 
-<div class="background-container" style="background-image: url('{{ $restaurant->printImage() }}' ); filter: blur(5px);">
-</div>
+{{-- <div class="background-container" style="background-image: url('{{ $restaurant->printImage() }}' ); filter: blur(5px);">
+</div> --}}
 
 <div class="container">
     <div class="clearfix">
         <div class="card card-deliveboo my-5"> {{-- TODO margine messo per far vedere --}}
 
-            <div id="logo-box">
+            {{-- <div id="logo-box">
                 @if ($restaurant->image)
                 <img src="{{ $restaurant->printLogo() }}" alt="{{ $restaurant->activity_name }}">
                 @endif
-            </div>
+            </div> --}}
             <h1>{{ $restaurant->activity_name }}</h1>
-            <p><strong>Descrizione: </strong>{{ $restaurant->description }}</p>
+            {{-- <p><strong>Descrizione: </strong>{{ $restaurant->description }}</p> --}}
 
             <div class="card-bottom">
                 <ul class="list-unstyled">
-                    <li><strong>Indirizzo: </strong>{{ $restaurant->address }}</li>
+                    {{-- <li><strong>Indirizzo: </strong>{{ $restaurant->address }}</li> --}}
                     <li><strong>Partita IVA: </strong>{{ $restaurant->vat }}</li>
-                    <li><strong>E-mail: </strong>{{ $restaurant->email }}</li>
-                    <li><strong>Numero telefonico: </strong>{{ $restaurant->phone }}</li>
+                    <li><strong>E-mail: </strong>{{ $user->email }}</li>
+                    {{-- <li><strong>Numero telefonico: </strong>{{ $restaurant->phone }}</li> --}}
                     <li><strong>Creato il: </strong>{{ $restaurant->getFormattedDate('created_at') }}</li>
                     <li><strong>Modificato il: </strong>{{ $restaurant->getFormattedDate('updated_at') }}</li>
                 </ul>
 
-                <div class="types">
+                {{-- <div class="types">
 
                     <ul class="list-unstyled">
                         <li><strong>Categorie</strong></li>
@@ -43,7 +43,7 @@
                         No type
                         @endforelse
                     </ul>
-                </div>
+                </div> --}}
             </div>
 
 
