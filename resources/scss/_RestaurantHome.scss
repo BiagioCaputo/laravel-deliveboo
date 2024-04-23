@@ -1,5 +1,5 @@
 main {
-    background-color: #fefefe;
+    // background-color: #fefefe;
 }
 
 .background-container {
@@ -7,6 +7,10 @@ main {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.bg-transparent {
+    background-color: transparent;
 }
 
 #logo-box {
