@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
+use App\Models\Type;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +23,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $types = Type::select('label', 'id')->get();
+
+        return view('auth.register', compact('types'));
     }
 
     /**
@@ -32,8 +37,13 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'activity_name' => ['required', 'string'],
+            'address' => ['required', 'string'],
+            'vat' => ['required', 'string', 'unique:restaurants'],
+            'restaurant_types' => ['required', 'array', 'min:1'], //deve esserci almeno una tipologia
+            'restaurant_types.*' => ['exists:types,id']
         ]);
 
         $user = User::create([
@@ -42,7 +52,34 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+
         event(new Registered($user));
+
+        $restaurant = new Restaurant([
+            'activity_name' => $request->activity_name,
+            'address' => $request->address,
+            'vat' => $request->vat,
+            'phone' => $request->phone,
+            'description' => $request->description,
+            'user_id' => $user->id // Collegamento con l'ID dell'utente appena creato
+        ]);
+
+        // Salva l'immagine
+        if ($request->hasFile('image')) {
+            $path = Storage::put('restaurant_images', $request->image);
+            $restaurant->image = $path;
+        }
+
+        // Salva il logo
+        if ($request->hasFile('logo')) {
+            $path = Storage::put('restaurant_logos', $request->logo);
+            $restaurant->logo = $path;
+        }
+
+        $restaurant->save();
+
+        // Aggiungi i tipi di ristorante selezionati
+        $restaurant->types()->attach($request->restaurant_types);
 
         Auth::login($user);
 

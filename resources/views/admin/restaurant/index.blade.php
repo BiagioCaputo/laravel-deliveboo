@@ -27,10 +27,7 @@
                 <ul class="list-unstyled">
                     <li><strong>Indirizzo: </strong>{{ $restaurant->address }}</li>
                     <li><strong>Partita IVA: </strong>{{ $restaurant->vat }}</li>
-                    <li><strong>E-mail: </strong>{{ $restaurant->email }}</li>
-                    <li><strong>Orario apertura: </strong>{{ $restaurant->getFormattedTime('opening_hour') }}</li>
-                    <li><strong>Orario chiusura: </strong>{{ $restaurant->getFormattedTime('closing_hour') }}</li>
-                    <li><strong>Gioni di apertura: </strong>{{ $restaurant->opening_days }}</li>
+                    <li><strong>E-mail: </strong>{{ $user->email }}</li>
                     <li><strong>Numero telefonico: </strong>{{ $restaurant->phone }}</li>
                     <li><strong>Creato il: </strong>{{ $restaurant->getFormattedDate('created_at') }}</li>
                     <li><strong>Modificato il: </strong>{{ $restaurant->getFormattedDate('updated_at') }}</li>
@@ -50,10 +47,10 @@
             </div>
 
 
-            <div class="d-flex justify-content-between align-items-center mt-5">
-                <div>
+            <div class="d-flex justify-content-end align-items-center mt-5">
+                {{-- <div>
                     <a href="{{ route('admin.restaurant.edit', $restaurant) }}" class="btn btn-warning"><i class="fas fa-pencil me-2"></i>Modifica</a>
-                </div>
+                </div> --}}
                 <div>
                     <a href="{{ route('admin.dishes.index', $restaurant) }}" class="btn btn-primary"><i class="fa-solid fa-utensils me-2"></i>Menù</a>
                 </div>
