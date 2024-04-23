@@ -8,18 +8,18 @@
 
 @section('content')
 
-{{-- <div class="background-container" style="background-image: url('{{ $restaurant->printImage() }}' ); filter: blur(5px);">
-</div> --}}
+<div class="background-container" style="background-image: url('{{ $restaurant->printImage() }}' ); filter: blur(5px);">
+</div>
 
 <div class="container">
     <div class="clearfix">
         <div class="card card-deliveboo my-5"> {{-- TODO margine messo per far vedere --}}
 
-            {{-- <div id="logo-box">
+            <div id="logo-box">
                 @if ($restaurant->image)
                 <img src="{{ $restaurant->printLogo() }}" alt="{{ $restaurant->activity_name }}">
                 @endif
-            </div> --}}
+            </div>
             <h1>{{ $restaurant->activity_name }}</h1>
             <p><strong>Descrizione: </strong>{{ $restaurant->description }}</p>
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -41,7 +42,7 @@ class RegisteredUserController extends Controller
             'activity_name' => ['required', 'string'],
             'address' => ['required', 'string'],
             'vat' => ['required', 'string', 'unique:restaurants'],
-            'restaurant_types' => ['required', 'array'],
+            'restaurant_types' => ['required', 'array', 'min:1'], //deve esserci almeno una tipologia
             'restaurant_types.*' => ['exists:types,id']
         ]);
 
@@ -62,6 +63,18 @@ class RegisteredUserController extends Controller
             'description' => $request->description,
             'user_id' => $user->id // Collegamento con l'ID dell'utente appena creato
         ]);
+
+        // Salva l'immagine
+        if ($request->hasFile('image')) {
+            $path = Storage::put('restaurant_images', $request->image);
+            $restaurant->image = $path;
+        }
+
+        // Salva il logo
+        if ($request->hasFile('logo')) {
+            $path = Storage::put('restaurant_logos', $request->logo);
+            $restaurant->logo = $path;
+        }
 
         $restaurant->save();
 
