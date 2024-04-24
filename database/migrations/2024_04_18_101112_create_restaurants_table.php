@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('activity_name');
 
             $table->text('description')->nullable();
-            $table->string('address', 100);
+            $table->string('address', 150);
             $table->char('vat', 11)->unique();
             $table->string('phone', 20)->nullable();
 
