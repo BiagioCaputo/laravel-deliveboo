@@ -15,7 +15,7 @@ class TypeSeeder extends Seeder
     {
         //da aggiungere le immagini!
         $types = [
-            ["label" => "Italiana", "image" => "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg"],
+            ["label" => "Italiana", "image" => ""],
             ["label" => "Francese", "image" => ""],
             ["label" => "Giapponese", "image" => ""],
             ["label" => "Messicana", "image" => ""],

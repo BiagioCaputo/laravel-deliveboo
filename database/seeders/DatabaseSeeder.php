@@ -13,17 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(4)->create();
+        \App\Models\User::factory(4)->create();
 
         $this->call(TypeSeeder::class);
 
-        // $this->call(RestaurantSeeder::class);
+        $this->call(RestaurantSeeder::class);
 
-        // $this->call(CourseSeeder::class);
+        $this->call(CourseSeeder::class);
 
-        // \App\Models\Dish::factory(10)->create();
+        \App\Models\Dish::factory(10)->create();
 
-        // $this->call(DishSeeder::class);
+        $this->call(DishSeeder::class);
 
 
         //     \App\Models\User::factory()->create([
