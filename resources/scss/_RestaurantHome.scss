@@ -1,5 +1,9 @@
 main {
-    background-color: #fefefe;
+    // background-color: #fefefe;
+}
+
+.bg-transparent {
+    background-color: transparent;
 }
 
 .background-container {
@@ -48,6 +52,24 @@ main {
     }
 }
 
+.btn.btn-deliveboo {
+    color: #00A082;
+    background-color: #FFC244;
+    border-color: #FFC244;
+
+    &:hover {
+        color: #FFC244;
+        background-color: #00A082;
+        border-color: #00A082;
+        transition: 0.5s;
+    }
+}
+
+.btn.btn-deliveboo.clicked {
+    color: #FFC244;
+    background-color: #00A082;
+    border-color: #00A082;
+}
 
 .card-deliveboo {
     padding: 40px;

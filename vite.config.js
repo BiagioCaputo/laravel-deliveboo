@@ -15,6 +15,7 @@ export default defineConfig({
                 'resources/js/logo_preview.js',
                 'resources/js/delete_confirmation.js',
                 'resources/js/theme_toggle.js',
+                'resources/js/client_validation.js',
             ],
             refresh: true,
         }),
