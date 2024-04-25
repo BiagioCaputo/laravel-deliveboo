@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(DishSeeder::class);
 
+        \App\Models\Order::factory(10)->create();
+
 
         //     \App\Models\User::factory()->create([
         //         'name' => 'Team4',

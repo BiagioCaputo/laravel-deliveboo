@@ -20,7 +20,7 @@
                     @endif
                 </div>
                 <h1>{{ $dish->name }}</h1>
-                <p><strong>Descrizione: </strong>{{ $restaurant->description }}</p>
+                <p><strong>Descrizione: </strong>{{ $dish->description }}</p>
                 <ul class="list-unstyled">
                     <li><strong>Prezzo: </strong>{{ $dish->getPrice() }}</li>
                     <li><strong>Ingredienti: </strong>{{ $dish->ingredients }}</li>
