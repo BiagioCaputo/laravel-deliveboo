@@ -56,6 +56,10 @@ class DishController extends Controller
 
     public function show(Dish $dish)
     {
+        if ($dish->restaurant->id !== Auth::user()->restaurant->id) {
+            abort(404);
+        }
+
         $restaurant = Restaurant::findOrFail($dish->restaurant_id);
         return view('admin.dishes.show', compact('dish', 'restaurant'));
     }
@@ -110,6 +114,9 @@ class DishController extends Controller
 
     public function edit(Dish $dish)
     {
+        if ($dish->restaurant->id !== Auth::user()->restaurant->id) {
+            abort(404);
+        }
         // dd($dish);
         // Recupero le portate associate al piatto e le mando giù come semplice array
         $course_id = $dish->course_id;
