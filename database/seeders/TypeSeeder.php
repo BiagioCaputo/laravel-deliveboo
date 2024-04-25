@@ -15,21 +15,22 @@ class TypeSeeder extends Seeder
     {
         //da aggiungere le immagini!
         $types = [
-            ["label" => "Italiana", "image" => ""],
-            ["label" => "Francese", "image" => ""],
-            ["label" => "Giapponese", "image" => ""],
-            ["label" => "Messicana", "image" => ""],
-            ["label" => "Cinese", "image" => ""],
-            ["label" => "Poke", "image" => ""],
-            ["label" => "Indiano", "image" => ""],
-            ["label" => "Pizza", "image" => ""],
-            ["label" => "Hamburger", "image" => ""],
-            ["label" => "Sushi", "image" => ""],
-            ["label" => "Carne", "image" => ""],
-            ["label" => "Pesce", "image" => ""],
-            ["label" => "Vegano", "image" => ""],
-            ["label" => "Vegetariano", "image" => ""],
-            ["label" => "Fritti", "image" => ""]
+            ["label" => "Italiana", "image" => ""], //1
+            ["label" => "Francese", "image" => ""], //2
+            ["label" => "Giapponese", "image" => ""], //3
+            ["label" => "Messicana", "image" => ""], //4
+            ["label" => "Cinese", "image" => ""], //5
+            ["label" => "Poke", "image" => ""], //6
+            ["label" => "Indiano", "image" => ""], //7
+            ["label" => "Pizza", "image" => ""], //8
+            ["label" => "Hamburger", "image" => ""], //9
+            ["label" => "Sushi", "image" => ""], //10
+            ["label" => "Carne", "image" => ""], //11
+            ["label" => "Pesce", "image" => ""], //12
+            ["label" => "Vegano", "image" => ""], //13
+            ["label" => "Vegetariano", "image" => ""], //14
+            ["label" => "Fritti", "image" => ""], //15
+            ["label" => "Fast Food", "image" => ""] //16
         ];
 
         foreach ($types as $type) {
