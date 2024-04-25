@@ -10,7 +10,7 @@
     {{--   Nome piatto   --}}
     <div class="col-6">
         <div class="mb-3">
-            <label for="name" class="form-label">Nome Piatto</label>
+            <label for="name" class="form-label">Nome Piatto*</label>
             <input type="text"
                 class="form-control @error('name') is-invalid @elseif(old('name', '')) is-valid  @enderror"
                 id="name" name="name" placeholder="Nome Piatto" value="{{ old('name', $dish->name) }}">
@@ -54,7 +54,7 @@
     {{-- Ingredienti --}}
     <div class="col-12">
         <div class="mb-3">
-            <label for="ingredients" class="form-label">Ingredienti</label>
+            <label for="ingredients" class="form-label">Ingredienti*</label>
             <textarea type="text" rows="3"
                 class="form-control @error('ingredients') is-invalid @elseif(old('ingredients', '')) is-valid  @enderror"
                 id="ingredients" name="ingredients" placeholder="Inserisci gli ingredienti">{{ old('ingredients', $dish->ingredients) }}</textarea>
@@ -69,7 +69,7 @@
     {{-- Prezzo --}}
     <div class="col-4">
         <div class="mb-3">
-            <label for="price" class="form-label">Prezzo</label>
+            <label for="price" class="form-label">Prezzo*</label>
             <input type="number" step="0.1"
                 class="form-control @error('price') is-invalid @elseif(old('price', '')) is-valid  @enderror"
                 id="price" name="price" placeholder="Es: 4,50" value="{{ old('price', $dish->price) }}">

@@ -35,7 +35,7 @@
                 </form>
 
                 {{-- Cancellazione massiva --}}
-                <form method="POST" action="{{ route('admin.dishes.massive-drop') }}" class="delete-form"
+                {{-- <form method="POST" action="{{ route('admin.dishes.massive-drop') }}" class="delete-form"
                     data-bs-toggle="modal" data-bs-target="#modal">
                     @csrf
                     @method('DELETE')
@@ -43,7 +43,7 @@
                         <i class="fa-regular fa-trash-can"></i>
                         Svuota
                         cestino</button>
-                </form>
+                </form> --}}
                 @endif
             </div>
         </div>
@@ -94,14 +94,14 @@
                                     </a> --}}
 
                                 {{-- Cancellazione definitiva piatto --}}
-                                <form class="delete-form" action="{{ route('admin.dishes.drop', $dish->id) }}"
+                                {{-- <form class="delete-form" action="{{ route('admin.dishes.drop', $dish->id) }}"
                                     method="POST" data-bs-toggle="modal" data-bs-target="#modal"
                                     data-dish="{{ $dish->name }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"><i
                                             class="fa-regular fa-trash-can"></i></button>
-                                </form>
+                                </form> --}}
                             </div>
                         </td>
                     </tr>
