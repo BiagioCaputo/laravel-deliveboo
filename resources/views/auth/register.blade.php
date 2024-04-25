@@ -19,7 +19,8 @@
                                     <input id="name" type="text"
                                         class="form-control
                                         @error('name') is-invalid @elseif (old('name', '')) is-valid @enderror"
-                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        name="name" value="{{ old('name') }}" placeholder="Crea username" required
+                                        autocomplete="name" autofocus>
 
                                     @error('name')
                                         <div class="invalid-feedback">
@@ -41,7 +42,8 @@
                                     <input id="email" type="email"
                                         class="form-control
                                         @error('email') is-invalid @elseif (old('email', '')) is-valid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
+                                        name="email" value="{{ old('email') }}" placeholder="Inserisci la tua e-mail"
+                                        required autocomplete="email">
 
                                     @error('email')
                                         <div class="invalid-feedback">
@@ -49,7 +51,7 @@
                                         </div>
                                     @else
                                         <div class="form-text">
-                                            <p class="m-0">campo obbligatorio*</p>
+                                            <p class="m-0" id="email-suggest">campo obbligatorio*</p>
                                         </div>
                                     @enderror
                                 </div>
@@ -63,7 +65,7 @@
                                     <input id="password" type="password"
                                         class="form-control
                                         @error('password') is-invalid @enderror"
-                                        name="password" required autocomplete="new-password">
+                                        name="password" placeholder="Crea password" required autocomplete="new-password">
 
                                     @error('password')
                                         <div class="invalid-feedback">
@@ -86,7 +88,8 @@
                                     <input id="password-confirm" type="password"
                                         class="form-control
                                     @error('password_confirmation') is-invalid @enderror"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                        name="password_confirmation" placeholder="Conferma password" required
+                                        autocomplete="new-password">
 
                                     @error('password_confirmation')
                                         <div class="invalid-feedback">
@@ -109,8 +112,8 @@
                                     <input id="activity_name" type="text"
                                         class="form-control
                                         @error('activity_name') is-invalid @elseif (old('activity_name', '')) is-valid @enderror"
-                                        name="activity_name" value="{{ old('activity_name') }}" required
-                                        autocomplete="activity_name">
+                                        name="activity_name" value="{{ old('activity_name') }}" placeholder="es: Deliveboo"
+                                        required autocomplete="activity_name">
 
                                     @error('activity_name')
                                         <div class="invalid-feedback">
@@ -133,7 +136,8 @@
                                     <input id="address" type="text"
                                         class="form-control
                                         @error('address') is-invalid @elseif (old('address', '')) is-valid @enderror"
-                                        name="address" value="{{ old('address') }}" required autocomplete="address">
+                                        name="address" value="{{ old('address') }}"
+                                        placeholder="es: Via Pippo, 116 - Domodossola" required autocomplete="address">
 
                                     @error('address')
                                         <div class="invalid-feedback">
@@ -155,7 +159,8 @@
                                     <input id="vat" type="text"
                                         class="form-control
                                         @error('vat') is-invalid @elseif (old('vat', '')) is-valid @enderror"
-                                        name="vat" value="{{ old('vat') }}" required autocomplete="vat">
+                                        name="vat" value="{{ old('vat') }}" placeholder="Inserisci la tua P.IVA"
+                                        required autocomplete="vat">
 
                                     @error('vat')
                                         <div class="invalid-feedback">
@@ -177,7 +182,8 @@
                                     <input id="phone" type="text"
                                         class="form-control
                                         @error('phone') is-invalid @elseif (old('phone', '')) is-valid @enderror"
-                                        name="phone" value="{{ old('phone') }}" autocomplete="phone">
+                                        name="phone" value="{{ old('phone') }}" placeholder="es: +39 3335556660"
+                                        autocomplete="phone">
 
                                     @error('phone')
                                         <div class="invalid-feedback">
@@ -193,7 +199,8 @@
 
                                 <div class="col-12">
                                     <textarea id="description" rows="5" class="form-control @error('description') is-invalid @enderror"
-                                        name="description" value="{{ old('description') }}" autocomplete="description" autofocus></textarea>
+                                        name="description" value="{{ old('description') }}" autocomplete="description"
+                                        placeholder="Inserisci una breve descrizione della tua attività" autofocus></textarea>
 
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
@@ -285,3 +292,7 @@
 @section('scripts')
     @vite('resources/js/client_validation.js')
 @endsection
+
+<script>
+    const users = @json($users);;
+</script>
