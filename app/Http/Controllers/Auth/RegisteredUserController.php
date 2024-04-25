@@ -25,8 +25,9 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         $types = Type::select('label', 'id')->get();
+        $users = User::select('email', 'id')->get();
 
-        return view('auth.register', compact('types'));
+        return view('auth.register', compact('types', 'users'));
     }
 
     /**
@@ -43,7 +44,7 @@ class RegisteredUserController extends Controller
                 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
                 'password_confirmation' => ['required', 'same:password', Rules\Password::defaults()],
-                'activity_name' => ['required', 'string'],
+                'activity_name' => ['required', 'unique:restaurants,activity_name', 'string'],
                 'address' => ['required', 'string'],
                 'vat' => ['required', 'string', 'size:11', 'unique:restaurants,vat'],
                 'restaurant_types' => ['required', 'array', 'min:1'], //deve esserci almeno una tipologia
@@ -63,12 +64,14 @@ class RegisteredUserController extends Controller
                 'password.confirmed' => 'Le password non coincidono',
                 'password.min' => 'La password deve avere almeno :min caratteri',
                 'password_confirmation.required' => 'Inserire la password',
+                'password_confirmation.min' => 'La password deve avere almeno :min caratteri',
                 'password_confirmation.same' => 'Le password non coincidono',
                 'activity_name.required' => 'Inserire una ragione sociale',
+                'activity_name.unique' => 'Ragione Sociale già associata ad un username',
                 'address.required' => 'Inserire un indirizzo',
                 'vat.required' => 'Inserire una partita iva',
-                'vat.unique' => 'Partita iva già associata ad un username',
-                'vat.size' => 'La partita iva deve avere :size caratteri',
+                'vat.unique' => 'Partita IVA già associata ad un utente',
+                'vat.size' => 'La partita IVA deve avere :size caratteri',
                 'restaurant_types.required' => 'ATTENZIONE: Selezionare almeno una tipologia',
                 'restaurant_types.min' => 'Selezionare almeno una tipologia',
             ]
