@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('/restaurants', RestaurantController::class)->only('index', 'show'); //RISORSE API per i ristoranti
-Route::get('restaurant-type/{type}/restaurants', RestaurantTypeController::class);
+Route::get('restaurant-type/{type}/restaurants', RestaurantTypeController::class); //Chiamata API per il filtro 
