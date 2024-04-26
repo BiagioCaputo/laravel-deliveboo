@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
         // dd($request);
         $request->validate(
             [
-                'name' => ['required', 'unique:users,name', 'string', 'min:5', 'max:50'],
+                'name' => ['required', 'string', 'min:5', 'max:50'],
                 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
                 'password_confirmation' => ['required', 'same:password', Rules\Password::defaults()],
@@ -52,7 +52,6 @@ class RegisteredUserController extends Controller
             ],
             [
                 'name.required' => 'Inserire un username',
-                'name.unique' => 'Username già esistente',
                 'name.min' => 'Minimo :min caratteri',
                 'name.max' => 'Massimo :max caratteri',
                 'email.required' => 'Inserire un indirizzo e-mail',
