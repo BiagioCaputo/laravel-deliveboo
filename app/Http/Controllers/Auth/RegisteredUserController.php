@@ -26,8 +26,9 @@ class RegisteredUserController extends Controller
     {
         $types = Type::select('label', 'id')->get();
         $users = User::select('email', 'id')->get();
+        $restaurants = Restaurant::select('activity_name', 'vat')->get();
 
-        return view('auth.register', compact('types', 'users'));
+        return view('auth.register', compact('types', 'users', 'restaurants'));
     }
 
     /**
