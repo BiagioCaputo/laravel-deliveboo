@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dish;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -29,9 +30,13 @@ class RestaurantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Restaurant $restaurant)
+    public function show(string $id)
     {
-        //
+        if (Dish::whereRestaurant_id($id)->get() == '[]') return response(null, 404);
+
+        $dishes = Dish::whereRestaurant_id($id)->whereAvailable(true)->with('course')->get(); //cerco i piatti con l'id del ristorante
+
+        return response()->json($dishes);
     }
 
     /**
