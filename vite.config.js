@@ -17,6 +17,7 @@ export default defineConfig({
                 'resources/js/theme_toggle.js',
                 'resources/js/register_validation.js',
                 'resources/js/login_validation.js',
+                'resources/js/forgot_password_validation.js',
             ],
             refresh: true,
         }),
