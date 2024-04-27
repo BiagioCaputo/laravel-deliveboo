@@ -35,6 +35,9 @@ let emailExsist = false;
 //# Funzione per validare i campi del form
 const fieldsValidation = () => {
 
+    // Variabile per memorizzare il valore inserito dall'utente
+    let passwordValue;
+
     inputFields.forEach(input => {
         // Se il campo è obbligatorio
         if (input.hasAttribute('required')) {
@@ -94,6 +97,28 @@ const fieldsValidation = () => {
 
                     }
 
+                    // Variabile per verificare se le passwords hanno almeno 8 caratteri
+                    const isPasswordOk = inputValue.length > 7;
+
+                    // Nel campo password
+                    if (input.id === 'password') {
+                        // Inserisco il valore dell'input nella variabile
+                        passwordValue = input.value.toLowerCase().trim();
+
+                        // Se la password è lunga almneno 8 caratteri
+                        if (isPasswordOk) {
+                            input.classList.remove('is-invalid');
+                            input.classList.add('is-valid');
+                            message = `<span class="text-success">Password valida</span>`;
+                        }
+                        // Se la password non è lunga almeno 8 caratteri
+                        else {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">La password deve contenere almeno 8 caratteri</span>`;
+                        }
+                    }
+
                 } else {
                     // Se l'utente non ha inserito testo e lascia l'input
                     input.classList.remove('is-valid');
@@ -104,6 +129,7 @@ const fieldsValidation = () => {
                 // Stampo il messaggio
                 if (input.id === 'name') nameSuggest.innerHTML = message;
                 if (input.id === 'email') emailSuggest.innerHTML = message;
+                if (input.id === 'password') passwordSuggest.innerHTML = message;
             })
         }
 
