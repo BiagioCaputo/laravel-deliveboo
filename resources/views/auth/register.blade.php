@@ -6,7 +6,7 @@
             <div class="col-auto col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h2>{{ __('Registrati') }}</h2>
+                        <h2 class="m-0">{{ __('Registrati') }}</h2>
                         <p class="m-0"><small>Tutti i campi con * sono obbligatori</small></p>
                     </div>
 
@@ -286,7 +286,7 @@
 @endsection
 
 @section('scripts')
-    @vite('resources/js/client_validation.js')
+    @vite('resources/js/register_validation.js')
 @endsection
 
 <script>
