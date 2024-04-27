@@ -8,19 +8,6 @@ const passwordSuggest = document.getElementById('password-suggest');
 
 let message = `<span class="text-danger fw-bold">Campo obbligatorio.</span>`;
 
-//# Funzione per preparare la modale
-const makeModal = () => {
-    // Preparo la modale
-    deleteButton.classList.add('d-none');
-    backButton.classList.remove('btn-secondary');
-    backButton.classList.add('btn-deliveboo');
-    modalHeader.classList.add('bg-deliveboo');
-    backButton.innerText = 'Ho capito!';
-    modalLabel.innerText = 'Dati mancanti';
-    modalBody.classList.add('my-2');
-    modalBody.innerText = 'Per poter procedere con il login è necessario inserire correttamente tutti i dati richiesti!';
-}
-
 form.addEventListener('submit', e => {
 
     // Flag per verificare se tutti i campi sono validi
