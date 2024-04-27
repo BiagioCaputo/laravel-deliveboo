@@ -35,8 +35,9 @@ let emailExsist = false;
 //# Funzione per validare i campi del form
 const fieldsValidation = () => {
 
-    // Variabile per memorizzare il valore inserito dall'utente
+    // Variabili per memorizzare il valore inserito dall'utente
     let passwordValue;
+    let confirmPasswordValue;
 
     inputFields.forEach(input => {
         // Se il campo è obbligatorio
@@ -46,7 +47,7 @@ const fieldsValidation = () => {
             input.addEventListener('blur', () => {
 
                 // Recupero il valore inserito dall'utente senza spazi e con caratteri minuscoli
-                const inputValue = input.value.toLowerCase().trim()
+                const inputValue = input.value.toLowerCase().trim();
 
                 // Se l'utente ha inserito del testo
                 if (inputValue) {
@@ -57,11 +58,11 @@ const fieldsValidation = () => {
                         if (inputValue.length > 2) {
                             input.classList.remove('is-invalid');
                             input.classList.add('is-valid');
-                            message = `<span class="text-success">Nome utente valido</span>`;
+                            message = `<span class="text-success">Nome utente valido.</span>`;
                         } else {
                             input.classList.remove('is-valid');
                             input.classList.add('is-invalid');
-                            message = `<span class="text-danger">Il nome utente deve contenere almeno 3 caratteri</span>`;
+                            message = `<span class="text-danger">Il nome utente deve contenere almeno 3 caratteri.</span>`;
                         }
                     }
 
@@ -84,7 +85,7 @@ const fieldsValidation = () => {
                         if (isEmailOk && !emailExsist) {
                             input.classList.remove('is-invalid');
                             input.classList.add('is-valid');
-                            message = `<span class="text-success">Indirizzo email valido</span>`;
+                            message = `<span class="text-success">Indirizzo email valido.</span>`;
                         } else if (isEmailOk && emailExsist) {
                             input.classList.remove('is-valid');
                             input.classList.add('is-invalid');
@@ -92,7 +93,7 @@ const fieldsValidation = () => {
                         } else {
                             input.classList.remove('is-valid');
                             input.classList.add('is-invalid');
-                            message = `<span class="text-danger">Inserisci un indirizzo mail valido.</span>`
+                            message = `<span class="text-danger">Indirizzo mail non valido.</span>`;
                         }
 
                     }
@@ -109,13 +110,45 @@ const fieldsValidation = () => {
                         if (isPasswordOk) {
                             input.classList.remove('is-invalid');
                             input.classList.add('is-valid');
-                            message = `<span class="text-success">Password valida</span>`;
+                            message = `<span class="text-success">Password valida.</span>`;
                         }
                         // Se la password non è lunga almeno 8 caratteri
                         else {
                             input.classList.remove('is-valid');
                             input.classList.add('is-invalid');
-                            message = `<span class="text-danger">La password deve contenere almeno 8 caratteri</span>`;
+                            message = `<span class="text-danger">La password deve contenere almeno 8 caratteri.</span>`;
+                        }
+                    }
+
+                    // Nel campo password-confirm
+                    if (input.id === 'password-confirm') {
+                        // Inserisco il valore dell'input nella variabile
+                        confirmPasswordValue = input.value.toLowerCase().trim();
+
+                        // Se la password è lunga almneno 8 caratteri
+                        if (isPasswordOk) {
+                            input.classList.remove('is-invalid');
+                            input.classList.add('is-valid');
+                            message = `<span class="text-success">Password valida.</span>`;
+                        }
+                        // Se la password non è lunga almeno 8 caratteri
+                        else {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">La password deve contenere almeno 8 caratteri.</span>`;
+
+                        }
+                        // Se le password coincidono
+                        if (passwordValue === confirmPasswordValue) {
+                            input.classList.add('is-valid');
+                            input.classList.remove('is-invalid');
+                            message = `<span class="text-success">Le password coincidono.</span>`;
+                        }
+                        // Se non coincidono
+                        else {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">Le password non coincidono.</span>`;
                         }
                     }
 
@@ -123,17 +156,19 @@ const fieldsValidation = () => {
                     // Se l'utente non ha inserito testo e lascia l'input
                     input.classList.remove('is-valid');
                     input.classList.add('is-invalid');
-                    message = `<span class="text-danger">Campo obbligatorio</span>`;
+                    message = `<span class="text-danger">Campo obbligatorio.</span>`;
                 }
 
                 // Stampo il messaggio
                 if (input.id === 'name') nameSuggest.innerHTML = message;
                 if (input.id === 'email') emailSuggest.innerHTML = message;
                 if (input.id === 'password') passwordSuggest.innerHTML = message;
-            })
+                if (input.id === 'password-confirm') confirmPasswordSuggest.innerHTML = message;
+
+            });
         }
 
-    })
+    });
 }
 
 //# Funzione per verificare se è stata selezionata almeno una tipologia di ristorante
