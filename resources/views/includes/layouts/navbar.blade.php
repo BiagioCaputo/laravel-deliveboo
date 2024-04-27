@@ -28,6 +28,11 @@
                             <a class="nav-link @if (Request::is('admin/dishes*')) active @endif"
                                 href="{{ route('admin.dishes.index') }}">Piatti</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link @if (Request::is('admin/orders*')) active @endif"
+                                href="{{ route('admin.orders.index') }}">Ordini</a>
+                        </li>
                     @endif
                 @endauth
             </ul>

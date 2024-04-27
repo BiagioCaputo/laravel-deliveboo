@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
 
     //ROTTE RISTORANTE
     Route::get('/', [RestaurantController::class, 'index'])->name('home'); //Rotta in sui sarà indirizzato l'utente al login
-    Route::get('/restaurant/create', [RestaurantController::class, 'create'])->name('restaurant.create');
+    // Route::get('/restaurant/create', [RestaurantController::class, 'create'])->name('restaurant.create');
     // Route::get('/restaurant/edit', [RestaurantController::class, 'edit'])->name('restaurant.edit');
     // Route::post('/restaurant/store', [RestaurantController::class, 'store'])->name('restaurant.store');
     // Route::put('/restaurant/{restaurant}', [RestaurantController::class, 'update'])->name('restaurant.update');
@@ -41,6 +42,9 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
 
     // ROTTE PIATTI
     Route::resource('dishes', DishController::class)->withTrashed(['show', 'edit', 'update']);
+
+    //ROTTE ORDINI
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 });
 
 Route::middleware('auth')->group(function () {

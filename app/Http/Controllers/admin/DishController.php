@@ -44,6 +44,18 @@ class DishController extends Controller
         return view('admin.dishes.index', compact('dishes', 'courses', 'course_filter', 'search', 'restaurant_id'));
     }
 
+
+
+    public function show(Dish $dish)
+    {
+        if ($dish->restaurant->id !== Auth::user()->restaurant->id) {
+            abort(404);
+        }
+
+        $restaurant = Restaurant::findOrFail($dish->restaurant_id);
+        return view('admin.dishes.show', compact('dish', 'restaurant'));
+    }
+
     public function create()
     {
         // Istanzio un nuovo piatto
@@ -52,12 +64,6 @@ class DishController extends Controller
         // Recupero le portate da poter associare al piatto
         $courses = Course::select('label', 'id')->get();
         return view('admin.dishes.create', compact('dish', 'courses'));
-    }
-
-    public function show(Dish $dish)
-    {
-        $restaurant = Restaurant::findOrFail($dish->restaurant_id);
-        return view('admin.dishes.show', compact('dish', 'restaurant'));
     }
 
     public function store(Request $request, Dish $dish)
@@ -110,6 +116,9 @@ class DishController extends Controller
 
     public function edit(Dish $dish)
     {
+        if ($dish->restaurant->id !== Auth::user()->restaurant->id) {
+            abort(404);
+        }
         // dd($dish);
         // Recupero le portate associate al piatto e le mando giù come semplice array
         $course_id = $dish->course_id;
