@@ -29,6 +29,9 @@ let counter = 0;
 // Preparo una variabile messaggio da mostrare
 let message;
 
+// Variabile per verificare se c'è matching tra il testo e le mail a sistema
+let emailExsist = false;
+
 //# Funzione per validare i campi del form
 const fieldsValidation = () => {
 
@@ -44,6 +47,7 @@ const fieldsValidation = () => {
 
                 // Se l'utente ha inserito del testo
                 if (inputValue) {
+
                     // Nel campo name
                     if (input.id === 'name') {
                         // Se il testo inserito è almeno 3 caratteri
@@ -57,6 +61,39 @@ const fieldsValidation = () => {
                             message = `<span class="text-danger">Il nome utente deve contenere almeno 3 caratteri</span>`;
                         }
                     }
+
+                    // Nel campo email
+                    if (input.id === 'email') {
+
+                        // Variabile per verificare se la mail include @, .it, .com
+                        const isEmailOk = inputValue.includes('@') && (inputValue.includes('.it') || inputValue.includes('.com'));
+
+                        // Verifico se la mail inserita è già presente a sistema
+                        for (const user of users) {
+                            // Se c'è matching allora
+                            if (user.email === inputValue) {
+                                emailExsist = true;
+                                break;
+                            }
+                        }
+
+                        // Se la mail inserita rispetta le condizioni
+                        if (isEmailOk && !emailExsist) {
+                            input.classList.remove('is-invalid');
+                            input.classList.add('is-valid');
+                            message = `<span class="text-success">Indirizzo email valido</span>`;
+                        } else if (isEmailOk && emailExsist) {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">L'indirizzo ${inputValue} è già in uso. Prova il reset password.</span>`;
+                        } else {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">Inserisci un indirizzo mail valido.</span>`
+                        }
+
+                    }
+
                 } else {
                     // Se l'utente non ha inserito testo e lascia l'input
                     input.classList.remove('is-valid');
@@ -66,6 +103,7 @@ const fieldsValidation = () => {
 
                 // Stampo il messaggio
                 if (input.id === 'name') nameSuggest.innerHTML = message;
+                if (input.id === 'email') emailSuggest.innerHTML = message;
             })
         }
 
