@@ -41,7 +41,7 @@ const hasTypes = () => {
 
             // Se il button è stato cliccato aumento il counter di 1 altrimenti sottraggo di 1
             e.target.classList.contains('clicked') ? ++counter : --counter;
-            console.log(counter)
+            // console.log(counter)
         })
     });
 }
@@ -297,12 +297,26 @@ fieldsValidation()
 // All'invio del form
 form.addEventListener('submit', e => {
 
-    // Verifico se sono soddisfatte le condizioni per l'invio del form
-    if (!nameField.value || !emailField.value || !passwordField.value || !confirmPasswordField.value || !activityNameField.value || !addressField.value || !vatField.value || !counter) {
+    // Flag per verificare se tutti i campi sono validi
+    let allFieldsValid = true;
+
+    // Per ogni input
+    inputFields.forEach(input => {
+        // Se il campo è obbligatorio
+        if (input.hasAttribute('required')) {
+            // Verifico se il campo è valido
+            if (!input.classList.contains('is-valid')) {
+                // Se il campo non è valido, imposto il flag a falso
+                allFieldsValid = false;
+            }
+        }
+    });
+
+    // Se tutti i campi sono validi, invio il form
+    if (!allFieldsValid) {
+        // Impedisco l'invio del form
         e.preventDefault();
-        showModal();
-    } else {
-        modal.classList.add('d-none');
-        form.submit();
+        // Mostro la modale di avviso
+        makeModal();
     }
-})
+});
