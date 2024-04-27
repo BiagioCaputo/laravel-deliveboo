@@ -32,7 +32,8 @@
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     <div class="form-text">
-                                        <p class="m-0 text-start" id="email-suggest"></p>
+                                        <p class="text-start" id="email-suggest">Inserire indirizzo mail per resettare la
+                                            password</p>
                                     </div>
                                     @error('email')
                                         <span class="invalid-feedback text-start" role="alert">
