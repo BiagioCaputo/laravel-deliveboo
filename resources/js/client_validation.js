@@ -26,18 +26,21 @@ const sendFormButton = document.getElementById('send-form-button');
 // Preparo una variabile per conteggiare le tipologie scelte
 let counter = 0;
 
-// Preparo una variabile messaggio da mostrare
-let message;
-
-// Variabile per verificare se c'è matching tra il testo e le mail a sistema
-let emailExsist = false;
-
 //# Funzione per validare i campi del form
 const fieldsValidation = () => {
 
     // Variabili per memorizzare il valore inserito dall'utente
     let passwordValue;
     let confirmPasswordValue;
+
+    // Preparo una variabile messaggio da mostrare
+    let message;
+
+    // Variabile per verificare se c'è matching tra il testo e le mail a sistema
+    let emailExsist = false;
+
+    // Variabile per verificare se c'è matching tra il testo e i nomi ristoranti a sistema
+    let restaurantExsist = false;
 
     inputFields.forEach(input => {
         // Se il campo è obbligatorio
@@ -89,7 +92,7 @@ const fieldsValidation = () => {
                         } else if (isEmailOk && emailExsist) {
                             input.classList.remove('is-valid');
                             input.classList.add('is-invalid');
-                            message = `<span class="text-danger">L'indirizzo ${inputValue} è già in uso. Prova il reset password.</span>`;
+                            message = `<span class="text-danger">L'indirizzo email "${inputValue}" è già in uso. Prova il reset password.</span>`;
                         } else {
                             input.classList.remove('is-valid');
                             input.classList.add('is-invalid');
@@ -152,6 +155,38 @@ const fieldsValidation = () => {
                         }
                     }
 
+                    // Nel campo nome attività
+                    if (input.id === 'activity_name') {
+
+                        // Variabile per verificare la lunghezza minima del nome attività
+                        const isRestaurantNameOk = inputValue.length > 2;
+                        const restaurantValue = input.value.trim()
+
+                        // Verifico se il nome del ristorante è già presente a sistema
+                        for (const restaurant of restaurants) {
+                            // Se c'è matching allora
+                            if (restaurant.activity_name === restaurantValue) {
+                                restaurantExsist = true;
+                                break;
+                            }
+                        }
+
+                        // Se il nome attività inserito rispetta le condizioni
+                        if (isRestaurantNameOk && !restaurantExsist) {
+                            input.classList.remove('is-invalid');
+                            input.classList.add('is-valid');
+                            message = `<span class="text-success">Ragione sociale valida.</span>`;
+                        } else if (isRestaurantNameOk && restaurantExsist) {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">La ragione sociale "${restaurantValue}" è già in uso.</span>`;
+                        } else {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">Ragione sociale non valida.</span>`
+                        }
+                    }
+
                 } else {
                     // Se l'utente non ha inserito testo e lascia l'input
                     input.classList.remove('is-valid');
@@ -164,6 +199,7 @@ const fieldsValidation = () => {
                 if (input.id === 'email') emailSuggest.innerHTML = message;
                 if (input.id === 'password') passwordSuggest.innerHTML = message;
                 if (input.id === 'password-confirm') confirmPasswordSuggest.innerHTML = message;
+                if (input.id === 'activity_name') activityNameSuggest.innerHTML = message;
 
             });
         }
