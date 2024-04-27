@@ -1,13 +1,21 @@
 // Recupero gli elementi dal DOM
-const buttonsNode = document.querySelectorAll('.btn-deliveboo');
+
+// Elementi Form
 const form = document.getElementById('register-form');
-const nameField = document.getElementById('name');
-const emailField = document.getElementById('email');
-const passwordField = document.getElementById('password');
-const confirmPasswordField = document.getElementById('password-confirm');
-const activityNameField = document.getElementById('activity_name');
-const addressField = document.getElementById('address');
-const vatField = document.getElementById('vat');
+const inputFields = document.querySelectorAll('.form-control');
+const restaurantTypes = document.querySelectorAll('.btn-deliveboo');
+
+// Suggerimenti
+const nameSuggest = document.getElementById('name-suggest');
+const emailSuggest = document.getElementById('email-suggest');
+const passwordSuggest = document.getElementById('password-suggest');
+const confirmPasswordSuggest = document.getElementById('confirmation-password-suggest');
+const activityNameSuggest = document.getElementById('activity-name-suggest');
+const addressSuggest = document.getElementById('address-suggest');
+const vatSuggest = document.getElementById('vat-suggest');
+const restaurantTypesSuggest = document.getElementById('restaurant-types-suggest');
+
+// Elementi modale
 const modal = document.getElementById('modal');
 const modalLabel = document.getElementById('modalLabel');
 const modalBody = document.querySelector('.modal-body');
@@ -15,10 +23,11 @@ const deleteButton = document.getElementById('modal-delete-confirmation');
 const backButton = document.getElementById('modal-back-button');
 const sendFormButton = document.getElementById('send-form-button');
 
-const emailSuggest = document.getElementById('email-suggest');
-
 // Preparo una variabile per conteggiare le tipologie scelte
 let counter = 0;
+
+// Preparo una variabile messaggio da mostrare
+let message;
 
 //# Funzione per verificare se è stata selezionata almeno una tipologia di ristorante
 const hasTypes = () => {
