@@ -18,6 +18,7 @@ const restaurantTypesSuggest = document.getElementById('restaurant-types-suggest
 // Elementi modale
 const modal = document.getElementById('modal');
 const modalLabel = document.getElementById('modalLabel');
+const modalHeader = document.querySelector('.modal-header');
 const modalBody = document.querySelector('.modal-body');
 const deleteButton = document.getElementById('modal-delete-confirmation');
 const backButton = document.getElementById('modal-back-button');
@@ -60,6 +61,9 @@ const hasTypes = () => {
 const makeModal = () => {
     // Preparo la modale
     deleteButton.classList.add('d-none');
+    backButton.classList.remove('btn-secondary');
+    backButton.classList.add('btn-deliveboo');
+    modalHeader.classList.add('bg-deliveboo');
     backButton.innerText = 'Ho capito!';
     modalLabel.innerText = 'Dati mancanti';
     modalBody.classList.add('my-2');
@@ -322,11 +326,14 @@ form.addEventListener('submit', e => {
         }
     });
 
-    // Se tutti i campi sono validi, invio il form
+    // Se tutti i campi non sono validi, non invio il form
     if (!allFieldsValid) {
         // Impedisco l'invio del form
         e.preventDefault();
         // Mostro la modale di avviso
         makeModal();
+    } else {
+        modal.classList.add('d-none');
+        form.submit();
     }
 });
