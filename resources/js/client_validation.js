@@ -26,6 +26,36 @@ const sendFormButton = document.getElementById('send-form-button');
 // Preparo una variabile per conteggiare le tipologie scelte
 let counter = 0;
 
+//# FUNZIONI ----------------------------------------------------------------------------
+
+//# Funzione per verificare se è stata selezionata almeno una tipologia di ristorante
+const hasTypes = () => {
+
+    // Giro sull'array di nodi
+    restaurantTypes.forEach(type => {
+        // Al click su un button
+        type.addEventListener('click', e => {
+
+            // Aggiungo la classe clicked
+            e.target.classList.toggle('clicked');
+
+            // Se il button è stato cliccato aumento il counter di 1 altrimenti sottraggo di 1
+            e.target.classList.contains('clicked') ? ++counter : --counter;
+            console.log(counter)
+        })
+    });
+}
+
+//# Funzione per preparare la modale
+const makeModal = () => {
+    // Preparo la modale
+    deleteButton.classList.add('d-none');
+    backButton.innerText = 'Ho capito!';
+    modalLabel.innerText = 'Dati mancanti';
+    modalBody.classList.add('my-2');
+    modalBody.innerText = 'Per poter procedere con la registrazione è necessario inserire tutti i dati richiesti!';
+}
+
 //# Funzione per validare i campi del form
 const fieldsValidation = () => {
 
@@ -41,6 +71,9 @@ const fieldsValidation = () => {
 
     // Variabile per verificare se c'è matching tra il testo e i nomi ristoranti a sistema
     let restaurantExsist = false;
+
+    // Variabile per verificare se c'è matching tra il testo e le partite iva a sistema
+    let vatExsist = false;
 
     inputFields.forEach(input => {
         // Se il campo è obbligatorio
@@ -201,6 +234,36 @@ const fieldsValidation = () => {
                         }
                     }
 
+                    // Nel campo partita iva
+                    if (input.id === 'vat') {
+                        // Variabile per verificare se la partita iva è 11 caratteri
+                        const isVatOk = inputValue.length === 11;
+
+                        // Verifico se la partita iva è già presente a sistema
+                        for (const restaurant of restaurants) {
+                            // Se c'è matching allora
+                            if (restaurant.vat === inputValue) {
+                                vatExsist = true;
+                                break;
+                            }
+                        }
+
+                        // Se la partita iva inserita rispetta le condizioni
+                        if (isVatOk && !vatExsist) {
+                            input.classList.remove('is-invalid');
+                            input.classList.add('is-valid');
+                            message = `<span class="text-success">Partita iva valida.</span>`;
+                        } else if (isVatOk && vatExsist) {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">La partita iva inserita è già in uso.</span>`;
+                        } else {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">Inserisci una partita iva valida (11 caratteri).</span>`
+                        }
+                    }
+
                 } else {
                     // Se l'utente non ha inserito testo e lascia l'input
                     input.classList.remove('is-valid');
@@ -215,46 +278,18 @@ const fieldsValidation = () => {
                 if (input.id === 'password-confirm') confirmPasswordSuggest.innerHTML = message;
                 if (input.id === 'activity_name') activityNameSuggest.innerHTML = message;
                 if (input.id === 'address') addressSuggest.innerHTML = message;
-
-
+                if (input.id === 'vat') vatSuggest.innerHTML = message;
             });
         }
 
     });
-}
 
-//# Funzione per verificare se è stata selezionata almeno una tipologia di ristorante
-const hasTypes = () => {
+    // Chiamo la funzione che verifica se c'è almeno una tipologia
+    hasTypes();
 
-    // Giro sull'array di nodi
-    restaurantTypes.forEach(type => {
-        // Al click su un button
-        type.addEventListener('click', e => {
-
-            // Aggiungo la classe clicked
-            e.target.classList.toggle('clicked');
-
-            // Se il button è stato cliccato aumento il counter di 1 altrimenti sottraggo di 1
-            e.target.classList.contains('clicked') ? ++counter : --counter;
-            console.log(counter)
-        })
-    });
-}
-
-//# Funzione per preparare la modale
-const makeModal = () => {
-    // Preparo la modale
-    deleteButton.classList.add('d-none');
-    backButton.innerText = 'Ho capito!';
-    modalLabel.innerText = 'Dati mancanti';
-    modalBody.classList.add('my-2');
-    modalBody.innerText = 'Per poter procedere con la registrazione è necessario inserire tutti i dati richiesti!';
 }
 
 //! SVOLGIMENTO -------------------------------------------------------------------------
-
-// Chiamo la funzione che verifica se c'è almeno una tipologia
-hasTypes();
 
 // Chiamo la funzione per validare i campi
 fieldsValidation()
