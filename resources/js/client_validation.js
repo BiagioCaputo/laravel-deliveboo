@@ -19,48 +19,6 @@ const emailSuggest = document.getElementById('email-suggest');
 
 // Preparo una variabile per conteggiare le tipologie scelte
 let counter = 0;
-let message;
-
-//# Funzione per validare il campo mail
-const validationEmail = () => {
-    emailField.addEventListener('blur', () => {
-
-        // Recupero il testo inserito dall'utente
-        const email = emailField.value.trim();
-        // console.log(email);
-
-        // Variabile per verificare se la mail include @, .it, .com
-        const isEmailOk = email.includes('@') && (email.includes('.it') || email.includes('.com'));
-
-        // Variabile per capire se c'è matching tra il testo e le mail a sistema
-        let isEmailAvailable = true;
-
-        // Se c'è del testo ed è ok
-        if (email && isEmailOk) {
-            for (const user of users) {
-                // Se c'è matching allora
-                if (user.email === email) {
-                    isEmailAvailable = false;
-                    break;
-                }
-            }
-
-            // Se l'indirizzo mail non è stato ancora registrato a sistema
-            if (isEmailAvailable) {
-                message = `<span class="text-success">Indirizzo mail valido</span>`;
-            } else {
-                message = `<span class="text-danger">Questo indirizzo email è già in uso. Prova il reset password.</span>`;
-            }
-        }
-        // Se non c'è testo e quest'ultimo non include @, .it, .com
-        else {
-            message = `<span class="text-danger">Inserire un indirizzo mail valido.</span>`;
-        }
-
-        // Stampo il messaggio
-        emailSuggest.innerHTML = message;
-    });
-};
 
 //# Funzione per verificare se è stata selezionata almeno una tipologia di ristorante
 const hasTypes = () => {
@@ -91,9 +49,6 @@ const makeModal = () => {
 }
 
 //! SVOLGIMENTO -------------------------------------------------------------------------
-
-// Chiamo la funzione per validare il campo mail
-validationEmail();
 
 // Chiamo la funzione che verifica se c'è almeno una tipologia
 hasTypes();
