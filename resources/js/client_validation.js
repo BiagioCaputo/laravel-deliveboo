@@ -29,11 +29,54 @@ let counter = 0;
 // Preparo una variabile messaggio da mostrare
 let message;
 
+//# Funzione per validare i campi del form
+const fieldsValidation = () => {
+
+    inputFields.forEach(input => {
+        // Se il campo è obbligatorio
+        if (input.hasAttribute('required')) {
+
+            // Quando lascio il campo input
+            input.addEventListener('blur', () => {
+
+                // Recupero il valore inserito dall'utente senza spazi e con caratteri minuscoli
+                const inputValue = input.value.toLowerCase().trim()
+
+                // Se l'utente ha inserito del testo
+                if (inputValue) {
+                    // Nel campo name
+                    if (input.id === 'name') {
+                        // Se il testo inserito è almeno 3 caratteri
+                        if (inputValue.length > 2) {
+                            input.classList.remove('is-invalid');
+                            input.classList.add('is-valid');
+                            message = `<span class="text-success">Nome utente valido</span>`;
+                        } else {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">Il nome utente deve contenere almeno 3 caratteri</span>`;
+                        }
+                    }
+                } else {
+                    // Se l'utente non ha inserito testo e lascia l'input
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    message = `<span class="text-danger">Campo obbligatorio</span>`;
+                }
+
+                // Stampo il messaggio
+                if (input.id === 'name') nameSuggest.innerHTML = message;
+            })
+        }
+
+    })
+}
+
 //# Funzione per verificare se è stata selezionata almeno una tipologia di ristorante
 const hasTypes = () => {
 
     // Giro sull'array di nodi
-    buttonsNode.forEach(type => {
+    restaurantTypes.forEach(type => {
         // Al click su un button
         type.addEventListener('click', e => {
 
@@ -61,6 +104,9 @@ const makeModal = () => {
 
 // Chiamo la funzione che verifica se c'è almeno una tipologia
 hasTypes();
+
+// Chiamo la funzione per validare i campi
+fieldsValidation()
 
 // All'invio del form
 form.addEventListener('submit', e => {
