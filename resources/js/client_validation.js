@@ -322,11 +322,14 @@ form.addEventListener('submit', e => {
         }
     });
 
-    // Se tutti i campi sono validi, invio il form
+    // Se tutti i campi non sono validi, non invio il form
     if (!allFieldsValid) {
         // Impedisco l'invio del form
         e.preventDefault();
         // Mostro la modale di avviso
         makeModal();
+    } else {
+        modal.classList.add('d-none');
+        form.submit();
     }
 });
