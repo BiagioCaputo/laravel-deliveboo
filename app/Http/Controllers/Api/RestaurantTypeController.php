@@ -21,6 +21,6 @@ class RestaurantTypeController extends Controller
         })->with('user')->get();
 
         //restuisco tutti i ristoranti (se ci sono) e il nome della tipologia
-        return response()->json(['restairants' => $restaurant, 'label' => $type->label]);
+        return response()->json(['restaurants' => $restaurant, 'label' => $type->label]);
     }
 }
