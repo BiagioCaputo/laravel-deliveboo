@@ -31,6 +31,9 @@ let counter = 0;
 //# Funzione per verificare se è stata selezionata almeno una tipologia di ristorante
 const hasTypes = () => {
 
+    // Variabile per stampare un messaggio
+    let message;
+
     // Giro sull'array di nodi
     restaurantTypes.forEach(type => {
         // Al click su un button
@@ -42,7 +45,14 @@ const hasTypes = () => {
             // Se il button è stato cliccato aumento il counter di 1 altrimenti sottraggo di 1
             e.target.classList.contains('clicked') ? ++counter : --counter;
             // console.log(counter)
+
         })
+        // Se il counter è 0
+        if (!counter) {
+            message = `<span class="text-danger">Campo obbligatorio.</span>`;
+        }
+
+        restaurantTypesSuggest.innerHTML
     });
 }
 
@@ -53,7 +63,7 @@ const makeModal = () => {
     backButton.innerText = 'Ho capito!';
     modalLabel.innerText = 'Dati mancanti';
     modalBody.classList.add('my-2');
-    modalBody.innerText = 'Per poter procedere con la registrazione è necessario inserire tutti i dati richiesti!';
+    modalBody.innerText = 'Per poter procedere con la registrazione è necessario inserire correttamente tutti i dati richiesti!';
 }
 
 //# Funzione per validare i campi del form
@@ -178,13 +188,13 @@ const fieldsValidation = () => {
                         if (passwordValue === confirmPasswordValue) {
                             input.classList.add('is-valid');
                             input.classList.remove('is-invalid');
-                            message = `<span class="text-success">Le password coincidono.</span>`;
+                            message = `<span class="text-success">Le passwords coincidono.</span>`;
                         }
                         // Se non coincidono
                         else {
                             input.classList.remove('is-valid');
                             input.classList.add('is-invalid');
-                            message = `<span class="text-danger">Le password non coincidono.</span>`;
+                            message = `<span class="text-danger">Le passwords non coincidono.</span>`;
                         }
                     }
 
