@@ -187,6 +187,20 @@ const fieldsValidation = () => {
                         }
                     }
 
+                    //  Nel campo address
+                    if (input.id === 'address') {
+                        // Se l'address inserito rispetta questa condizione
+                        if (inputValue) {
+                            input.classList.remove('is-invalid');
+                            input.classList.add('is-valid');
+                            message = `<span class="text-success">Indirizzo valido.</span>`;
+                        } else {
+                            input.classList.remove('is-valid');
+                            input.classList.add('is-invalid');
+                            message = `<span class="text-danger">Indirizzo non valido.</span>`;
+                        }
+                    }
+
                 } else {
                     // Se l'utente non ha inserito testo e lascia l'input
                     input.classList.remove('is-valid');
@@ -200,6 +214,8 @@ const fieldsValidation = () => {
                 if (input.id === 'password') passwordSuggest.innerHTML = message;
                 if (input.id === 'password-confirm') confirmPasswordSuggest.innerHTML = message;
                 if (input.id === 'activity_name') activityNameSuggest.innerHTML = message;
+                if (input.id === 'address') addressSuggest.innerHTML = message;
+
 
             });
         }
