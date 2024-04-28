@@ -7,9 +7,11 @@
 {{-- Contenuto principale pagina --}}
 @section('content')
 
+    <div class="background-container" style="background-image: url('{{ $restaurant->printImage() }}' ); filter: blur(5px);"></div>
+
     <div class="container">
         <div class="clearfix">
-            <div class="card card-deliveboo my-5 position-static">
+            <div class="card card-deliveboo">
 
                 <h1 class="mb-5">ID Ordine: {{ $order->id }}</h1>
                 <ul class="list-unstyled">
