@@ -50,8 +50,8 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7">
-                                <h3 class="text-center my-2">Non ci sono piatti</h3>
+                            <td colspan="8">
+                                <h3 class="text-center my-2">Nessun Ordine effettuato</h3>
                             </td>
                         </tr>
                     @endforelse
