@@ -27,6 +27,7 @@
                         <th scope="col">Prezzo</th>
                         <th scope="col">Pagato</th>
                         <th scope="col">Data ordine</th>
+                        <th scope="col" class="text-center">Dettagli</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,16 +42,16 @@
                             <td>{{ $order->total_price }}</td>
                             <td class="text-center">{{ $order->status ? 'Sì' : 'No' }}</td>
                             <td>{{ $order->created_at }}</td>
-                            {{-- <td>
-                                <div class="d-flex justify-content-end gap-2">
-                                    <a href="{{ route('admin.orderes.show', $order) }}" class="btn btn-primary"><i
+                            <td>
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-primary"><i
                                             class="fas fa-eye "></i></a>
                                 </div>
-                            </td> --}}
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                                 <h3 class="text-center my-2">Nessun Ordine effettuato</h3>
                             </td>
                         </tr>
