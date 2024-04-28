@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CourseSeeder::class);
 
-        \App\Models\Dish::factory(10)->create();
+        //\App\Models\Dish::factory(10)->create();
 
         $this->call(DishSeeder::class);
 
