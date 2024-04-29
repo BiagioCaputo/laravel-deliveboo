@@ -18,9 +18,9 @@ class RestaurantTypeController extends Controller
         //relazione molti a molti 
         $restaurant = Restaurant::whereHas('types', function ($query) use ($type) {
             $query->where('types.id', $type->id);
-        })->with('user')->get();
+        })->with('user', 'types')->get();
 
         //restuisco tutti i ristoranti (se ci sono) e il nome della tipologia
-        return response()->json(['restaurants' => $restaurant, 'label' => $type->label]);
+        return response()->json(['restaurants' => $restaurant, 'label' => $type->label, 'image' => $type->image]);
     }
 }
