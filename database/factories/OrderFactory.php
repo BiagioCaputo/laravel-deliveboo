@@ -19,7 +19,7 @@ class OrderFactory extends Factory
     public function definition(): array
     {
 
-        $restaurantId = $this->faker->numberBetween(1, 8);
+        $restaurantId = $this->faker->numberBetween(1, 12);
 
         // Otteniamo i piatti disponibili per questo ristorante
         $dishes = Dish::where('restaurant_id', $restaurantId)->pluck('id')->toArray();
