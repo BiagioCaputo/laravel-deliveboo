@@ -53,6 +53,22 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Sushiko owner',
                 'email' => 'sushiko@esempio.com',
             ],
+            [
+                'name' => 'Verde Gusto owner',
+                'email' => 'verde_gusto@esempio.com',
+            ],
+            [
+                'name' => 'Sapore India owner',
+                'email' => 'sapore_india@esempio.com',
+            ],
+            [
+                'name' => 'Mexicano owner',
+                'email' => 'sabor_mexicano@esempio.com',
+            ],
+            [
+                'name' => 'Bonne owner',
+                'email' => 'bonne_nouvelle@esempio.com',
+            ],
         ];
 
         // Itera sull'array per creare gli utenti
@@ -66,11 +82,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CourseSeeder::class);
 
-        \App\Models\Dish::factory(10)->create();
+        //\App\Models\Dish::factory(10)->create();
 
         $this->call(DishSeeder::class);
 
-        \App\Models\Order::factory(10)->create();
+        \App\Models\Order::factory(20)->create();
 
 
         // \App\Models\User::factory()->create([

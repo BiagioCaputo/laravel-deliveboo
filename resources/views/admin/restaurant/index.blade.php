@@ -40,7 +40,7 @@
                         @forelse($restaurant->types as $type)
                         <li>{{ $type->label }}</li>
                         @empty
-                        No type
+                        Nessuna categoria
                         @endforelse
                     </ul>
                 </div>
