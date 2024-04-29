@@ -265,6 +265,140 @@ class DishSeeder extends Seeder
                 "available" => true,
             ],
 
+            //Verde Gusto
+
+            [
+                "name" => "Burger di Quinoa",
+                "price" => 12.50,
+                "image" => "burger-quinoa.jpg",
+                "restaurant_id" => 9,
+                "course_id" => 3,
+                "ingredients" => "Quinoa, fagioli neri, cipolla, aglio, spinaci, avocado, salsa tahini",
+                "description" => "Burger vegano a base di quinoa e fagioli neri, condito con cipolla, aglio, spinaci, avocado e salsa tahini.",
+                "available" => true,
+            ],
+            [
+                "name" => "Insalata di Ceci e Avocado",
+                "price" => 10.00,
+                "image" => "insalata-ceci-avocado.jpg",
+                "restaurant_id" => 9,
+                "course_id" => 4,
+                "ingredients" => "Ceci, avocado, pomodori ciliegino, cetrioli, olive nere, olio extravergine di oliva, aceto balsamico",
+                "description" => "Insalata vegana a base di ceci e avocado, arricchita con pomodori ciliegino, cetrioli, olive nere, condita con olio extravergine di oliva e aceto balsamico.",
+                "available" => true,
+            ],
+            [
+                "name" => "Pad Thai Vegano",
+                "price" => 14.50,
+                "image" => "pad-thai-vegano.jpg",
+                "restaurant_id" => 9,
+                "course_id" => 2,
+                "ingredients" => "Tagliatelle di riso, tofu, verdure miste, arachidi, salsa di soia, lime",
+                "description" => "Pad Thai vegano preparato con tagliatelle di riso, tofu, verdure miste, arachidi, condito con salsa di soia e lime.",
+                "available" => true,
+            ],
+
+            //Sapori d'India 
+
+            [
+                "name" => "Pollo al Curry",
+                "price" => 15.00,
+                "image" => "pollo-curry.avif",
+                "restaurant_id" => 10,
+                "course_id" => 3,
+                "ingredients" => "Pollo, pomodori, cipolle, aglio, zenzero, curry, latte di cocco",
+                "description" => "Pollo cucinato lentamente in una salsa di pomodoro, cipolle, aglio, zenzero, curry e latte di cocco.",
+                "available" => true,
+            ],
+            [
+                "name" => "Pane Naan",
+                "price" => 4.50,
+                "image" => "pane-naan.jpg",
+                "restaurant_id" => 10,
+                "course_id" => 4,
+                "ingredients" => "Farina, lievito, yogurt, olio, sale",
+                "description" => "Pane indiano soffice e leggermente cotto al forno, perfetto da accompagnare con piatti di curry.",
+                "available" => true,
+            ],
+            [
+                "name" => "Samosa",
+                "price" => 8.50,
+                "image" => "samosa.avif",
+                "restaurant_id" => 10,
+                "course_id" => 3,
+                "ingredients" => "Patate, piselli, spezie indiane, pasta di pane",
+                "description" => "Frittella triangolare ripiena di patate, piselli e spezie indiane, avvolta in pasta di pane e fritta.",
+                "available" => true,
+            ],
+
+            //Mexicano
+
+            [
+                "name" => "Tacos al Pastor",
+                "price" => 12.00,
+                "image" => "tacos-pastor.jpg",
+                "restaurant_id" => 11,
+                "course_id" => 3,
+                "ingredients" => "Maiale, ananas, cipolle, coriandolo, lime, tortillas",
+                "description" => "Tacos di maiale marinato allo spiedo con ananas, cipolle, coriandolo e lime, servito in tortillas di mais.",
+                "available" => true,
+            ],
+            [
+                "name" => "Guacamole Fresco",
+                "price" => 8.50,
+                "image" => "guacamole.avif",
+                "restaurant_id" => 11,
+                "course_id" => 4,
+                "ingredients" => "Avocado, pomodori, cipolle, lime, peperoncino, coriandolo",
+                "description" => "Guacamole fresco preparato con avocado, pomodori, cipolle, lime, peperoncino e coriandolo, servito con chips di mais.",
+                "available" => true,
+            ],
+            [
+                "name" => "Enchiladas",
+                "price" => 14.00,
+                "image" => "enchiladas.webp",
+                "restaurant_id" => 11,
+                "course_id" => 3,
+                "ingredients" => "Pollo, tortillas di mais, formaggio, salsa di pomodoro, panna acida, guacamole",
+                "description" => "Enchiladas ripiene di pollo e formaggio, cotte in salsa di pomodoro, servite con panna acida e guacamole.",
+                "available" => true,
+            ],
+
+            //Francese colazione
+
+            [
+                "name" => "Croque-Monsieur",
+                "price" => 9.50,
+                "image" => "croque-monsieur.avif",
+                "restaurant_id" => 12,
+                "course_id" => 3,
+                "ingredients" => "Pane, prosciutto cotto, formaggio gruyère, burro, besciamella",
+                "description" => "Classico croque-monsieur con pane tostato, prosciutto cotto, formaggio gruyère e besciamella, gratinato al forno.",
+                "available" => true,
+            ],
+            [
+                "name" => "Quiche Lorraine",
+                "price" => 11.00,
+                "image" => "quiche-lorraine.jpg",
+                "restaurant_id" => 12,
+                "course_id" => 5,
+                "ingredients" => "Pasta brisée, pancetta, formaggio gruyère, uova, panna, noce moscata",
+                "description" => "Quiche lorraine fatta in casa con pasta brisée, pancetta, formaggio gruyère, uova, panna e noce moscata.",
+                "available" => true,
+            ],
+            [
+                "name" => "Salade Niçoise",
+                "price" => 12.00,
+                "image" => "salade-nicoise.jpg",
+                "restaurant_id" => 12,
+                "course_id" => 4,
+                "ingredients" => "Tonno, patate, uova sode, pomodori, olive nere, cipolla rossa, fagiolini, insalata, salsa vinaigrette",
+                "description" => "Salade niçoise con tonno, patate, uova sode, pomodori, olive nere, cipolla rossa, fagiolini, insalata, condita con salsa vinaigrette.",
+                "available" => true,
+            ],
+
+
+
 
 
         ];
