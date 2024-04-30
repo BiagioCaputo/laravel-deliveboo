@@ -18,6 +18,7 @@ export default defineConfig({
                 'resources/js/register_validation.js',
                 'resources/js/login_validation.js',
                 'resources/js/forgot_password_validation.js',
+                'resources/js/dish_forms_validation.js',
             ],
             refresh: true,
         }),
