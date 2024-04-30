@@ -86,7 +86,7 @@ class DishController extends Controller
                 'ingredients.required' => 'Il piatto deve avere degli ingredienti',
                 'price.required' => 'Il piatto deve avere un prezzo',
                 'price.decimal' => 'Il prezzo deve avere :decimal decimali',
-                'price.min' => 'Il prezzo deve essere diverso da 0€',
+                'price.min' => 'Il prezzo deve essere maggiore di 0€',
                 'description.string' => 'Inserire una descrizione valida',
             ]
         );
@@ -152,7 +152,7 @@ class DishController extends Controller
                 'ingredients.required' => 'Il piatto deve avere degli ingredienti',
                 'price.required' => 'Il piatto deve avere un prezzo',
                 'price.decimal' => 'Il prezzo deve avere :decimal decimali',
-                'price.min' => 'Il prezzo deve essere diverso da 0€',
+                'price.min' => 'Il prezzo deve essere maggiore di 0€',
                 'description.string' => 'Inserire una descrizione valida',
             ]
         );
