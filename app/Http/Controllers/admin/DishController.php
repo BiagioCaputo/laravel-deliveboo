@@ -61,9 +61,12 @@ class DishController extends Controller
         // Istanzio un nuovo piatto
         $dish = new Dish();
 
+        // Recuperi piatti già esistenti per la validazione
+        $dishes = Dish::all();
+
         // Recupero le portate da poter associare al piatto
         $courses = Course::select('label', 'id')->get();
-        return view('admin.dishes.create', compact('dish', 'courses'));
+        return view('admin.dishes.create', compact('dish', 'courses', 'dishes'));
     }
 
     public function store(Request $request, Dish $dish)
@@ -74,7 +77,7 @@ class DishController extends Controller
                 'name' => 'required|string',
                 'image' => 'nullable|image',
                 'ingredients' => 'required|string',
-                'price' => 'required|decimal:2',
+                'price' => 'required|decimal:2|min:0',
                 'description' => 'nullable|string',
             ],
             [
@@ -83,6 +86,7 @@ class DishController extends Controller
                 'ingredients.required' => 'Il piatto deve avere degli ingredienti',
                 'price.required' => 'Il piatto deve avere un prezzo',
                 'price.decimal' => 'Max :decimal decimali',
+                'price.min' => 'Il prezzo deve essere diverso da :min€',
                 'description.string' => 'Inserire una descrizione valida',
             ]
         );
@@ -110,7 +114,7 @@ class DishController extends Controller
         // Salvo le modifiche nel DB
         $dish->save();
 
-        return to_route('admin.dishes.index', $dish)->with('message', 'Piatto creato con successo')
+        return to_route('admin.dishes.index', compact('dish'))->with('message', 'Piatto creato con successo')
             ->with('type', 'success');;
     }
 
@@ -125,7 +129,10 @@ class DishController extends Controller
         $ingredients = $dish->ingredients;
         $courses = Course::select('label', 'id')->get();
 
-        return view('admin.dishes.edit', compact('dish', 'ingredients', 'course_id', 'courses'));
+        // Recuperi piatti già esistenti per la validazione
+        $dishes = Dish::all();
+
+        return view('admin.dishes.edit', compact('dish', 'ingredients', 'course_id', 'courses', 'dishes'));
     }
 
     public function update(Request $request, Dish $dish)
@@ -136,7 +143,7 @@ class DishController extends Controller
                 'name' => 'required|string',
                 'image' => 'nullable|image',
                 'ingredients' => 'required|string',
-                'price' => 'required|decimal:2',
+                'price' => 'required|decimal:2|min:0',
                 'description' => 'nullable|string',
             ],
             [
@@ -145,6 +152,7 @@ class DishController extends Controller
                 'ingredients.required' => 'Il piatto deve avere degli ingredienti',
                 'price.required' => 'Il piatto deve avere un prezzo',
                 'price.decimal' => 'Max :decimal decimali',
+                'price.min' => 'Il prezzo deve essere diverso da :min€',
                 'description.string' => 'Inserire una descrizione valida',
             ]
         );
