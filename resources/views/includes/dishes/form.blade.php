@@ -1,8 +1,10 @@
 @if ($dish->exists)
-    <form action="{{ route('admin.dishes.update', $dish->id) }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('admin.dishes.update', $dish->id) }}" enctype="multipart/form-data" method="POST"
+        class="dishes-form" id="dish-edit-form" novalidate>
         @method('PUT')
     @else
-        <form action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" method="POST" class="dishes-form"
+            id="dish-create-form" novalidate>
 @endif
 @csrf
 <div class="row">
@@ -10,10 +12,13 @@
     {{--   Nome piatto   --}}
     <div class="col-6">
         <div class="mb-3">
-            <label for="name" class="form-label">Nome Piatto*</label>
+            <label for="name" class="form-label">Nome Piatto<span class="text-danger">*</span></label>
             <input type="text"
                 class="form-control @error('name') is-invalid @elseif(old('name', '')) is-valid  @enderror"
-                id="name" name="name" placeholder="Nome Piatto" value="{{ old('name', $dish->name) }}">
+                id="name" name="name" placeholder="Nome Piatto" value="{{ old('name', $dish->name) }}" required>
+            <div class="form-text">
+                <p class="m-0" id="dish-name-suggest"></p>
+            </div>
             @error('name')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -54,10 +59,13 @@
     {{-- Ingredienti --}}
     <div class="col-12">
         <div class="mb-3">
-            <label for="ingredients" class="form-label">Ingredienti*</label>
+            <label for="ingredients" class="form-label">Ingredienti<span class="text-danger">*</span></label>
             <textarea type="text" rows="3"
                 class="form-control @error('ingredients') is-invalid @elseif(old('ingredients', '')) is-valid  @enderror"
-                id="ingredients" name="ingredients" placeholder="Inserisci gli ingredienti">{{ old('ingredients', $dish->ingredients) }}</textarea>
+                id="ingredients" name="ingredients" placeholder="Inserisci gli ingredienti" required>{{ old('ingredients', $dish->ingredients) }}</textarea>
+            <div class="form-text">
+                <p class="m-0" id="ingredients-suggest"></p>
+            </div>
             @error('ingredients')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -69,10 +77,13 @@
     {{-- Prezzo --}}
     <div class="col-4">
         <div class="mb-3">
-            <label for="price" class="form-label">Prezzo*</label>
+            <label for="price" class="form-label">Prezzo<span class="text-danger">*</span></label>
             <input type="number" step="0.1"
                 class="form-control @error('price') is-invalid @elseif(old('price', '')) is-valid  @enderror"
-                id="price" name="price" placeholder="Es: 4,50" value="{{ old('price', $dish->price) }}">
+                id="price" name="price" placeholder="Es: 4,50" value="{{ old('price', $dish->price) }}" required>
+            <div class="form-text">
+                <p class="m-0" id="price-suggest"></p>
+            </div>
             @error('price')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -132,3 +143,11 @@
     </div>
 </div>
 </form>
+
+@section('scripts')
+    @vite('resources/js/dish_forms_validation.js')
+@endsection
+
+<script>
+    const dishes = @json($dishes)
+</script>
