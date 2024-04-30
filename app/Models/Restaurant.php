@@ -58,4 +58,10 @@ class Restaurant extends Model
     {
         return Attribute::make(fn ($value) => $value && app('request')->is('api/*') ? url('storage/' . $value) : $value);
     }
+
+    //funzione per montare la stringa per le immagini cosi da rendere la vita facile al front
+    public function logo(): Attribute
+    {
+        return Attribute::make(fn ($value) => $value && app('request')->is('api/*') ? url('storage/' . $value) : $value);
+    }
 }

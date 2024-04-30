@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -38,5 +39,11 @@ class Dish extends Model
     public function getPrice()
     {
         return ($this->price . '€');
+    }
+
+    //funzione per montare la stringa per le immagini cosi da rendere la vita facile al front
+    public function image(): Attribute
+    {
+        return Attribute::make(fn ($value) => $value && app('request')->is('api/*') ? url('storage/' . $value) : $value);
     }
 }
