@@ -77,7 +77,7 @@ class DishController extends Controller
                 'name' => 'required|string',
                 'image' => 'nullable|image',
                 'ingredients' => 'required|string',
-                'price' => 'required|decimal:2|min:0',
+                'price' => 'required|decimal:2|min:0.01',
                 'description' => 'nullable|string',
             ],
             [
@@ -85,8 +85,8 @@ class DishController extends Controller
                 'image.image' => 'Il file inserito non è un immagine',
                 'ingredients.required' => 'Il piatto deve avere degli ingredienti',
                 'price.required' => 'Il piatto deve avere un prezzo',
-                'price.decimal' => 'Max :decimal decimali',
-                'price.min' => 'Il prezzo deve essere diverso da :min€',
+                'price.decimal' => 'Il prezzo deve avere :decimal decimali',
+                'price.min' => 'Il prezzo deve essere diverso da 0€',
                 'description.string' => 'Inserire una descrizione valida',
             ]
         );
@@ -143,7 +143,7 @@ class DishController extends Controller
                 'name' => 'required|string',
                 'image' => 'nullable|image',
                 'ingredients' => 'required|string',
-                'price' => 'required|decimal:2|min:0',
+                'price' => 'required|decimal:2|min:0.01',
                 'description' => 'nullable|string',
             ],
             [
@@ -151,8 +151,8 @@ class DishController extends Controller
                 'image.image' => 'Il file inserito non è un immagine',
                 'ingredients.required' => 'Il piatto deve avere degli ingredienti',
                 'price.required' => 'Il piatto deve avere un prezzo',
-                'price.decimal' => 'Max :decimal decimali',
-                'price.min' => 'Il prezzo deve essere diverso da :min€',
+                'price.decimal' => 'Il prezzo deve avere :decimal decimali',
+                'price.min' => 'Il prezzo deve essere diverso da 0€',
                 'description.string' => 'Inserire una descrizione valida',
             ]
         );
