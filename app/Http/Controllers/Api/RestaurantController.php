@@ -38,7 +38,7 @@ class RestaurantController extends Controller
 
         $dishes = Dish::whereRestaurant_id($id)->whereAvailable(true)->with('course')->get(); //cerco i piatti con l'id del ristorante
 
-        return response()->json(['dishes' => $dishes, $restaurant]);
+        return response()->json(['dishes' => $dishes, 'restaurant' => $restaurant]);
     }
 
     /**
