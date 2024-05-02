@@ -20,4 +20,4 @@ Route::apiResource('/restaurants', RestaurantController::class)->only('index', '
 Route::get('/types', TypeController::class); //chiamata Api per avere le tipologie del nostro sito
 
 //* Creo la rotta per i ristoranti raggruppati per tipologia
-Route::get('types/{type}/restaurants', RestaurantTypeController::class);
+Route::get('types/restaurants/', RestaurantTypeController::class);

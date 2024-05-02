@@ -9,18 +9,22 @@ use Illuminate\Http\Request;
 
 class RestaurantTypeController extends Controller
 {
-    public function __invoke(string $id)
+    public function __invoke(Request $request)
     {
-        //faccio il controllo sull'esistenza di type
-        $type = Type::find($id);
-        if (!$type) return response(null, 404);
 
-        //relazione molti a molti 
-        $restaurant = Restaurant::whereHas('types', function ($query) use ($type) {
-            $query->where('types.id', $type->id);
-        })->with('user', 'types')->get();
+        // Ottieni il parametro di filtro dalla query string
+        $typeIds = $request->query('type_id', []);
 
-        //restuisco tutti i ristoranti (se ci sono) e il nome della tipologia
-        return response()->json(['restaurants' => $restaurant, 'label' => $type->label, 'image' => $type->image]);
+        // Costruisci la query per recuperare i prodotti
+        $query = Restaurant::query();
+
+        $query->whereHas('types', function ($q) use ($typeIds) {
+            $q->whereIn('types.id', $typeIds);
+        });
+
+        // Esegui la query e restituisci i risultati
+        $prodotti = $query->get();
+
+        return response()->json($prodotti);
     }
 }
