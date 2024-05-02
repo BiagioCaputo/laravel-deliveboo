@@ -15,16 +15,17 @@ class RestaurantTypeController extends Controller
         // Ottieni il parametro di filtro dalla query string
         $typeIds = $request->query('type_id', []);
 
-        // Costruisci la query per recuperare i prodotti
+        // Costruisci la query per recuperare i ristoranti
         $query = Restaurant::query();
 
+        // Filtra i ristoranti in base alle tipologie
         $query->whereHas('types', function ($q) use ($typeIds) {
             $q->whereIn('types.id', $typeIds);
         });
 
         // Esegui la query e restituisci i risultati
-        $prodotti = $query->get();
+        $restaurants = $query->get();
 
-        return response()->json($prodotti);
+        return response()->json($restaurants);
     }
 }
