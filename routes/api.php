@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\RestaurantTypeController;
 use App\Http\Controllers\Api\TypeController;
@@ -21,3 +22,9 @@ Route::get('/types', TypeController::class); //chiamata Api per avere le tipolog
 
 //* Creo la rotta per i ristoranti raggruppati per tipologia
 Route::get('types/restaurants/', RestaurantTypeController::class);
+
+//* Creo la rotta per la generazione del token
+Route::get('order/generate', [OrderController::class, 'makeToken']);
+
+//* Creo la rotta per il pagamento
+Route::post('order/payment', [OrderController::class, 'makePayment']);
