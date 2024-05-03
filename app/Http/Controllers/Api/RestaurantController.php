@@ -14,7 +14,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::with('user')->get();
+        $restaurants = Restaurant::with('user')->orderBy('activity_name')->get();
 
         return response()->json($restaurants);
     }
@@ -36,7 +36,7 @@ class RestaurantController extends Controller
 
         $restaurant = Restaurant::find($id);
 
-        $dishes = Dish::whereRestaurant_id($id)->whereAvailable(true)->with('course')->get(); //cerco i piatti con l'id del ristorante
+        $dishes = Dish::whereRestaurant_id($id)->whereAvailable(true)->with('course')->orderBy('name')->get(); //cerco i piatti con l'id del ristorante
 
         return response()->json(['dishes' => $dishes, 'restaurant' => $restaurant]);
     }
