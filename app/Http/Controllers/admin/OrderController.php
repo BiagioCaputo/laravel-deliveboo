@@ -31,4 +31,15 @@ class OrderController extends Controller
 
         return view('admin.orders.show', compact('order', 'restaurant'));
     }
+
+    public function statistics(Request $request)
+    {
+        // Recupera l'id del ristorante associato ai piatti
+        $restaurant_id = Auth::user()->restaurant->id;
+
+        // Recupera solo i piatti con lo stesso ID del ristorante
+        $orders = Order::whereRestaurantId($restaurant_id)->orderByDesc('created_at')->get();
+
+        return view('admin.orders.statistics', compact('orders'));
+    }
 }
