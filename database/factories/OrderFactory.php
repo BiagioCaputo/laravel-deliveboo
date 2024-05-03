@@ -33,8 +33,7 @@ class OrderFactory extends Factory
             'customer_phone' => fake()->phoneNumber(),
             'total_price' => fake()->randomFloat(3, 0, 999),
             'status' => fake()->boolean(),
-            'month' => fake()->month(),
-            'year' => fake()->numberBetween(2020, date('Y')), //Anno dell'ordine random tra il 2020 e l'anno attuale
+            'created_at' => fake()->dateTimeBetween('-5 year', 'now')->format('Y-m-d H:i:s'), // created_at randomico con data fra adesso e 5 anni fa
 
 
         ];
