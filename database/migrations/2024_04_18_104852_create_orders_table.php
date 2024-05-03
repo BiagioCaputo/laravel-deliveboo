@@ -23,6 +23,9 @@ return new class extends Migration
             $table->decimal('total_price', 6, 2);
             $table->boolean('status');
 
+            $table->unsignedSmallInteger('month')->nullable();
+            $table->unsignedSmallInteger('year')->nullable(); //unsigned a differenza di smallint non può avere valori negativi
+
             $table->timestamps();
         });
     }
