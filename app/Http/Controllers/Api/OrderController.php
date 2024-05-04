@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Braintree\Gateway;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Orders\OrderRequest;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,27 +14,25 @@ class OrderController extends Controller
         // Recupero il token generato
         $token = $gateway->clientToken()->generate();
 
-        $data = [
-            'success' => true,
-            'token' => $token
-        ];
-
         // Mando al client il token
-        return response()->json($data, 200);
+        return response()->json($token, 200);
     }
 
-    public function makePayment(Request $request, Gateway $gateway)
+    public function makePayment(OrderRequest $request, Gateway $gateway)
     {
+        $nonceFromTheClient = $request->input('payment_method_nonce');
         // Creo la transazione
-        // TODO - Integrare con i dati utili per individuare i prodotti e le quuantità per calcolare il prezzo
+        // TODO - Integrare con il prezzo totale
         $result = $gateway->transaction()->sale([
             'amount' => '10.00',
-            'paymentMethodNonce' => $request->token,
+            'paymentMethodNonce' => $nonceFromTheClient,
+            'deviceData' => $request,
             'options' => [
-                'submitForSettlement' => true
+                'submitForSettlement' => True
             ]
         ]);
 
+        // Restituzione della risposta con i dati della transazione
         if ($result->success) {
             $data = [
                 'success' => true,
@@ -47,6 +46,5 @@ class OrderController extends Controller
             ];
             return response()->json($data, 401);
         }
-        return 'make payment';
     }
 }
