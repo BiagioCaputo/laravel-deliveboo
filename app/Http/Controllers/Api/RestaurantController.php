@@ -14,7 +14,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::with('user')->orderBy('activity_name')->get();
+        $restaurants = Restaurant::with('user')->orderBy('activity_name')->get()/* paginate(9) */; /* mettere paginate al posto di get */
 
         return response()->json($restaurants);
     }
