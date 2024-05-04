@@ -19,11 +19,14 @@ class PopularRestaurantsController extends Controller
         // Estrai le tipologie uniche dai ristoranti popolari
         $popularTypes = [];
 
+        //itero su tutti i ristoranti più popolari
         foreach ($popularRestaurants as $restaurant) {
+            //itero su tutte le tipologie del ristorante
             foreach ($restaurant->types as $type) {
+
                 // Controlla se il tipo è già stato aggiunto
                 if (!in_array($type->id, $popularTypes)) {
-                    // Aggiungi l'ID del tipo alla lista
+                    // Aggiungi l'id e il label del type
                     $popularTypes[] = [
                         'id' => $type->id,
                         'label' => $type->label,
