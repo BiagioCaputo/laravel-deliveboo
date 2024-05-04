@@ -32,9 +32,10 @@ class RestaurantController extends Controller
      */
     public function show(string $id)
     {
+
         if (Dish::whereRestaurant_id($id)->get() == '[]') return response(null, 404);
 
-        $restaurant = Restaurant::find($id);
+        $restaurant = Restaurant::with('types')->find($id);
 
         $dishes = Dish::whereRestaurant_id($id)->whereAvailable(true)->with('course')->orderBy('name')->get(); //cerco i piatti con l'id del ristorante
 
