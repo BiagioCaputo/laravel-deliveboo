@@ -7,8 +7,11 @@
 {{-- Contenuto principale pagina --}}
 @section('content')
 
-    <header>
-        <h1 class="text-center my-3">Lista Ordini</h1>
+    <header class="container">
+        <div class="d-flex justify-content-between align-items-center my-4">
+            <h1 class="text-center">Lista Ordini</h1>
+            <a href="{{ route('admin.orders.statistics') }}" class="btn btn-primary"><i class="fa-solid fa-chart-line"></i></a>
+        </div>
     </header>
 
     <div class="container py-2">
