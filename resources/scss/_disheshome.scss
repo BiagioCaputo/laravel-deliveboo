@@ -6,3 +6,32 @@
         border-radius: 10px;
     }
 }
+
+.crud-group {
+    display: flex;
+    justify-content: end;
+}
+
+/*Beackpoint Responsive*/
+@media screen and (max-width: 2000px) {
+    .crud-group {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .media1000 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .media770 {
+        display: none;
+    }
+
+    .btn {
+        border-radius: 50%;
+        padding: 10px;
+    }
+}
