@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -33,6 +33,8 @@ class OrderController extends Controller
         return view('admin.orders.show', compact('order', 'restaurant'));
     }
 
+}
+
     public function statistics(Request $request)
     {
         // Recupero l'id del ristorante loggato
@@ -53,3 +55,4 @@ class OrderController extends Controller
         return view('admin.orders.statistics', compact('monthlyOrders', 'annualOrders'));
     }
 }
+

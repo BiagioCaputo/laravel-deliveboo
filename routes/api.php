@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PopularRestaurantsController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\RestaurantTypeController;
@@ -26,5 +28,13 @@ Route::get('/types', TypeController::class);
 //* Rotta per ristoranti raggruppati per tipologie
 Route::get('types/restaurants/', RestaurantTypeController::class);
 
+
+//* Creo la rotta per la generazione del token
+Route::get('order/generate', [OrderController::class, 'makeToken']);
+
+//* Creo la rotta per il pagamento
+Route::post('order/payment', [OrderController::class, 'makePayment']);
+
 //* Rotta per i ristoranti e le relative categorie con più ordini
 Route::get('/popular-restaurants', [PopularRestaurantsController::class, 'index']);
+
