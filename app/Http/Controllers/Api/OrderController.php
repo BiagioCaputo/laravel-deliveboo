@@ -54,7 +54,7 @@ class OrderController extends Controller
                 // 'submitForSettlement' => True
             ]
         ]);
-        dd($transaction);
+        // dd($transaction);
 
         // Restituzione della risposta
         if ($transaction->success) {
