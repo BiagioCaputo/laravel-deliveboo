@@ -10,6 +10,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['restaurant_id', 'customer_name', 'customer_address', 'customer_email', 'customer_phone', 'total_price', 'status'];
+
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
