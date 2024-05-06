@@ -35,7 +35,7 @@ class OrderController extends Controller
                 'restaurant_id' => 'required|string|min:1',
                 'payment_method_nonce' => 'required',
                 'card_number' => 'required|string|digits:16',
-                'card_expire_date' => 'required|string|min:0524'
+                'card_expire_date' => 'required|string'
             ],
             [
                 'customer_name.required' => 'Campo obbligatorio',
@@ -49,7 +49,6 @@ class OrderController extends Controller
                 'card_number.required' => 'Campo obbligatorio',
                 'card_number.digits' => 'Il numero carta deve essere di :digits cifre',
                 'card_expire_date.required' => 'Campo obbligatorio',
-                'card_expire_date.min' => 'La data di scadenza non è valida',
             ]
         );
 
