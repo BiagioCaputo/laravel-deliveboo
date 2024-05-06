@@ -19,19 +19,19 @@
     }
 }
 
-@media screen and (max-width: 1000px) {
-    .media1000 {
+@media screen and (max-width: 992px) {
+    .media-992 {
         display: none;
     }
 }
 
-@media screen and (max-width: 770px) {
-    .media770 {
+@media screen and (max-width: 786px) {
+    .media-786 {
         display: none;
     }
 
-    .btn {
+    /* .btn {
         border-radius: 50%;
         padding: 10px;
-    }
+    } */
 }
