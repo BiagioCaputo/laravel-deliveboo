@@ -7,6 +7,7 @@ use App\Models\Restaurant;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
+
 class RestaurantTypeController extends Controller
 {
     public function __invoke(Request $request)
@@ -18,13 +19,15 @@ class RestaurantTypeController extends Controller
         // Costruisci la query per recuperare i ristoranti
         $query = Restaurant::query();
 
+
         // Filtra i ristoranti in base alle tipologie
-        $query->whereHas('types', function ($q) use ($typeIds) {
-            $q->whereIn('types.id', $typeIds);
-        });
+        foreach ($typeIds as $typeId)
+            $query->whereHas('types', function ($q) use ($typeId) {
+                $q->where('types.id', $typeId);
+            });
 
         // Esegui la query e restituisci i risultati
-        $restaurants = $query->get();
+        $restaurants = $query->paginate(9);
 
         return response()->json($restaurants);
     }

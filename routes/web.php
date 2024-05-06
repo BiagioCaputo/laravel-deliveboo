@@ -45,6 +45,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
 
     //ROTTE ORDINI
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/statistics', [OrderController::class, 'statistics'])->name('orders.statistics');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 });
 

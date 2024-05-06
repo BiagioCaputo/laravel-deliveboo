@@ -14,46 +14,29 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::with('user')->orderBy('activity_name')->get();
+        $restaurants = Restaurant::with('user')->orderBy('activity_name')->paginate(9);
 
         return response()->json($restaurants);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
+
         if (Dish::whereRestaurant_id($id)->get() == '[]') return response(null, 404);
 
-        $restaurant = Restaurant::find($id);
+        // Cerco le tipologie del ristorante
+        $restaurant = Restaurant::with('types')->find($id);
 
-        $dishes = Dish::whereRestaurant_id($id)->whereAvailable(true)->with('course')->orderBy('name')->get(); //cerco i piatti con l'id del ristorante
+        // Cerco i piatti con l'id del ristorante
+        $dishes = Dish::whereRestaurant_id($id)->whereAvailable(true)->with('course')->orderBy('name')->get();
 
-        return response()->json(['dishes' => $dishes, 'restaurant' => $restaurant]);
-    }
+        // Recupera le portate solo dei piatti presenti nella show del ristorante
+        $courses = $dishes->pluck('course')->unique()->values()->all();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Restaurant $restaurant)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Restaurant $restaurant)
-    {
-        //
+        return response()->json(['dishes' => $dishes, 'restaurant' => $restaurant, 'courses' => $courses]);
     }
 }
