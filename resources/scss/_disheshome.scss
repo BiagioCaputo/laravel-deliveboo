@@ -3,25 +3,33 @@
 
     .img-table {
         width: 200px;
+        height: 130px;
+        object-fit: fill;
         border-radius: 10px;
     }
 }
 
 .crud-group {
     display: flex;
-    justify-content: end;
+    justify-content: center;
+    flex-direction: column;
+
 }
 
 /*Beackpoint Responsive*/
-@media screen and (max-width: 2000px) {
-    .crud-group {
-        flex-direction: column;
+@media screen and (max-width: 992px) {
+    .dish-992 {
+        display: none;
     }
 }
 
 @media screen and (max-width: 992px) {
-    .dish-992 {
-        display: none;
+    .crud-group {
+        .btn-custom {
+            border-radius: 50%;
+            padding: 10px;
+            width: 50px;
+        }
     }
 }
 
@@ -29,9 +37,4 @@
     .dish-786 {
         display: none;
     }
-
-    /* .btn {
-        border-radius: 50%;
-        padding: 10px;
-    } */
 }

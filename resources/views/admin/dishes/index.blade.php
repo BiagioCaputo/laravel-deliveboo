@@ -65,9 +65,10 @@
                     <th scope="col" class="dish-786">Portata</th>
                     <th scope="col">
                         {{-- Cestino --}}
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ route('admin.dishes.trash') }}" class="btn btn-danger">
-                                <i class="fa-solid fa-trash me-2"></i>Cestino
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('admin.dishes.trash') }}" class="btn btn-danger text-center">
+                                <i class="fa-solid fa-trash"></i>
+                                <div>Cestino</div>
                             </a>
                         </div>
                     </th>
@@ -90,11 +91,11 @@
                         @endif
                     </td>
                     <td>
-                        <div class="gap-2 crud-group">
+                        <div class="gap-2 crud-group text-center">
                             <!--View-->
-                            <a href="{{ route('admin.dishes.show', $dish) }}" class="btn btn-primary btn-custom"><i class="fas fa-eye "></i></a>
+                            <a href="{{ route('admin.dishes.show', $dish) }}" class="btn btn-primary btn-custom mx-auto"><i class="fas fa-eye "></i></a>
                             <!--Edit-->
-                            <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-warning btn-custom"><i class="fas fa-pencil "></i></a>
+                            <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-warning btn-custom mx-auto"><i class="fas fa-pencil "></i></a>
                             <!--Soft Delete-->
                             <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST" class="delete-form" data-bs-toggle="modal" data-bs-target="#modal" data-dish="{{ $dish->name }}">
                                 @csrf
