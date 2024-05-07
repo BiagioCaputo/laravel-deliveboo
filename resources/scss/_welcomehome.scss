@@ -37,14 +37,6 @@
         font-weight: 700;
     }
 
-    img {
-        display: none;
-        //TODO rendere il logo piu' piccolo 
-        /* height: 250px;
-        margin: auto; */
-
-    }
-
     .btn {
         padding: 10px 30px;
         border-radius: 50px;
@@ -54,4 +46,21 @@
 
 .wave {
     width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+    .jumbotron {
+        img {
+            height: 250px;
+            margin: auto;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .jumbotron {
+        img {
+            display: none;
+        }
+    }
 }
