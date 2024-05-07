@@ -58,11 +58,11 @@
             <thead>
                 <tr>
                     <th scope="col">Piatto</th>
-                    <th scope="col" class="media-992">Immagine</th>
+                    <th scope="col" class="dish-992">Immagine</th>
                     <th scope="col">Prezzo</th>
-                    <th scope="col" class="media-786">Descrizione</th>
+                    <th scope="col" class="dish-786">Descrizione</th>
                     <th scope="col">Disponibilità</th>
-                    <th scope="col" class="media-786">Portata</th>
+                    <th scope="col" class="dish-786">Portata</th>
                     <th scope="col">
                         {{-- Cestino --}}
                         <div class="d-flex justify-content-end">
@@ -77,12 +77,12 @@
                 @forelse ($dishes as $dish)
                 <tr>
                     <th scope="row">{{ $dish->name }}</th>
-                    <td class="media-992"><img class="img-table" src="{{ $dish->getImage() }}" alt="{{ $dish->name }}">
+                    <td class="dish-992"><img class="img-table" src="{{ $dish->getImage() }}" alt="{{ $dish->name }}">
                     </td>
                     <td>{{ $dish->getPrice() }}</td>
-                    <td class="media-786">{{ $dish->description }}</td>
+                    <td class="dish-786">{{ $dish->description }}</td>
                     <td class="text-center">{{ $dish->available ? 'Sì' : 'No' }}</td>
-                    <td class="media-786">
+                    <td class="dish-786">
                         @if ($dish->course)
                         <span class="text-capitalize">{{ $dish->course->label }}</span>
                         @else
