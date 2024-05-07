@@ -43,7 +43,7 @@ class MailController extends Controller
         $mail = new ConfirmMessageMail($data['email']);
 
         // Mando la mail
-        Mail::to(env('MAIL_TO_ADDRESS'))->send($mail);
+        Mail::to($data['email'])->send($mail);
 
         return response()->json('Inviato con successo');
     }

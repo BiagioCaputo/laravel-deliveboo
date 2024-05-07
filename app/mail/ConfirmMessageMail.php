@@ -31,7 +31,8 @@ class ConfirmMessageMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: $this->sender,
+            from: 'team4@esempio.com',
+            replyTo: $this->sender,
         );
     }
 
