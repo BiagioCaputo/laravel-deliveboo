@@ -27,7 +27,7 @@ class RestaurantTypeController extends Controller
             });
 
         // Esegui la query e restituisci i risultati
-        $restaurants = $query->paginate(9);
+        $restaurants = $query->with('types')->paginate(9);
 
         return response()->json($restaurants);
     }
