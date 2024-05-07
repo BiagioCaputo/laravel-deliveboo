@@ -1,4 +1,12 @@
 .statistics-container {
     width: 500px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1200px) {
+    .statistics-container {
+        flex-direction: column;
+    }
 }

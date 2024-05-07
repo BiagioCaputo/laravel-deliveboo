@@ -10,7 +10,7 @@
 
     <h1 class="text-center my-5">Statistiche Ordini</h1>
 
-    <div class="statistics-container d-flex justify-content-center">
+    <div class="statistics-container">
 
         {{-- Grafico mensile --}}
         <canvas id="monthlyOrdersChart"></canvas>
