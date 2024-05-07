@@ -50,17 +50,17 @@
             <div class="d-flex justify-content-between align-items-center mt-5">
                 {{-- <div>
                     <a href="{{ route('admin.restaurant.edit', $restaurant) }}" class="btn btn-warning"><i class="fas fa-pencil me-2"></i>Modifica</a>
-                </div> --}}
-                <div>
-                    <a href="{{ route('admin.dishes.index', $restaurant) }}" class="btn btn-primary"><i class="fa-solid fa-utensils me-2"></i>Menù</a>
-                </div>
-                <div>
-                    <a href="{{ route('admin.orders.index', $restaurant) }}" class="btn btn-info"><i class="fa-solid fa-utensils me-2"></i>Ordini</a>
-                </div>
+            </div> --}}
+            <div>
+                <a href="{{ route('admin.dishes.index', $restaurant) }}" class="btn btn-primary btn-pill"><i class="fa-solid fa-utensils me-2"></i>Menù</a>
             </div>
-
+            <div>
+                <a href="{{ route('admin.orders.index', $restaurant) }}" class="btn btn-info btn-pill"><i class="fa-solid fa-utensils me-2"></i>Ordini</a>
+            </div>
         </div>
+
     </div>
+</div>
 </div>
 
 @endsection
