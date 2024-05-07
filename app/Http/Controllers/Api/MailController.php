@@ -7,6 +7,7 @@ use App\Mail\ConfirmMessageMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 
 class MailController extends Controller
 {
@@ -21,6 +22,9 @@ class MailController extends Controller
             $data,
             [
                 'email' => 'required|email',
+                'customer_address' => 'required|string',
+                'customer_name' => 'required|string',
+                'final_price' => 'required|decimal:2|min:0'
             ],
             [
                 'email.required' => 'Mail richiesta',
@@ -40,11 +44,11 @@ class MailController extends Controller
         }
 
         // Istanzo la mail
-        $mail = new ConfirmMessageMail($data['email']);
+        $mail = new ConfirmMessageMail($data['email'], $data['customer_address'], $data['customer_name'], $data['final_price']);
 
         // Mando la mail
         Mail::to($data['email'])->send($mail);
 
-        return response()->json('Inviato con successo');
+        return View::make('mails.confirm_payment.message');
     }
 }

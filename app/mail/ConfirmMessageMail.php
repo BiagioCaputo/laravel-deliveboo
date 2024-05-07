@@ -14,15 +14,18 @@ class ConfirmMessageMail extends Mailable
     use Queueable, SerializesModels;
 
     public $sender;
-    public $subject;
-    public $content;
+    public $customer_address;
+    public $customer_name;
+    public $final_price;
     /**
      * Create a new message instance.
      */
-    public function __construct($sender,) //  $subject, $content
+    public function __construct($sender, $customer_address, $customer_name, $final_price)
     {
         $this->sender = $sender;
-        // $this->content = $content;
+        $this->customer_address = $customer_address;
+        $this->customer_name = $customer_name;
+        $this->final_price = $final_price;
     }
 
     /**
@@ -43,7 +46,7 @@ class ConfirmMessageMail extends Mailable
     {
         return new Content(
             view: 'mails.confirm_payment.message',
-            with: ['content' => $this->content]
+            with: ['customer_address' => $this->customer_address, 'customer_name' => $this->customer_name, 'final_price' => $this->final_price],
         );
     }
 
