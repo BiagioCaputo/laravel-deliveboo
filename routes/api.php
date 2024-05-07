@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Api\MailController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PopularRestaurantsController;
 use App\Http\Controllers\Api\RestaurantController;
@@ -38,3 +38,5 @@ Route::post('order/payment', [OrderController::class, 'makePayment']);
 //* Rotta per i ristoranti e le relative categorie con più ordini
 Route::get('/popular-restaurants', [PopularRestaurantsController::class, 'index']);
 
+//* Rotta per l'email ricevuta
+Route::post('/contact-mail', [MailController::class, 'message']);
