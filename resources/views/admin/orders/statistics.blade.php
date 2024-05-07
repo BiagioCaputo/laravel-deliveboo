@@ -28,7 +28,7 @@
 
 
 <script>
-    //trasformo in jason gli array ordini mensili e annuali che mi arrivano dal controller
+    //Trasformo in jason gli array ordini mensili e annuali che mi arrivano dal controller
     const monthlyData = @json($monthlyOrders);
     const annualData = @json($annualOrders);
 
@@ -38,19 +38,25 @@
         return months[monthNumber - 1]; // I mesi in JavaScript partono da 0, quindi sottraiamo 1
     }
 
-    //Ricavo i dati necessari per la tabella dei mesi
-    const monthlyLabels = monthlyData.map(item => getMonthName(item.month));
-    const monthlyTotals = monthlyData.map(item => item.total);
+    // Array di tutti i nomi dei mesi
+    const allMonths = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
 
-    //Ricavo i dati necessari per la tabella degli anni
-    const annualLabels = annualData.map(item => item.year);
-    const annualTotals = annualData.map(item => item.total);
+    // Ricavo i dati necessari per la tabella dei mesi
+    const monthlyLabels = monthlyData.map(item => getMonthName(item.month));
+    // Inizializzo il futuro array degli ordini per mese
+    let monthlyTotals = [];
+    // Itera su tutti i mesi e inserisci il totale corrispondente se presente nei dati, altrimenti inserisci 0
+    for (let i = 0; i <= 12; i++) {
+        //Se trovo un ordine salvo il totale nel mese corrispondente, altrimenti salvo 0
+        const order = monthlyData.find(item => item.month === i);
+        monthlyTotals.push(order ? order.total : 0);
+    }
 
     //Grafico per mesi
     const monthlyOrdersChart = new Chart(document.getElementById('monthlyOrdersChart').getContext('2d'), {
         type: 'bar',
         data: {
-            labels: monthlyLabels,
+            labels: allMonths,
             datasets: [{
                 label: 'Ordini per Mese',
                 data: monthlyTotals,
@@ -67,6 +73,11 @@
             }
         }
     });
+
+
+    //Ricavo i dati necessari per la tabella degli anni
+    const annualLabels = annualData.map(item => item.year);
+    const annualTotals = annualData.map(item => item.total);
 
     //Grafico per anni
     const annualOrdersChart = new Chart(document.getElementById('annualOrdersChart').getContext('2d'), {
