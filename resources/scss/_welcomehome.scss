@@ -37,17 +37,43 @@
         font-weight: 700;
     }
 
-    img {
-        max-width: 400px;
-    }
-
     .btn {
         padding: 10px 30px;
         border-radius: 50px;
         font-weight: 600;
     }
+
 }
 
 .wave {
     width: 100%;
+}
+
+#mobile-wave {
+    display: none;
+}
+
+@media screen and (max-width: 992px) {
+    .jumbotron {
+        img {
+            height: 250px;
+            margin: auto;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .jumbotron {
+        img {
+            display: none;
+        }
+    }
+
+    #desktop-wave {
+        display: none;
+    }
+
+    #mobile-wave {
+        display: block;
+    }
 }

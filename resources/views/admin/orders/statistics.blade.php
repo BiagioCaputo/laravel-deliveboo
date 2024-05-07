@@ -6,18 +6,21 @@
 
 {{-- Contenuto principale pagina --}}
 @section('content')
+<div class="container">
+
     <h1 class="text-center my-5">Statistiche Ordini</h1>
 
-    <div class="statistics-container d-flex">
+    <div class="statistics-container">
 
         {{-- Grafico mensile --}}
         <canvas id="monthlyOrdersChart"></canvas>
 
         {{-- Grafico annuale --}}
         <canvas id="annualOrdersChart"></canvas>
-          
+
     </div>
-    
+</div>
+
 @endsection
 
 
@@ -100,9 +103,5 @@
             }
         }
     });
-    
-            
-   
 </script>
 @endsection
-

@@ -36,10 +36,20 @@ main {
     }
 }
 
-.btn {
+.btn-custom {
     padding: 10px 30px;
     border-radius: 50px;
     font-weight: 600;
+    width: 90px;
+
+    i {
+        margin: 0 auto;
+    }
+}
+
+.btn-pill {
+    padding: 10px 30px;
+    border-radius: 50px;
 }
 
 .btn-primary {
