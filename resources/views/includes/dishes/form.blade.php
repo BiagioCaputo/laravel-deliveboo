@@ -146,6 +146,7 @@
 
 @section('scripts')
     @vite('resources/js/dish_forms_validation.js')
+    @vite('resources/js/image_preview.js') 
 @endsection
 
 <script>
