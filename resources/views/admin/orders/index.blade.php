@@ -42,7 +42,7 @@
                             <td class="order-992">{{ $order->customer_address }}</td>
                             <td class="order-992">{{ $order->customer_email }}</td>
                             <td class="order-768">{{ $order->customer_phone }}</td>
-                            <td>{{ $order->total_price }}</td>
+                            <td>€{{ $order->total_price }}</td>
                             <td class="text-center">{{ $order->status ? 'Sì' : 'No' }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td>
