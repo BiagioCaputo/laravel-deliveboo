@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1 class="text-center my-5">Gentile {{$customer_name}}, grazie per il tuo acquisto</h1>
-        <p>Il tuo ordine di importo {{$final_price}}$ sarà consegnato il prima possibile all'indirizzo:{{$customer_address}}</p>
+        <p>Il tuo ordine di importo {{$final_price}}€ sarà consegnato il prima possibile all'indirizzo:{{$customer_address}}</p>
     </div>
     
 </body>
