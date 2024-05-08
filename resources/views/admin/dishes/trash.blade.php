@@ -23,19 +23,19 @@
                 <a href="{{ route('admin.dishes.index') }}" class="btn btn-primary btn-sm"><i
                         class="fa-solid fa-arrow-left"></i>
                     Lista Piatti</a>
-                
-                @if(!$dishes->isEmpty())
-                {{-- Ripristino massivo --}}
-                <form method="POST" action="{{ route('admin.dishes.massive-restore') }}" class="btn btn-success btn-sm"
-                    onclick="this.submit()">
-                    <i class="fa-solid fa-rotate-left"></i>
-                    @csrf
-                    @method('PATCH')
-                    Ripristina tutti
-                </form>
 
-                {{-- Cancellazione massiva --}}
-                {{-- <form method="POST" action="{{ route('admin.dishes.massive-drop') }}" class="delete-form"
+                @if (!$dishes->isEmpty())
+                    {{-- Ripristino massivo --}}
+                    <form method="POST" action="{{ route('admin.dishes.massive-restore') }}" class="btn btn-success btn-sm"
+                        onclick="this.submit()">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        @csrf
+                        @method('PATCH')
+                        Ripristina tutti
+                    </form>
+
+                    {{-- Cancellazione massiva --}}
+                    {{-- <form method="POST" action="{{ route('admin.dishes.massive-drop') }}" class="delete-form"
                     data-bs-toggle="modal" data-bs-target="#modal">
                     @csrf
                     @method('DELETE')
@@ -66,7 +66,8 @@
                 @forelse ($dishes as $dish)
                     <tr>
                         <th scope="row">{{ $dish->name }}</th>
-                        <td><img class="img-fluid" src="{{ $dish->getImage() }}" alt="{{ $dish->name }}"></td>
+                        <td><img class="img-fluid my-img rounded" src="{{ $dish->getImage() }}" alt="{{ $dish->name }}">
+                        </td>
                         <td>{{ $dish->getPrice() }}</td>
                         <td>{{ $dish->description }}</td>
                         <td>{{ $dish->available ? 'Sì' : 'No' }}</td>
